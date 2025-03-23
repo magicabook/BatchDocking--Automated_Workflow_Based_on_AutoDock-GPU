@@ -31,15 +31,20 @@ More complete features and a user manual will be added in future updates!<br>
 3）在`ligand_smi`目录下新建一个`.txt`文件，并且按照smiles格式规则将您的小分子粘贴到这个`.txt`文件中，例如： <br>
     ```
     CC(=O)OC1=CC=CC=C1C(O)=O Aspirin
+    ```
+    ```
     CC(=O)NC1=CC=C(O)C=C1 Paracetamol
+    ```
+    ```
     CC(C)CC1=CC=C(C=C1)[C@@H](C)C(O)=O Ibuprofen
     ```
 <br>
 4）运行`change_smi.py`，程序会自动读取您`ligand_smi`目录下的所有`.txt`文件，并将每一个分子提取出来单独保存至`ligand_smi_single`目录下，稍后程序将会把`ligand_smi_single`目录下的所有小分子转化为`.pdb`格式，同时完成加氢，加G电荷与根据gaff力场完成构象能量最低化 <br>
 5）运行`change_pdb.py`，程序会自动将`ligand_pdb`目录下的所有小分子转化为`.pdbqt`格式并设置为配体，这一过程依赖ADT的子模块完成<br>
 6）运行`dock.py`，程序会自动对每一个蛋白质-小分子组合进行对接，同时将获取的最低自由能保存到`.csv`文件中，您可以在开发环境中自定义`.csv`文件的名称，未来将添加交互式功能以便用户在终端中自定义<br>
-7）在`result_dlg`目录下有与您蛋白质目录同名的目录，分别保存了该蛋白与每一个小分子对接的结果文件<br>
-8）在`result_csv`目录下保存了本次对接工作的所有最优自由能数据，您可根据这一`.csv`文件寻找潜在的成药化合物<br>
+7）运行`run_all.py`运行（4）~（6）<br>
+8）在`result_dlg`目录下有与您蛋白质目录同名的目录，分别保存了该蛋白与每一个小分子对接的结果文件<br>
+9）在`result_csv`目录下保存了本次对接工作的所有最优自由能数据，您可根据这一`.csv`文件寻找潜在的成药化合物<br>
 
 ## 未来的发展方向：
 1）**自动初始化（包括目录检查和依赖库下载）** 让用户上手后无需调整工作目录与下载python运行效果库文件即可直接使用<br>
@@ -80,8 +85,9 @@ After confirming that your software installations and environment variables are 
 4. Run `change_smi.py`. The program will automatically read all `.txt` files in the **ligand_smi** directory, extract each molecule, and save them individually in the **ligand_smi_single** directory. Later, the program will convert all small molecules in **ligand_smi_single** to the `.pdb` format, add hydrogens, assign G charges, and perform conformational energy minimization according to the GAFF force field.<br>
 5. Run `change_pdb.py`. The program will automatically convert all small molecules in the **ligand_pdb** directory to `.pdbqt` format and set them as ligands; this process relies on a submodule of ADT.<br>
 6. Run `dock.py`. The program will automatically perform docking for each protein–small molecule pair and save the best (lowest) binding free energy into a `.csv` file. You can customize the `.csv` file name in the development environment; interactive features for custom naming will be added in future updates.<br>
-7. In the **result_dlg** directory, directories named after your proteins will be created, each containing the docking result files for that protein with every small molecule.<br>
-8. The **result_csv** directory will store the best binding free energy data for all docking sessions, which you can use to identify potential drug-like compounds.<br>
+7. Run `run_all.py`. Run 4 ~ 6 all process.<br>
+8. In the **result_dlg** directory, directories named after your proteins will be created, each containing the docking result files for that protein with every small molecule.<br>
+9. The **result_csv** directory will store the best binding free energy data for all docking sessions, which you can use to identify potential drug-like compounds.<br>
 
 ## Future Development Directions:
 1. **Automatic Initialization:** Including directory checks and dependency downloads, so users can start without manually adjusting the working directory or downloading Python libraries.<br>
