@@ -28,13 +28,15 @@ More complete features and a user manual will be added in future updates!<br>
 ## 工作流程：
 1）假设您有A、B两个蛋白，请在`protein`目录下分别创建`A`、`B`两个目录<br>
 2）蛋白质预处理完毕后将AutoDockTools生成的`.maps`和`.maps.fld`文件剪贴到相关蛋白质的目录下<br>
-3）在`ligand_smi`目录下新建一个`.txt`文件，并且按照smiles格式规则将您的小分子粘贴到这个`.txt`文件中，例如：<br>
+3）在`ligand_smi`目录下新建一个`.txt`文件，并且按照smiles格式规则将您的小分子粘贴到这个`.txt`文件中，例如： <br>
+<br>
     ```
     CC(=O)OC1=CC=CC=C1C(O)=O Aspirin
     CC(=O)NC1=CC=C(O)C=C1 Paracetamol
     CC(C)CC1=CC=C(C=C1)[C@@H](C)C(O)=O Ibuprofen
     ```
-4）运行`change_smi.py`，程序会自动读取您`ligand_smi`目录下的所有`.txt`文件，并将每一个分子提取出来单独保存至`ligand_smi_single`目录下，稍后程序将会把`ligand_smi_single`目录下的所有小分子转化为`.pdb`格式，同时完成加氢，加G电荷与根据gaff力场完成构象能量最低化<br>
+<br>
+4）运行`change_smi.py`，程序会自动读取您`ligand_smi`目录下的所有`.txt`文件，并将每一个分子提取出来单独保存至`ligand_smi_single`目录下，稍后程序将会把`ligand_smi_single`目录下的所有小分子转化为`.pdb`格式，同时完成加氢，加G电荷与根据gaff力场完成构象能量最低化 <br>
 5）运行`change_pdb.py`，程序会自动将`ligand_pdb`目录下的所有小分子转化为`.pdbqt`格式并设置为配体，这一过程依赖ADT的子模块完成<br>
 6）运行`dock.py`，程序会自动对每一个蛋白质-小分子组合进行对接，同时将获取的最低自由能保存到`.csv`文件中，您可以在开发环境中自定义`.csv`文件的名称，未来将添加交互式功能以便用户在终端中自定义<br>
 7）在`result_dlg`目录下有与您蛋白质目录同名的目录，分别保存了该蛋白与每一个小分子对接的结果文件<br>
