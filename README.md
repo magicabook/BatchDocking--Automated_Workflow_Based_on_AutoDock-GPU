@@ -28,7 +28,7 @@ More complete features and a user manual will be added in future updates!<br>
 ## 工作流程：
 1）假设您有A、B两个蛋白，请在`protein`目录下分别创建`A`、`B`两个目录<br>
 2）蛋白质预处理完毕后将AutoDockTools生成的`.maps`和`.maps.fld`文件剪贴到相关蛋白质的目录下<br>
-3）在`ligand_smi`目录下新建一个`.txt`文件，并且按照smiles格式规则将您的小分子粘贴到这个`.txt`文件中，例如：
+3）在`ligand_smi`目录下新建一个`.txt`文件，并且按照smiles格式规则将您的小分子粘贴到这个`.txt`文件中，例如：<br>
     ```
     CC(=O)OC1=CC=CC=C1C(O)=O Aspirin
     CC(=O)NC1=CC=C(O)C=C1 Paracetamol
