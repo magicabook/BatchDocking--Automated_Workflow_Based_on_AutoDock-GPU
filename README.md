@@ -31,13 +31,13 @@ More complete features and a user manual will be added in future updates!<br>
 3）在`ligand_smi`目录下新建一个`.txt`文件，并且按照smiles格式规则将您的小分子粘贴到这个`.txt`文件中，例如： <br>
     ```
     CC(=O)OC1=CC=CC=C1C(O)=O Aspirin
-    ```
+    ```<br>
     ```
     CC(=O)NC1=CC=C(O)C=C1 Paracetamol
-    ```
+    ```<br>
     ```
     CC(C)CC1=CC=C(C=C1)[C@@H](C)C(O)=O Ibuprofen
-    ```
+    ```<br>
 <br>
 4）运行`change_smi.py`，程序会自动读取您`ligand_smi`目录下的所有`.txt`文件，并将每一个分子提取出来单独保存至`ligand_smi_single`目录下，稍后程序将会把`ligand_smi_single`目录下的所有小分子转化为`.pdb`格式，同时完成加氢，加G电荷与根据gaff力场完成构象能量最低化 <br>
 5）运行`change_pdb.py`，程序会自动将`ligand_pdb`目录下的所有小分子转化为`.pdbqt`格式并设置为配体，这一过程依赖ADT的子模块完成<br>
