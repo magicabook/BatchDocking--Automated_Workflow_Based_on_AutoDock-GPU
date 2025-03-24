@@ -1,13 +1,12 @@
 import os
 import re
 import csv
-import numpy
 import datetime
 import subprocess
 
 # Define and Set Your Work_Path and Basic Function
-csv_name_hat = 'work1'
-nrun = '100' #Docking run number
+csv_name_hat = 'test' # Your result file name
+nrun = '1' #Docking run number
 py2 = '/usr/bin/python2.7'
 AD_GPU = '/root/AutoDock-GPU-1.6/bin/autodock_gpu_128wi' # AutoDock-GPU path
 Grid = '/root/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py'
@@ -15,12 +14,15 @@ protein_list_path = '../protein/' # Protein .maps,fld path
 ligand_smi = '../ligand_smi' #.smi path
 ligand_smi_single = '../ligand_smi_single' # single.smi path
 ligand_pdb = '../ligand_pdb' # .pdb path
-ligand_pdbqt_path = '../ligand_pdbqt/' # .pdbqt path
-result_dlg = '../result_dlg/' # AutoDock-GPU run docking output for path
-result_csv = "../result_csv/" # sult csv path
+ligand_pdbqt_path = '../ligand_pdbqt' # .pdbqt path
+result_dlg = '../result_dlg' # AutoDock-GPU run docking output for path
+result_csv = '../result_csv' # sult csv path
+result_complex = '../result_complex'
 time_raw = datetime.datetime.now() # get system time to make file sign
 time_str = time_raw.strftime('%Y-%m-%d %H-%M-%S') # change to str
 ligand_number = 0 # give ligand a number , to save as csv
+error_number = 0
+warning_number = 0
 
 # Change to single_file
 for file in os.listdir(ligand_smi):
