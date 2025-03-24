@@ -1,4 +1,4 @@
-# Batch Docking: Automated Workflow Based on AutoDock-GPU (V 1.0.0)
+# Batch Docking: Automated Workflow Based on AutoDock-GPU (V 1.1.0)
 这是一个基于AutoDock-GPU的自动化批量对接程序，只需输入小分子的smiles结构文档（支持批量输入）并且提供蛋白质的网格文件（maps.fld）即可自动完成小分子预处理，分子对接，结果提取等步骤。<br>
 This project is an automated batch docking pipeline built on AutoDock-GPU, designed to streamline virtual screening workflows.<br>
 
@@ -6,6 +6,20 @@ This project is an automated batch docking pipeline built on AutoDock-GPU, desig
 更多完善的功能和用户手册在将来的更新中被加入！<br>
 This program is currently in an early beta phase. The author is not very familiar with GitHub usage, so please excuse any shortcomings.<br>
 More complete features and a user manual will be added in future updates!<br>
+
+#V1.1.0-alpha 更新日志：
+1）实装自动识别并将.dlg结果文件中的最优构象与蛋白质文件一起输出为复合物的功能，让您再也不必在文本编辑器和充满BUG的AutoDockTools中来回切换与选择。
+2）将蛋白质与小分子名称使用单独颜色表示，让您的终端更加简洁且一目了然。
+3）修复了一些已知BUG。
+4）看了一些猫咪视频，给校园里的猫猫拍了照。
+5）移除了Herobrine。
+
+#V1.1.0-alpha ChangeLog:
+1)Implemented automatic recognition and output of the optimal conformation from .dlg result files together with the protein file as a complex, eliminating the need to switch between text editors and the bug-ridden AutoDockTools.​
+2) Assigned distinct colors to protein and small molecule names, making your terminal more concise and intuitive.​
+3) Fixed some known bugs.​
+4) Watched some cat videos and took photos of cats on University.​
+5) Removed Herobrine.​
 
 ## 运行环境需求：
 1）装有Ubuntu的WSL2环境或其他Linux发行版<br>
