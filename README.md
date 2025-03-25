@@ -1,4 +1,4 @@
-# Batch Docking: Automated Workflow Based on AutoDock-GPU (V 1.1.2)
+# Batch Docking: Automated Workflow Based on AutoDock-GPU (V 1.2.0)
 这是一个基于AutoDock-GPU的自动化批量对接程序，只需输入小分子的smiles结构文档（支持批量输入）并且提供蛋白质的网格文件（maps.fld）即可自动完成小分子预处理，分子对接，结果提取等步骤。<br>
 This project is an automated batch docking pipeline built on AutoDock-GPU, designed to streamline virtual screening workflows.<br>
 
@@ -8,6 +8,7 @@ This program is currently in an early beta phase. The author is not very familia
 More complete features and a user manual will be added in future updates!<br>
 
 ## 更新日志
+### 昆明铁路局：标准化作业！
 1）引入配置文件，您可以更方便地设置全局变量与参数，不必再对每一个文件进行调整<br>
 2）引入语言包，您可以通过配置文件选择您的语言，所有的输出均进行了标准化命名，为汉化提供了接口和参考<br>
 3）更为标准和一目了然的变量名称，避免了命名含糊不清的变量被错误使用造成灾难性后果<br>
@@ -16,6 +17,7 @@ More complete features and a user manual will be added in future updates!<br>
 6）扩展注释范围，现在您可以对小分子进行注释<br>
 
 ## Changelog<br>
+### Kunming Railway Bureau: Standardized Operations!
 1. Introduced configuration files – Easily set global variables and parameters without manual adjustments to individual files<br>
 2. Added language packs – Select your language via the configuration file. All outputs now follow standardized naming conventions, enabling seamless localization (e.g zh-cn)<br>
 3. Standardized and intuitive variable names – Eliminates ambiguous naming to prevent catastrophic misuse<br>
