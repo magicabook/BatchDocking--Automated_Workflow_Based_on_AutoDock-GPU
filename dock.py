@@ -1,44 +1,17 @@
-import os
-import re
-import csv
-import datetime
-import subprocess
+from properties import *
 
-# Define and Set Your Work_Path and Basic Function
-result_name_hat = 'test' # Your result file name
-nrun = '1' #Docking run number
-py2 = '/usr/bin/python2.7'
-AD_GPU = '/root/AutoDock-GPU-1.6/bin/autodock_gpu_128wi' # AutoDock-GPU path
-Grid = '/root/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py'
-protein_list_path = '../protein' # Protein .maps,fld path
-ligand_smi = '../ligand_smi' #.smi path
-ligand_smi_single = '../ligand_smi_single' # single.smi path
-ligand_pdb = '../ligand_pdb' # .pdb path
-ligand_pdbqt_path = '../ligand_pdbqt' # .pdbqt path
-result_dlg = '../result_dlg' # AutoDock-GPU run docking output for path
-result_csv = '../result_csv' # result csv path
-result_complex = '../result_complex'
-time_raw = datetime.datetime.now() # get system time to make file sign
-time_str = time_raw.strftime('%Y-%m-%d %H-%M-%S') # change to str
-time_str_file = time_raw.strftime('%Y-%m-%d\ %H-%M-%S')
-ligand_number = 0 # give ligand a number , to save as csv
-error_number = 0
-warning_number = 0
-
-print(f'\n\033[92m<<<====================[ 正在校验工作目录完整性 ]====================>>>\033[0m')
-print(f'\033[92m<<<=====[ Verifying the integrity of the working directory ]=====>>>\033[0m')
 # Checking protein.maps.fld
+print(f'\n\033[92m{lang_dock_workfile_began}\033[0m')
 for protein_name in os.listdir(protein_list_path): # make protein list
     if os.system(f'find {protein_list_path}/{protein_name}/ -type f -name "*.maps.fld" | grep -q .;') != 0:
         error_number += 1
-        print(f'\033[91m错误：未找到该蛋白质的网格文件！问题蛋白名称 > \033[96m{protein_name}\033[0m')
-        print(f'\033[91mERROR: Not Find .maps.fld > \033[96m{protein_name}\033[0m')
+        print(f'\033[91m{lang_dock_fld_err}\033[96m{protein_name}\033[0m')
 # Make result_complex/name_time
 os.system(f'mkdir {result_complex}/{result_name_hat}\ {time_str_file}')
-print(f'\033[92m    最优对接复合体存放目录已创建，目录名称 > {result_name_hat} {time_str_file}\033[0m')
+print(f'\033[92m    {lang_dock_complex}{result_name_hat} {time_str_file}\033[0m')
 # Make result_dlg/name_time
 os.system(f'mkdir {result_dlg}/{result_name_hat}\ {time_str_file}')
-print(f'\033[92m    小分子构象存放一级目录已创建，目录名称 > {result_name_hat} {time_str_file}\033[0m')
+print(f'\033[92m    {lang_dock_dlg}{result_name_hat} {time_str_file}\033[0m')
 # Make result_dlg/protein
 for protein_name in os.listdir(protein_list_path): # make protein list
     no_work = '#' in protein_name # the protein to_work or no_work ?
@@ -47,16 +20,14 @@ for protein_name in os.listdir(protein_list_path): # make protein list
         checking_protein_cmd = f'ls {result_dlg}/{result_name_hat}\ {time_str_file}'
         checking_protein_out = subprocess.check_output(checking_protein_cmd, shell=True, stderr=subprocess.STDOUT, text=True)
         if protein_name in checking_protein_out:
-            print(f'\033[92m  have result_dlg catalog > \033[96m{protein_name}\033[0m')  # print result catalog
+            print(f'\033[92m  {lang_dock_have_dlg}\033[96m{protein_name}\033[0m')  # print result catalog
         else:
-            print(f'\033[92m    正在进行目录补全 > 小分子构象存放二级目录\033[0m')
-            print(f'\033[92m    Performing catalog completion > result_dlg\033[0m')
+            print(f'\033[92m    {lang_dock_mk_dlg}\033[0m')
             os.system(f'mkdir {result_dlg}/{result_name_hat}\ {time_str_file}/{protein_name}') #make result file
-            print(f'\033[92m    小分子构象存放二级目录已创建，目录名称 > \033[96m{protein_name}\033[0m')  # print result catalog
-            print(f'\033[92m    make result_dlg catalog > \033[96m{protein_name}\033[0m')  # print result catalog
+            print(f'\033[92m    {lang_dock_mk_dlg_suc}\033[96m{protein_name}\033[0m')  # print result catalog
     else:
         no_work_protein = protein_name.replace("#", "")
-        print(f'\033[92m    找到被注释的蛋白 > \033[96m{no_work_protein}\033[0m')
+        print(f'\033[92m    {lang_dock_pro_commend}\033[96m{no_work_protein}\033[0m')
 # # Make result_complex/protein
 # for protein_name in os.listdir(protein_list_path): # make protein list
 #     # checking do .result_dlg have protein ?
@@ -69,12 +40,10 @@ for protein_name in os.listdir(protein_list_path): # make protein list
 #         print(f'\033[92m<<<======[ Performing catalog completion > result_complex ]======>>>\033[0m')
 #         os.system(f'mkdir {result_complex}/{protein_name}') #make result file
 #         print(f'\033[92m  make result_complex catalog > \033[96m{protein_name}\033[0m')  # print result catalog
-print(f'\033[92m<<<===================[ 工作目录完整性校验通过！ ]===================>>>\033[0m')
-print(f'\033[92m<<<=====[ Working directory integrity verification passed! ]=====>>>\033[0m')
+print(f'\033[92m{lang_dock_workfile_end}\033[0m')
 
-print(f'\n\033[92m\n<<<=================[ 正在初始化结果矩阵与CSV模块 ]==================>>>\033[0m')
-print(f'\033[92m<<<=========[ Initializing result matrix and CSV module ]========>>>\033[0m')
 # Set result csv file
+print(f'\n\033[92m{lang_dock_csv_began}\033[0m')
 csv_name = f'{result_name_hat} {time_str}.csv'
 csv_path = os.path.join(f'{result_csv}/', csv_name) # important! use save as docking cent(Best_Low_Energy)!
 # make protein list (line)
@@ -100,12 +69,10 @@ if num_cols > 1:
 for i in range(1, num_rows):
     csv_data_2d[i][0] = first_column_list[i]
 csv_data_2d[0][0] = first_line_list[0]
-print(f'\033[92m<<<===================[ 结果矩阵与CSV模块就绪！ ]===================>>>\033[0m')
-print(f'\033[92m<<<========[ The result matrix and CSV module are ready! ]=======>>>\033[0m')
+print(f'\033[92m{lang_dock_csv_end}\033[0m')
 
-print(f'\n\033[92m\n<<<===================[ 正在运行分子对接主程序 ]=====================>>>\033[0m')
-print(f'\033[92m<<<===========[ Running the AutoDock-GPU main program ]==========>>>\033[0m')
 # Make AutoDock-GPU docking
+print(f'\n\033[92m{lang_dock_main_began}\033[0m')
 # matrix dot product
 for protein_name in os.listdir(protein_list_path): # make protein list
     no_work = '#' in protein_name  # the protein to_work or no_work ?
@@ -124,8 +91,8 @@ for protein_name in os.listdir(protein_list_path): # make protein list
                         start = pdbqt_path.rfind('/')
                         end = pdbqt_path.rfind('.')
                         ligand_name = pdbqt_path[start + 1:end]
-                        ligand_number += 1  # give ligand number
-                        print(f'Docking proceece number : {ligand_number} Factor : \033[96m{protein_name}\033[0m and \033[95m{ligand_name}\033[0m')
+                        dock_number += 1  # give ligand number
+                        print(f'{lang_dock_mess1}{dock_number}{lang_dock_mess2}\033[96m{protein_name}\033[0m{lang_dock_mess3}\033[95m{ligand_name}\033[0m')
                         result_path = f'{result_dlg}/{result_name_hat} {time_str}/{protein_name}/'
                         dock_cmd = [AD_GPU,
                                     '--ffile', protein_path,
@@ -184,8 +151,8 @@ with open(csv_path, 'w', newline='', encoding='utf-8') as f:
 print(f'\n\033[92m    所有最优构象的自由能提取并写入Excel成功！文件名称为 {csv_name}\033[0m')
 print(f'\033[92m    Energy result writer to csv Successful! > {csv_name}\033[0m')
 if error_number+warning_number == 0:
-    print(f'\n\033[92m    本次工作共运行{ligand_number}次对接，产生0个错误与0个警告\n圆满完成预期任务！\033[0m')
-    print(f'\033[92m    In this operation, a total of {ligand_number} docking runs were performed, resulting in 0 errors and 0 warnings\nsuccessfully completing the expected tasks!\033[0m')
+    print(f'\n\033[92m    本次工作共运行{dock_number}次对接，产生0个错误与0个警告\n    圆满完成预期任务！\033[0m')
+    print(f'\033[92m    In this operation, a total of {dock_number} docking runs were performed, resulting in 0 errors and 0 warnings\nsuccessfully completing the expected tasks!\033[0m')
 else:
-    print(f'\n\033[91m本次工作共运行{ligand_number}次对接，产生{error_number}个错误与{warning_number}个警告\n你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的\n如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……\033[0m')
-    print(f'\033[91mIn this operation, a total of {ligand_number} docking runs were performed, resulting in {error_number} errors and {warning_number} warnings\nYou can check the red error messages and yellow warning messages in the terminal to understand how the issues occurred\nIf you need assistance, please provide the relevant terminal output to others, instead of sending photos or screenshots of the window...\033[0m')
+    print(f'\n\033[91m本次工作共运行{dock_number}次对接，产生{error_number}个错误与{warning_number}个警告\n你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的\n如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……\033[0m')
+    print(f'\033[91mIn this operation, a total of {dock_number} docking runs were performed, resulting in {error_number} errors and {warning_number} warnings\nYou can check the red error messages and yellow warning messages in the terminal to understand how the issues occurred\nIf you need assistance, please provide the relevant terminal output to others, instead of sending photos or screenshots of the window...\033[0m')
