@@ -7,25 +7,23 @@ This project is an automated batch docking pipeline built on AutoDock-GPU, desig
 This program is currently in an early beta phase. The author is not very familiar with GitHub usage, so please excuse any shortcomings.<br>
 More complete features and a user manual will be added in future updates!<br>
 
-# V1.1.2-alpha 更新日志：<br>
-1）实装自动识别并将.dlg结果文件中的最优构象与蛋白质文件一起输出为复合物的功能，让您再也不必在文本编辑器和充满BUG的AutoDockTools中来回切换与选择。<br>
-2）将蛋白质与小分子名称使用单独颜色表示，让您的终端更加简洁且一目了然。<br>
-3）添加了双语输出。<br>
-4) 现在支持您给蛋白质目录加上“#”来让蛋白质不参与对接，这在调试蛋白质的网格参数和临时工作中特别好用！<br>
-5）修复了一些已知BUG。<br>
-6）看了一些猫咪视频，给校园里的猫猫拍了照。<br>
-7）移除了Herobrine。<br>
+## 更新日志
+1）引入配置文件，您可以更方便地设置全局变量与参数，不必再对每一个文件进行调整<br>
+2）引入语言包，您可以通过配置文件选择您的语言，所有的输出均进行了标准化命名，为汉化提供了接口和参考<br>
+3）更为标准和一目了然的变量名称，避免了命名含糊不清的变量被错误使用造成灾难性后果<br>
+4）更简洁的输出<br>
+5）自动捕获软件错误与有问题的文件，让您调试更省心<br>
+6）扩展注释范围，现在您可以对小分子进行注释<br>
 
-# V1.1.2-alpha ChangeLog:<br>
-1)Implemented automatic recognition and output of the optimal conformation from .dlg result files together with the protein file as a complex, eliminating the need to switch between text editors and the bug-ridden AutoDockTools.​<br>
-2) Assigned distinct colors to protein and small molecule names, making your terminal more concise and intuitive.​<br>
-3) Added bilingual output.​<br>
-4) Prefix protein entries in your directory with # to skip them during docking. Perfect for grid parameter tuning and ad-hoc workflows!<br>
-5) Fixed some known bugs.​<br>
-6) Watched some cat videos and took photos of cats on University.​<br>
-7) Removed Herobrine.​<br>
+## Changelog<br>
+1. Introduced configuration files – Easily set global variables and parameters without manual adjustments to individual files<br>
+2. Added language packs – Select your language via the configuration file. All outputs now follow standardized naming conventions, enabling seamless localization (e.g zh-cn)<br>
+3. Standardized and intuitive variable names – Eliminates ambiguous naming to prevent catastrophic misuse<br>
+4. Simplified output – Cleaner logs and results for improved readability<br>
+5. Automatic error and file validation – Catches software crashes and malformed inputs to streamline debugging<br>
+6. Extended commenting scope – Now supports annotations for small molecule(e.g #ligand.zip)<br>
 
-## 运行环境需求：
+## 运行环境需求
 1）装有Ubuntu的WSL2环境或其他Linux发行版<br>
 2）已编译的AutoDock-GPU程序<br>
 3）安装OpenBaBel<br>
@@ -33,7 +31,7 @@ More complete features and a user manual will be added in future updates!<br>
 5）安装Python3<br>
 6）上述软件及相关环境变量设置正确<br>
 
-## 在确保您的软件安装和环境变量无误后，请您在工作目录下新建下列目录：（这一部分内容会在将来加入的初始化功能中代替人工操作）
+## 在确保您的软件安装和环境变量无误后，请您在工作目录下新建下列目录（这一部分内容会在将来加入的初始化功能中代替人工操作）
 1）`ligand_smi` # 用于批量输入小分子的smiles结构<br>
 2）`ligand_smi_single` # 用于存放软件拆分后单个小分子的smiles结构<br>
 3）`ligand_pdb` # 用于存放软件根据smiles生成的`.pdb`格式分子<br>
@@ -43,7 +41,7 @@ More complete features and a user manual will be added in future updates!<br>
 7）`result_csv` # 用于存放每一次虚拟筛选工作后所有对接的最优构象自由能数据，以便于您快速查阅结果和定位潜在的活性分子<br>
 8）`python` # 将您从这个仓库下载的代码全部放到这个目录下，以保证代码中路径定义正确。如果您有开发能力，可自行定义其中的路径<br>
 
-## 工作流程：
+## 工作流程
 1）假设您有A、B两个蛋白，请在`protein`目录下分别创建`A`、`B`两个目录<br>
 2）蛋白质预处理完毕后将AutoDockTools生成的`.maps`和`.maps.fld`文件剪贴到相关蛋白质的目录下<br>
 3）在`ligand_smi`目录下新建一个`.txt`文件，并且按照smiles格式规则将您的小分子粘贴到这个`.txt`文件中，例如： <br>
@@ -63,7 +61,7 @@ More complete features and a user manual will be added in future updates!<br>
 8）在`result_dlg`目录下有与您蛋白质目录同名的目录，分别保存了该蛋白与每一个小分子对接的结果文件<br>
 9）在`result_csv`目录下保存了本次对接工作的所有最优自由能数据，您可根据这一`.csv`文件寻找潜在的成药化合物<br>
 
-## 未来的发展方向：
+## 未来的发展方向
 1）**自动初始化（包括目录检查和依赖库下载）** 让用户上手后无需调整工作目录与下载python运行效果库文件即可直接使用<br>
 2）**交互式服务** 让用户在终端即可自定义结果文件名称<br>
 3）**进一步优化程序运行的逻辑** 让转化失败的可疑分子在结果文件中单独标识出来<br>
@@ -71,7 +69,7 @@ More complete features and a user manual will be added in future updates!<br>
 5）**优化软件输出** 添加可视化的进度条和进程监视与看门狗<br>
 6）**更好的用户手册**<br>
 
-## System Requirements:
+## System Requirements
 1. A WSL2 environment running Ubuntu, or another Linux distribution.<br>
 2. The pre-compiled AutoDock-GPU program.<br>
 3. Installation of OpenBaBel.<br>
@@ -79,7 +77,7 @@ More complete features and a user manual will be added in future updates!<br>
 5. Installation of Python3.<br>
 6. Ensure that the above software and related environment variables are set up correctly.<br>
 
-After confirming that your software installations and environment variables are correctly configured, please create the following directories in your working directory (this manual step will be replaced by an initialization feature in future updates):<br>
+After confirming that your software installations and environment variables are correctly configured, please create the following directories in your working directory (this manual step will be replaced by an initialization feature in future updates)<br>
 
 1. **ligand_smi** – For batch input of small molecules’ SMILES strings.<br>
 2. **ligand_smi_single** – To store the individual SMILES strings of small molecules after the software splits them.<br>
@@ -90,7 +88,7 @@ After confirming that your software installations and environment variables are 
 7. **result_csv** – To store the best binding free energy data for all docked conformations from each virtual screening session, allowing you to quickly review results and identify potential active compounds.<br>
 8. **python** – Place all the code you download from this repository in this directory to ensure that path definitions in the code are correct. If you have development skills, you may customize the paths as needed.<br>
 
-## Workflow:
+## Workflow
 1. If you have proteins A and B, please create two directories named “A” and “B” under the **protein** directory.<br>
 2. After protein preprocessing, move the `.maps` and `.maps.fld` files generated by AutoDockTools into the corresponding protein directories.<br>
 3. Create a new `.txt` file in the **ligand_smi** directory and paste your small molecules in SMILES format into this file. For example:<br>
@@ -106,7 +104,7 @@ After confirming that your software installations and environment variables are 
 8. In the **result_dlg** directory, directories named after your proteins will be created, each containing the docking result files for that protein with every small molecule.<br>
 9. The **result_csv** directory will store the best binding free energy data for all docking sessions, which you can use to identify potential drug-like compounds.<br>
 
-## Future Development Directions:
+## Future Development Directions
 1. **Automatic Initialization:** Including directory checks and dependency downloads, so users can start without manually adjusting the working directory or downloading Python libraries.<br>
 2. **Interactive Service:** Allowing users to customize result file names directly from the terminal.<br>
 3. **Workflow Optimization:** Improving the program’s logic to mark molecules that fail conversion separately in the result files.<br>
