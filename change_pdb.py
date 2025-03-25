@@ -10,7 +10,7 @@ nrun = '1' #Docking run number
 py2 = '/usr/bin/python2.7'
 AD_GPU = '/root/AutoDock-GPU-1.6/bin/autodock_gpu_128wi' # AutoDock-GPU path
 Grid = '/root/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py'
-protein_list_path = '../protein/' # Protein .maps,fld path
+protein_list_path = '../protein' # Protein .maps,fld path
 ligand_smi = '../ligand_smi' #.smi path
 ligand_smi_single = '../ligand_smi_single' # single.smi path
 ligand_pdb = '../ligand_pdb' # .pdb path
@@ -24,6 +24,8 @@ ligand_number = 0 # give ligand a number , to save as csv
 error_number = 0
 warning_number = 0
 
+print(f'\n\033[92m<<<=====================[ 正在设置小分子为配体 ]=====================>>>\033[0m')
+print(f'\033[92m<<<============[ Setting small molecules as ligands ]=============>>>\033[0m')
 # Make ligand.PDB change to ligand.PDBQT and setting ligand
 for file in os.listdir(ligand_pdb):
     if file.endswith('.pdb'):  # checking file type
@@ -45,3 +47,5 @@ for file in os.listdir(ligand_pdb):
         error_pdb_path = os.path.join(ligand_pdbqt_path, file)  # fund error file list
         error_pdb_name = error_pdb_path.rsplit('/', 1)[-1]  # set error file name
         print('\033[93m' + '  WARNING: Pleace Clear Error Type File > ligand_pdb > ' + error_pdb_name + '\033[0m')  # print red error
+print(f'\033[92m<<<====================[ 小分子已全部设置为配体 ]====================>>>\033[0m')
+print(f'\033[92m<<<==============[ Small molecules set as ligands ]===============>>>\033[0m')
