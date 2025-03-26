@@ -3,8 +3,8 @@ from properties import *
 # Change to single_file
 print(f'\033[92m{lang_smi_began}\033[0m')
 for smi_txt in os.listdir(ligand_smi):  # make protein list
-    no_work = '#' in smi_txt  # the protein to_work or no_work ?
-    if no_work != True:
+    no_work_smi = '#' in smi_txt  # the protein to_work or no_work ?
+    if no_work_smi != True:
         if smi_txt.endswith('.txt'):  # checking file type
             # read smi
             smi_path = os.path.join(ligand_smi, smi_txt)

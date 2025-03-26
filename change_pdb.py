@@ -3,8 +3,8 @@ from properties import *
 # Make ligand.PDB change to ligand.PDBQT and setting ligand
 print(f'\n\033[92m{lang_pdb_began}\033[0m')
 for pdb in os.listdir(ligand_pdb):
-    no_work = '#' in pdb  # the protein to_work or no_work ?
-    if no_work != True:
+    no_work_pdb = '#' in pdb  # the protein to_work or no_work ?
+    if no_work_pdb != True:
         if pdb.endswith('.pdb'):  # checking file type
             pdb_path = os.path.join(ligand_pdb, pdb)  # fund file list
             ligand_pdbqt_name = pdb_path.rsplit('/', 1)[-1]  # set pdbqt file name

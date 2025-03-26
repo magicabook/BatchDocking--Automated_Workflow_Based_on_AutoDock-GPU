@@ -3,8 +3,8 @@ from properties import *
 # Make ligand_single.SMI change to ligand.PDB
 print(f'\n\033[92m{lang_smi_sing_began}\033[0m')
 for smi_sing in os.listdir(ligand_smi_single):
-    no_work = '#' in smi_sing  # the protein to_work or no_work ?
-    if no_work != True:
+    no_work_smi_sing = '#' in smi_sing  # the protein to_work or no_work ?
+    if no_work_smi_sing != True:
         if smi_sing.endswith('.smi'): # checking file type
             smi_single_path = os.path.join(ligand_smi_single, smi_sing) # fund file list
             ligand_smi_single_name = smi_single_path.rsplit('/', 1)[-1]  # abstracting smi file name
