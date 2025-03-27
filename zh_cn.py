@@ -1,44 +1,49 @@
 lang_smi_began = '<<<====================[ 正在校验工作目录完整性 ]====================>>>'
-lang_smi_suc = '已提取小分子：'
+lang_smi_suc = '已提取小分子 >'
 lang_smi_war = '警告：请检查或清除格式错误的文件，问题所在目录 > ligand_smi 问题文件名：'
 lang_smi_end = '<<<=======================[ 输入文件拆分完成 ]=======================>>>'
 lang_smi_commend = '找到被注释的小分子集合：'
-lang_smi_summary_suc1 = '本次工作共提取'
-lang_smi_summary_suc2 = '个分子，产生0个错误与0个警告\n    圆满完成预期任务！'
-lang_smi_summary_failure1 = '本次工作共提取'
-lang_smi_summary_failure2 = '个分子，产生'
-lang_smi_summary_failure3 = '个错误与'
-lang_smi_summary_failure4 = '个警告\n你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的\n如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……'
+lang_smi_summary_suc = '本次工作共提取 {} 个分子，产生 0 个错误与 0 个警告\n    圆满完成预期任务！'
+lang_smi_summary_failure = '''\
+本次工作共提取 {} 个分子，产生 {} 个错误与 {} 个警告
+你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的
+如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……'''
 
 lang_smi_sing_began = '<<<===================[ 正在转换小分子为.PDB格式 ]===================>>>'
 lang_smi_sing_commend = '找到被注释的小分子：'
-lang_smi_sing_suc = '成功将该小分子转换为.PDB格式：'
-lang_smi_sing_err1 = '错误：该小分子转换为.PDB失败\n请检查：'
-lang_smi_sing_err2 = 'vvvvv 请根据下列报错信息进行整改！ vvvvv\n<<<==================[ OpenBaBel程序输出的错误报告: ]==================>>>'
-lang_smi_sing_err3 = '^^^^^ 请根据以上报错信息进行整改！ ^^^^^'
+lang_smi_sing_suc = '成功将该小分子转换为.PDB格式 > '
+lang_smi_sing_err = '''\
+错误：该小分子转换为.PDB失败!
+请检查： \033[95m{}\033[91m
+vvvvv 请根据下列报错信息进行整改！ vvvvv
+<<<==================[ OpenBaBel程序输出的错误报告: ]==================>>>
+{}
+^^^^^ 请根据以上报错信息进行整改！ ^^^^^'''
 lang_smi_sing_war = '警告：请检查或清除格式错误的文件，问题所在目录 > ligand_smi_single 问题文件名：'
 lang_smi_sing_end = '<<<================[ 合格小分子已全部转换为.PDB格式 ]=================>>>'
-lang_smi_sing_summary_suc1 = '本次工作共转换'
-lang_smi_sing_summary_suc2 = '个分子，产生0个错误与0个警告\n    圆满完成预期任务！'
-lang_smi_sing_summary_failure1 = '本次工作共转换'
-lang_smi_sing_summary_failure2 = '个分子，产生'
-lang_smi_sing_summary_failure3 = '个错误与'
-lang_smi_sing_summary_failure4 = '个警告\n你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的\n如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……'
+lang_smi_sing_summary_suc = '本次工作共转换 {} 个分子，产生 0 个错误与 0 个警告\n    圆满完成预期任务！'
+lang_smi_sing_summary_failure = '''\
+本次工作共转换 {} 个分子，产生 {} 个错误与 {} 个警告
+你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的
+如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……'''
 
 lang_pdb_began = '<<<=====================[ 正在设置小分子为配体 ]=====================>>>'
 lang_pdb_commend = '找到被注释的小分子：'
-lang_pdb_suc = '成功将该小分子转换为.PDBQT格式：'
-lang_pdb_err1 = '错误：该小分子转换为.PDBQT失败\n请检查：'
-lang_pdb_err2 = 'vvvvv 请根据下列报错信息进行整改！ vvvvv\n<<<==============[ Prepare_Ligand4程序输出的错误报告: ]=============>>>'
-lang_pdb_err3 = '^^^^^ 请根据以上报错信息进行整改！ ^^^^^'
+lang_pdb_suc = '成功将该小分子转换为.PDBQT格式 > '
+lang_pdb_err = '''\
+错误：该小分子转换为.PDBQT失败
+请检查： \033[95m{}\033[91m
+vvvvv 请根据下列报错信息进行整改！ vvvvv
+<<<==============[ Prepare_Ligand4程序输出的错误报告: ]=============>>>
+{}
+^^^^^ 请根据以上报错信息进行整改！ ^^^^^'''
 lang_pdb_war = '警告：请检查或清除格式错误的文件，问题所在目录 > ligand_pdb 问题文件名：'
 lang_pdb_end = '<<<===================[ 合格小分子已全部设置为配体 ]===================>>>'
-lang_pdb_summary_suc1 = '本次工作共转换'
-lang_pdb_summary_suc2 = '个分子，产生0个错误与0个警告\n    圆满完成预期任务！'
-lang_pdb_summary_failure1 = '本次工作共转换'
-lang_pdb_summary_failure2 = '个分子，产生'
-lang_pdb_summary_failure3 = '个错误与'
-lang_pdb_summary_failure4 = '个警告\n你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的\n如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……'
+lang_pdb_summary_suc = '本次工作共转换 {} 个分子，产生 0 个错误与 0 个警告\n    圆满完成预期任务！'
+lang_pdb_summary_failure = '''\
+本次工作共转换 {} 个分子，产生 {} 个错误与 {} 个警告
+你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的
+如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……'''
 
 lang_dock_workfile_began = '<<<====================[ 正在校验工作目录完整性 ]====================>>>'
 lang_dock_pro_commend = '找到被注释的蛋白：'
@@ -53,21 +58,21 @@ lang_dock_workfile_end = '<<<===================[ 工作目录完整性校验通
 lang_dock_csv_began = '<<<=================[ 正在初始化结果矩阵与CSV模块 ]==================>>>'
 lang_dock_csv_end = '<<<===================[ 结果矩阵与CSV模块就绪！ ]===================>>>'
 lang_dock_main_began = '<<<===================[ 正在运行分子对接主程序 ]=====================>>>'
-lang_dock_mess1 = '正在运行第'
-lang_dock_mess2 = '次对接，作用分子是'
-lang_dock_mess3 = '和'
-lang_dock_suc1 = '与'
-lang_dock_suc2 = '对接成功！最优构象的结合自由能为：'
-lang_dock_err1 = '错误：发生一次对接失败！问题分子：'
-lang_dock_err2 = 'vvvvv 请根据下列错误信息进行整改！ vvvvv \n<<<=====[ AutoDock-GPU程序输出的错误报告: ]=====>>>'
-lang_dock_err3 ='^^^^^ 请根据以上错误信息进行整改！ ^^^^^'
+lang_dock_mess = '正在运行第 {} 次对接，工作蛋白 \033[96m{}\033[0m 对接小分子 \033[95m{}\033[0m'
+lang_dock_suc = '蛋白质 \033[96m{}\033[92m 与小分子 \033[95m{}\033[92m 对接成功！最优构象的结合自由能为：{}'
+lang_dock_err = '''\
+错误：发生一次对接失败！
+问题分子： \033[95m{}\033[91m
+vvvvv 请根据下列错误信息进行整改！ vvvvv
+<<<=====[ AutoDock-GPU程序输出的错误报告: ]=====>>>
+{}
+^^^^^ 请根据以上错误信息进行整改！ ^^^^^'''
 lang_dock_war = '警告：请检查或清除格式错误的文件，问题所在目录 > ligand_pdbqt 问题文件名：'
 lang_dock_complex_suc = '最优构象提取成功，复合物3D结构已生成！'
 lang_dock_main_end = '<<<===================[ 分子对接主程序运行完毕 ]=====================>>>'
 lang_dock_csv_suc = '所有最优构象的自由能提取并写入Excel成功！文件名称为'
-lang_dock_summary_suc1 = '本次工作共运行'
-lang_dock_summary_suc2 = '次对接，产生 0 个错误与 0 个警告\n    圆满完成预期任务！'
-lang_dock_summary_failure1 = '本次工作共运行'
-lang_dock_summary_failure2 = '次对接，产生'
-lang_dock_summary_failure3 = '个错误与'
-lang_dock_summary_failure4 = '个警告\n你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的\n如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……'
+lang_dock_summary_suc = '本次工作共运行 {} 次对接，产生 0 个错误与 0 个警告\n    圆满完成预期任务！'
+lang_dock_summary_failure = '''\
+本次工作共运行 {} 次对接，产生 {} 个错误与 {} 个警告
+你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的
+如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……'''

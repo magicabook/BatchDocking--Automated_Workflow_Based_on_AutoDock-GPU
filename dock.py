@@ -112,7 +112,7 @@ for protein_name in os.listdir(protein_list_path): # make protein list 获取蛋
                             end = pdbqt_path.rfind('.')
                             ligand_name = pdbqt_path[start + 1:end]
                             dock_number += 1  # give ligand number 对接计数器+1，用于该模块运行完毕后的总结输出
-                            print(f'{lang_dock_mess1}{dock_number}{lang_dock_mess2} \033[96m{protein_name} \033[0m{lang_dock_mess3} \033[95m{ligand_name}\033[0m')
+                            print(f'{lang_dock_mess.format(dock_number, protein_name ,ligand_name)}\033[0m')
                             result_path = f'{result_dlg}/{result_name_hat} {time_str}/{protein_name}/'
                             dock_cmd = [AD_GPU,
                                         '--ffile', protein_path,
@@ -127,7 +127,7 @@ for protein_name in os.listdir(protein_list_path): # make protein list 获取蛋
                                 # abstracting(extracted) last
                                 energy = result_class[-1] # 寻找最优构象自由能
                                 energy_unit = f'{energy} kcal/mol' # 添加量纲
-                                print(f'    \033[96m{protein_name} \033[92m{lang_dock_suc1} \033[95m{ligand_name} \033[92m{lang_dock_suc2}{energy}\033[0m')  # print docking result
+                                print(f'    \033[92m{lang_dock_suc.format(protein_name, ligand_name, energy)}\033[0m')  # print docking result
                                 # abstracting dlg and out put complex pdbqt
                                 # 提取最优构象分子并输出复合物3D结构
                                 dlg_path = f'{result_dlg}/{result_name_hat} {time_str}/{protein_name}/{ligand_name}.dlg' # find dlg file 寻找dlg文件所在路径
@@ -158,7 +158,7 @@ for protein_name in os.listdir(protein_list_path): # make protein list 获取蛋
                             else: # 若对接出现错误
                                 energy = "Not found"
                                 dock_err_number += 1 # 错误计数器+1，用于该模块运行完毕后的总结输出
-                                print(f'\033[91m{lang_dock_err1} \033[95m{ligand_name}\n \033[91m{lang_dock_err2}\n{dock_out}\n{lang_dock_err3} \033[0m')
+                                print(f'\033[91m{lang_dock_err.format(ligand_name, dock_out)}\033[0m')
                 elif '#' in pdbqt_name: # 如果文件被“#”注释则停止执行操作
                     break
                 else:
@@ -179,6 +179,6 @@ with open(csv_path, 'w', newline='', encoding='utf-8') as f:
 print(f'\n\033[92m    {lang_dock_csv_suc} "{csv_name}"\033[0m')
 
 if dock_war_number + dock_err_number == 0: # 判断异常计数是否为0
-    print(f'\n\033[92m    {lang_dock_summary_suc1} {dock_number} {lang_dock_summary_suc2}\033[0m') # 输出无异常结束语句
+    print(f'\n\033[92m    {lang_dock_summary_suc.format(dock_number)}\033[0m') # 输出无异常结束语句
 else: # 若异常计数器不为零，则将异常输出计数打印并调用异常提示信息
-    print(f'\n\033[91m{lang_dock_summary_failure1} {dock_number} {lang_dock_summary_failure2} {dock_err_number} {lang_dock_summary_failure3} {dock_war_number} {lang_dock_summary_failure4}\033[0m')
+    print(f'\n\033[91m{lang_dock_summary_failure.format(dock_number, dock_err_number, dock_war_number)} {dock_number}\033[0m')
