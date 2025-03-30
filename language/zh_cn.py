@@ -1,3 +1,30 @@
+lang_inter_describe = '''\
+欢迎使用批量对接程序！ 版本号：[1.3.0]
+项目地址：https://github.com/magicabook/Batch_Docking--Automated_Workflow_Based_on_AutoDock-GPU.git
+作者：附魔书  通讯地址：magica_book@qq.com  保留该程序的一切权益。'''
+lang_inter_select = '''\
+<<<=========================[ 模式选择 ]==========================>>>
+[0] 设置界面（语言和对接迭代次数）
+[1] 仅将输入的txt拆分为单个smiles小分子
+[2] 仅将单个smiles小分子转换为PDB格式
+[3] 仅将PDB格式的小分子转换为PDBQT配体格式
+[4] 仅运行批量自动对接
+[a] 运行小分子前处理的全部流程（ 1 ~ 3 ）
+[b] 运行分子对接的全部流程（ 1 ~ 4 ）
+[z] 退出程序'''
+lang_inter_function_number = '请选择您需要运行的功能：'
+lang_inter_function_err = '警告：请输入正确的参数！'
+lang_inter_suc = '您选择的工作模式是：{}'
+lang_inter_select_0 = '设置界面（语言和对接迭代次数）'
+lang_inter_select_1 = '仅将输入的txt拆分为单个smiles小分子'
+lang_inter_select_2 = '仅将单个smiles小分子转换为PDB格式'
+lang_inter_select_3 = '仅将PDB格式的小分子转换为PDBQT配体格式'
+lang_inter_select_4 = '仅运行批量自动对接'
+lang_inter_select_a = '运行小分子前处理的全部流程（ 1 ~ 3 ）'
+lang_inter_select_b = '运行分子对接的全部流程（ 1 ~ 4 ）'
+lang_inter_select_z = '退出程序'
+lang_inter_quit = '程序已退出，感谢使用！'
+
 lang_smi_began = '<<<====================[ 正在校验工作目录完整性 ]====================>>>'
 lang_smi_suc = '已提取小分子 >'
 lang_smi_war = '警告：请检查或清除格式错误的文件，问题所在目录 > ligand_smi 问题文件名：'
@@ -45,6 +72,7 @@ lang_pdb_summary_failure = '''\
 你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的
 如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……'''
 
+lang_dock_inter_name = '请为本次工作的结果文件设置名称，若无需自定义名称，请按回车：'
 lang_dock_workfile_began = '<<<====================[ 正在校验工作目录完整性 ]====================>>>'
 lang_dock_pro_commend = '找到被注释的蛋白：'
 lang_dock_pdbqt_commend = '找到被注释的小分子：'

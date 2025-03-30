@@ -4,10 +4,11 @@ import re
 import csv
 import datetime
 import subprocess
+import importlib
 ## Define and Set Your Work_Path and Basic Function
 
 # Your Language
-language = 'en'
+language = 'zh_cn'
 module_name = f"language.{language}"
 module = __import__(module_name, fromlist=["*"])
 globals().update({k: getattr(module, k) for k in dir(module) if not k.startswith("__")})
@@ -39,18 +40,3 @@ time_raw = datetime.datetime.now()
 # change to str
 time_str = time_raw.strftime('%Y-%m-%d %H-%M-%S')
 time_str_file = time_raw.strftime('%Y-%m-%d\ %H-%M-%S')
-# give ligand a number , to save as csv
-smi_number = 0
-smi_war_number = 0
-smi_err_number = 0
-pdb_number = 0
-pdb_war_number = 0
-pdb_err_number = 0
-pdbqt_number = 0
-pdbqt_war_number = 0
-pdbqt_err_number = 0
-dock_number = 0
-dock_war_number = 0
-dock_err_number = 0
-error_number = smi_err_number + pdb_err_number + pdbqt_err_number + dock_err_number
-warning_number = smi_war_number + pdb_war_number + pdbqt_war_number +dock_war_number
