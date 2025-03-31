@@ -1,5 +1,5 @@
 lang_inter_describe = '''
-欢迎使用批量对接程序！ 版本号：[1.3.1]
+欢迎使用批量对接程序！ 版本号：[1.3.2]
 项目地址：https://github.com/magicabook/Batch_Docking--Automated_Workflow_Based_on_AutoDock-GPU.git
 作者：附魔书  通讯地址：magica_book@qq.com  保留该程序的一切权益。'''
 
@@ -14,7 +14,6 @@ lang_inter_select = '''
 [4] 仅运行批量自动对接
 [a] 运行小分子前处理的全部流程（ 1 ~ 3 ）
 [b] 运行分子对接的全部流程（ 1 ~ 4 ）
-[x] 自动初始化
 [z] 退出程序'''
 lang_inter_function_number = '请选择您需要运行的功能：'
 lang_inter_function_err = '警告：请输入正确的参数！'

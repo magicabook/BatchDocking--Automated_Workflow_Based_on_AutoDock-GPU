@@ -1,3 +1,82 @@
+lang_inter_describe = '''
+Welcome to the Batch Docking Program!  Version:[1.3.2]  
+GitHub_Link: https://github.com/magicabook/Batch_Docking--Automated_Workflow_Based_on_AutoDock-GPU.git
+**Author: Magica_Book  Contact_Address: magica_book@qq.com  License: All rights reserved. '''
+
+
+
+lang_inter_select = '''
+<<<=========================[ Mode Selection ]==========================>>>
+[0] Settings Interface
+[1] Split input TXT into individual SMILES molecules
+[2] Convert SMILES to PDB format
+[3] Convert PDB to PDBQT ligand format 
+[4] Run batch docking automation
+[a] Run full preprocessing workflow (Steps 1-3)
+[b] Run complete docking pipeline (Steps 1-4)
+[z] Exit program'''
+lang_inter_function_number = 'Please select the function to run:'
+lang_inter_function_err = 'Warning: Please enter a valid option!'
+lang_inter_suc = 'Selected workflow: {}'
+lang_inter_select_1 = 'Split input TXT into individual SMILES molecules'
+lang_inter_select_2 = 'Convert SMILES to PDB format'
+lang_inter_select_3 = 'Convert PDB to PDBQT ligand format'
+lang_inter_select_4 = 'Run batch docking automation'
+lang_inter_select_a = 'Run full preprocessing workflow (Steps 1-3)'
+lang_inter_select_b = 'Run complete docking pipeline (Steps 1-4)'
+lang_inter_select_z = 'Exit program'
+lang_inter_quit = 'Program terminated. Thank you for using!'
+
+lang_inter_select_0 = 'Settings Interface (Language & Docking Iterations)'
+lang_inter_set = '''
+[Mode Selection]-[Settings]:
+    [1] Language
+    [2] Docking iterations per run
+    [3] Default result filename
+    [4] Docking seed
+    [z] Return to main menu'''
+lang_inter_set_select = 'Select setting to configure:'
+lang_inter_set_select_1 = 'Language'
+lang_inter_set_select_2 = 'Set docking iterations'
+lang_inter_set_select_3 = 'Set default result filename'
+lang_inter_set_select_4 = 'Set docking seed'
+lang_inter_set_select_z = 'Return to main menu'
+lang_inter_set_end = 'Settings applied'
+
+lang_inter_set_lang = '''
+    Available language packs: \033[92m{}\033[0m
+
+Select language:'''
+lang_inter_set_lang_suc = 'Language set to: '
+
+lang_inter_set_nrun = '''
+    Current default docking iterations: \033[92m{}\033[0m
+    Note: Integer input required
+
+Enter default iterations per docking run:'''
+lang_inter_set_nrun_suc = 'Default iterations set to:'
+lang_inter_set_nrun_war = 'Warning: Integer required!'
+lang_inter_set_nrun_none = 'Warning: Please enter iteration count'
+
+lang_inter_set_name = '''\
+    Current default filename: \033[92m{}\033[0m
+    Note: Use only underscores (_) as special characters
+
+Enter default result filename:'''
+lang_inter_set_name_suc = 'Default filename set to:'
+
+lang_inter_set_seed = '''
+    Current default seed: \033[92m{}\033[0m
+    Empty = AutoDock-GPU default (system time + process PID)
+    Note: Integer or blank
+
+Enter default seed:'''
+lang_inter_set_seed_suc = 'Default seed set to:'
+lang_inter_set_seed_suc1 = 'Seed restored to AutoDock-GPU default'
+lang_inter_set_seed_war = 'Warning: Enter integer or leave blank!'
+
+
+
 lang_smi_began = '<<<===============[ Validating Workspace Integrity ]===============>>>'
 lang_smi_suc = 'Molecules extracted >'
 lang_smi_war = 'Warning: Please check or remove malformed files | Directory > ligand_smi | File:'
@@ -8,6 +87,8 @@ lang_smi_summary_failure = '''\
 Processed {} molecules with {} errors and {} warnings
 Check terminal for RED errors and YELLOW warnings
 When seeking help, please share terminal output instead of window screenshots...'''
+
+
 
 lang_smi_sing_began = '<<<============[ Converting Molecules to .PDB Format ]============>>>'
 lang_smi_sing_commend = 'Found commented molecule:'
@@ -27,6 +108,8 @@ Converted {} molecules with {} errors and {} warnings
 Check terminal for RED errors and YELLOW warnings
 When seeking help, please share terminal output instead of window screenshots...'''
 
+
+
 lang_pdb_began = '<<<=============[ Configuring Molecules as Ligands ]==============>>>'
 lang_pdb_commend = 'Found commented molecule:'
 lang_pdb_suc = 'Successfully converted to .PDBQT > '
@@ -45,6 +128,9 @@ Converted {} molecules with {} errors and {} warnings
 Check terminal for RED errors and YELLOW warnings
 When seeking help, please share terminal output instead of window screenshots...'''
 
+
+
+lang_dock_inter_name = 'Enter filename for this run (press Enter for default \033[92m{}\033[0m):'
 lang_dock_workfile_began = '<<<==============[ Validating Workspace Integrity ]===============>>>'
 lang_dock_pro_commend = 'Found commented protein:'
 lang_dock_pdbqt_commend = 'Found commented ligand:'
