@@ -1,6 +1,11 @@
 from properties import *
 
 def dock():
+    # get system time to make file sign
+    time_raw = datetime.datetime.now()
+    # change to str
+    time_str = time_raw.strftime('%Y-%m-%d %H-%M-%S')
+    time_str_file = time_raw.strftime('%Y-%m-%d\ %H-%M-%S')
     # 初始化计数器
     dock_number = 0
     dock_war_number = 0
@@ -122,11 +127,19 @@ def dock():
                                 dock_number += 1  # give ligand number 对接计数器+1，用于该模块运行完毕后的总结输出
                                 print(f'{lang_dock_mess.format(dock_number, protein_name ,ligand_name)}\033[0m')
                                 result_path = f'{result_dlg}/{result_name_hat} {time_str}/{protein_name}/'
-                                dock_cmd = [AD_GPU,
-                                            '--ffile', protein_path,
-                                            '--lfile', pdbqt_path,
-                                            '-nrun', nrun,
-                                            '-resnam', result_path]
+                                if len(seed) == 0:
+                                    dock_cmd = [AD_GPU,
+                                                '--ffile', protein_path,
+                                                '--lfile', pdbqt_path,
+                                                '-nrun', nrun,
+                                                '-resnam', result_path]
+                                else:
+                                    dock_cmd = [AD_GPU,
+                                                '--ffile', protein_path,
+                                                '--lfile', pdbqt_path,
+                                                '-nrun', nrun,
+                                                '-resnam', result_path,
+                                                '-seed',seed]
                                 dock_out = subprocess.check_output(dock_cmd, shell=False, stderr=subprocess.STDOUT, text=True)
                                 result_energy = r'([-+]?[0-9]*\.?[0-9]+)\s*kcal/mol'  # fund *kcal/mol 提取自由能
                                 # fund all *kcal/mol

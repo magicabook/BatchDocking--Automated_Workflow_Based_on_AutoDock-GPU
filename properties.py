@@ -5,6 +5,7 @@ import csv
 import datetime
 import subprocess
 import importlib
+
 ## Define and Set Your Work_Path and Basic Function
 
 # Your Language
@@ -13,9 +14,10 @@ module_name = f"language.{language}"
 module = __import__(module_name, fromlist=["*"])
 globals().update({k: getattr(module, k) for k in dir(module) if not k.startswith("__")})
 # Your result file name
-result_name_hat = 'test'
+result_name_hat = 'work'
 #Docking run number
 nrun = '1'
+seed = ''
 py2 = '/usr/bin/python2.7'
 # AutoDock-GPU path
 AD_GPU = '/root/AutoDock-GPU-1.6/bin/autodock_gpu_128wi'
@@ -35,8 +37,3 @@ result_dlg = '../result_dlg'
 # result csv path
 result_csv = '../result_csv'
 result_complex = '../result_complex'
-# get system time to make file sign
-time_raw = datetime.datetime.now()
-# change to str
-time_str = time_raw.strftime('%Y-%m-%d %H-%M-%S')
-time_str_file = time_raw.strftime('%Y-%m-%d\ %H-%M-%S')

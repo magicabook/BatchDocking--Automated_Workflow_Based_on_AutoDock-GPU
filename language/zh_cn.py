@@ -1,21 +1,24 @@
-lang_inter_describe = '''\
-欢迎使用批量对接程序！ 版本号：[1.3.0]
+lang_inter_describe = '''
+欢迎使用批量对接程序！ 版本号：[1.3.1]
 项目地址：https://github.com/magicabook/Batch_Docking--Automated_Workflow_Based_on_AutoDock-GPU.git
 作者：附魔书  通讯地址：magica_book@qq.com  保留该程序的一切权益。'''
-lang_inter_select = '''\
+
+
+
+lang_inter_select = '''
 <<<=========================[ 模式选择 ]==========================>>>
-[0] 设置界面（语言和对接迭代次数）
+[0] 设置界面
 [1] 仅将输入的txt拆分为单个smiles小分子
 [2] 仅将单个smiles小分子转换为PDB格式
 [3] 仅将PDB格式的小分子转换为PDBQT配体格式
 [4] 仅运行批量自动对接
 [a] 运行小分子前处理的全部流程（ 1 ~ 3 ）
 [b] 运行分子对接的全部流程（ 1 ~ 4 ）
+[x] 自动初始化
 [z] 退出程序'''
 lang_inter_function_number = '请选择您需要运行的功能：'
 lang_inter_function_err = '警告：请输入正确的参数！'
 lang_inter_suc = '您选择的工作模式是：{}'
-lang_inter_select_0 = '设置界面（语言和对接迭代次数）'
 lang_inter_select_1 = '仅将输入的txt拆分为单个smiles小分子'
 lang_inter_select_2 = '仅将单个smiles小分子转换为PDB格式'
 lang_inter_select_3 = '仅将PDB格式的小分子转换为PDBQT配体格式'
@@ -24,6 +27,56 @@ lang_inter_select_a = '运行小分子前处理的全部流程（ 1 ~ 3 ）'
 lang_inter_select_b = '运行分子对接的全部流程（ 1 ~ 4 ）'
 lang_inter_select_z = '退出程序'
 lang_inter_quit = '程序已退出，感谢使用！'
+
+lang_inter_select_0 = '设置界面（语言和对接迭代次数）'
+lang_inter_set = '''
+[模式选择]-[设置界面]:
+    [1] 语言
+    [2] 单次对接迭代次数
+    [3] 默认结果文件名
+    [4] 对接程序运行种子
+    [z] 返回上级目录'''
+lang_inter_set_select = '请选择您需要设置的内容：'
+lang_inter_set_select_1 = '语言'
+lang_inter_set_select_2 = '设置单次对接迭代次数'
+lang_inter_set_select_3 = '设置默认结果文件名'
+lang_inter_set_select_4 = '设置对接程序运行种子'
+lang_inter_set_select_z = '返回上级目录'
+lang_inter_set_end = '设置已应用'
+
+lang_inter_set_lang = '''
+    存在的语言包列表：\033[92m{}\033[0m
+    
+请选择您需要的语言：'''
+lang_inter_set_lang_suc = '成功设置语言为：'
+
+lang_inter_set_nrun = '''
+    此前程序默认的单次对接迭代次数为 \033[92m{}\033[0m
+    注意：请输入整数
+    
+请输入在一对分子的对接工作中您希望的默认迭代次数：'''
+lang_inter_set_nrun_suc = '成功设置默认对接次数为：'
+lang_inter_set_nrun_war = '警告：请输入整数'
+lang_inter_set_nrun_none = '警告：请输入对接次数'
+
+lang_inter_set_name = '''\
+    此前程序默认的结果文件名为 \033[92m{}\033[0m
+    注意：文件名称不要使用除下划线 _ 以外的特殊字符
+    
+请输入您希望的默认结果文件名：'''
+lang_inter_set_name_suc = '成功设置默认结果文件名为：'''
+
+lang_inter_set_seed = '''
+    此前程序默认的种子为 \033[92m{}\033[0m
+    留空则使用AutoDock-GPU程序默认的种子（ 系统时间 + 进程PID ）
+    注意：请输入整数
+    
+请输入您希望的默认种子：'''
+lang_inter_set_seed_suc = '成功设置默认种子为：'
+lang_inter_set_seed_suc1 = '种子已恢复为AutoDock-GPU默认的值'
+lang_inter_set_seed_war = '警告：请输入整数或留空（直接回车）！'
+
+
 
 lang_smi_began = '<<<====================[ 正在校验工作目录完整性 ]====================>>>'
 lang_smi_suc = '已提取小分子 >'
@@ -35,6 +88,8 @@ lang_smi_summary_failure = '''\
 本次工作共提取 {} 个分子，产生 {} 个错误与 {} 个警告
 你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的
 如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……'''
+
+
 
 lang_smi_sing_began = '<<<===================[ 正在转换小分子为.PDB格式 ]===================>>>'
 lang_smi_sing_commend = '找到被注释的小分子：'
@@ -54,6 +109,8 @@ lang_smi_sing_summary_failure = '''\
 你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的
 如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……'''
 
+
+
 lang_pdb_began = '<<<=====================[ 正在设置小分子为配体 ]=====================>>>'
 lang_pdb_commend = '找到被注释的小分子：'
 lang_pdb_suc = '成功将该小分子转换为.PDBQT格式 > '
@@ -72,7 +129,9 @@ lang_pdb_summary_failure = '''\
 你可以查看终端中的红色错误信息与黄色警告信息以了解问题是如何发生的
 如果需要寻求帮助，请把终端里的相关输出提供给对方，而不是发送这个窗口的照片或者截图……'''
 
-lang_dock_inter_name = '请为本次工作的结果文件设置名称，若无需自定义名称，请按回车：'
+
+
+lang_dock_inter_name = '请为本次工作的结果文件设置名称，若使用默认名称，请按回车：'
 lang_dock_workfile_began = '<<<====================[ 正在校验工作目录完整性 ]====================>>>'
 lang_dock_pro_commend = '找到被注释的蛋白：'
 lang_dock_pdbqt_commend = '找到被注释的小分子：'
