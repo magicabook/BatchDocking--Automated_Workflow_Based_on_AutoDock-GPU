@@ -1,5 +1,5 @@
 lang_inter_describe = '''
-Welcome to the Batch Docking Program!  Version:[1.3.2]  
+Welcome to the Batch Docking Program!  Version:[1.3.3]  
 GitHub_Link: https://github.com/magicabook/Batch_Docking--Automated_Workflow_Based_on_AutoDock-GPU.git
 **Author: Magica_Book  Contact_Address: magica_book@qq.com  License: All rights reserved. '''
 

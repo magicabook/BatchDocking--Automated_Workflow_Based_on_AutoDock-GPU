@@ -1,5 +1,5 @@
 lang_inter_describe = '''
-欢迎使用批量对接程序！ 版本号：[1.3.2]
+欢迎使用批量对接程序！ 版本号：[1.3.3]
 项目地址：https://github.com/magicabook/Batch_Docking--Automated_Workflow_Based_on_AutoDock-GPU.git
 作者：附魔书  通讯地址：magica_book@qq.com  保留该程序的一切权益。'''
 
@@ -14,6 +14,7 @@ lang_inter_select = '''
 [4] 仅运行批量自动对接
 [a] 运行小分子前处理的全部流程（ 1 ~ 3 ）
 [b] 运行分子对接的全部流程（ 1 ~ 4 ）
+[x] 文件补全
 [z] 退出程序'''
 lang_inter_function_number = '请选择您需要运行的功能：'
 lang_inter_function_err = '警告：请输入正确的参数！'
@@ -24,11 +25,13 @@ lang_inter_select_3 = '仅将PDB格式的小分子转换为PDBQT配体格式'
 lang_inter_select_4 = '仅运行批量自动对接'
 lang_inter_select_a = '运行小分子前处理的全部流程（ 1 ~ 3 ）'
 lang_inter_select_b = '运行分子对接的全部流程（ 1 ~ 4 ）'
+lang_inter_select_x = '文件补全'
 lang_inter_select_z = '退出程序'
 lang_inter_quit = '程序已退出，感谢使用！'
+lang_return_list = '已返回上级列表'
 
-lang_inter_select_0 = '设置界面（语言和对接迭代次数）'
-lang_inter_set = '''
+lang_inter_select_0 = '设置界面\n'
+lang_inter_set = '''\
 [模式选择]-[设置界面]:
     [1] 语言
     [2] 单次对接迭代次数
@@ -44,12 +47,14 @@ lang_inter_set_select_z = '返回上级目录'
 lang_inter_set_end = '设置已应用'
 
 lang_inter_set_lang = '''
+    \033[92m[z] 返回上级目录\033[0m
     存在的语言包列表：\033[92m{}\033[0m
     
 请选择您需要的语言：'''
 lang_inter_set_lang_suc = '成功设置语言为：'
 
 lang_inter_set_nrun = '''
+    \033[92m[z] 返回上级目录\033[0m
     此前程序默认的单次对接迭代次数为 \033[92m{}\033[0m
     注意：请输入整数
     
@@ -58,7 +63,8 @@ lang_inter_set_nrun_suc = '成功设置默认对接次数为：'
 lang_inter_set_nrun_war = '警告：请输入整数'
 lang_inter_set_nrun_none = '警告：请输入对接次数'
 
-lang_inter_set_name = '''\
+lang_inter_set_name = '''
+    \033[92m[z] 返回上级目录\033[0m
     此前程序默认的结果文件名为 \033[92m{}\033[0m
     注意：文件名称不要使用除下划线 _ 以外的特殊字符
     
@@ -66,6 +72,7 @@ lang_inter_set_name = '''\
 lang_inter_set_name_suc = '成功设置默认结果文件名为：'''
 
 lang_inter_set_seed = '''
+    \033[92m[z] 返回上级目录\033[0m
     此前程序默认的种子为 \033[92m{}\033[0m
     留空则使用AutoDock-GPU程序默认的种子（ 系统时间 + 进程PID ）
     注意：请输入整数
@@ -75,9 +82,18 @@ lang_inter_set_seed_suc = '成功设置默认种子为：'
 lang_inter_set_seed_suc1 = '种子已恢复为AutoDock-GPU默认的值'
 lang_inter_set_seed_war = '警告：请输入整数或留空（直接回车）！'
 
+lang_inter_make_began = '<<<====================[ 正在进行工作目录完整性校验 ]====================>>>'
+lang_inter_make_file_dir_yes = '已存在目录 {}'
+lang_inter_make_file_dir_make = '正在创建目录 {}'
+lang_inter_make_file_dir_suc = '目录 {} 已成功创建！'
+lang_inter_make_work_path_yes = '成功找到工作目录 {}'
+lang_inter_make_work_path_make = '正在创建工作目录 {}'
+lang_inter_make_work_path_suc = '工作目录 {} 已成功创建！'
+lang_inter_make_end = '<<<======================[ 工作目录完整性校验通过 ]=====================>>>'
 
 
-lang_smi_began = '<<<====================[ 正在校验工作目录完整性 ]====================>>>'
+
+lang_smi_began = '<<<===================[ 正在拆分输入的小分子集合 ]===================>>>'
 lang_smi_suc = '已提取小分子 >'
 lang_smi_war = '警告：请检查或清除格式错误的文件，问题所在目录 > ligand_smi 问题文件名：'
 lang_smi_end = '<<<=======================[ 输入文件拆分完成 ]=======================>>>'

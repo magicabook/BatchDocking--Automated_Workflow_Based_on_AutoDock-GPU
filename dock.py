@@ -15,22 +15,22 @@ def dock():
 
     # Checking protein.maps.fld
     # 检查蛋白质网格文件是否缺失
-    print(f'\n\033[92m{lang_dock_workfile_began}\033[0m')
+    print(f"\n\033[92m{lang_dock_workfile_began}\033[0m")
     for protein_name in os.listdir(protein_list_path): # make protein list 获取蛋白质列表
         if os.system(f'find {protein_list_path}/{protein_name}/ -type f -name "*.maps.fld" | grep -q .;') != 0: # 检查网格文件是否存在
             if '#' in protein_name: # 若蛋白质被注释，则终止执行该模块
                 break
             else: # 若该蛋白未被注释且无网格文件
                 dock_err_number += 1 # 错误计数器+1，用于该模块运行完毕后的总结输出
-                print(f'\033[91m{lang_dock_fld_err}\033[96m{protein_name}\033[0m')
+                print(f"\033[91m{lang_dock_fld_err}\033[96m{protein_name}\033[0m")
     # Make result_complex/name_time
     # 创建复合物存放目录并以系统时间为结尾
     os.system(f'mkdir {result_complex}/{result_name_hat}\ {time_str_file}')
-    print(f'\033[92m    {lang_dock_complex} "{result_name_hat} {time_str}"\033[0m')
+    print(f"\033[92m    {lang_dock_complex} '{result_name_hat} {time_str}'\033[0m")
     # Make result_dlg/name_time
     # 创建构象结果存放目录并以系统时间为结尾
     os.system(f'mkdir {result_dlg}/{result_name_hat}\ {time_str_file}')
-    print(f'\033[92m    {lang_dock_dlg} "{result_name_hat} {time_str}"\033[0m')
+    print(f"\033[92m    {lang_dock_dlg} '{result_name_hat} {time_str}'\033[0m")
     # Make result_dlg/protein
     # 为小分子构象创建以蛋白质为名称的二级目录
     for protein_name in os.listdir(protein_list_path): # make protein list 浏览蛋白质目录并生成列表
@@ -41,14 +41,14 @@ def dock():
             checking_protein_cmd = f'ls {result_dlg}/{result_name_hat}\ {time_str_file}'
             checking_protein_out = subprocess.check_output(checking_protein_cmd, shell=True, stderr=subprocess.STDOUT, text=True)
             if protein_name in checking_protein_out: # 如果二级目录存在
-                print(f'\033[92m  {lang_dock_have_dlg}\033[96m{protein_name}\033[0m')  # print result catalog
+                print(f"\033[92m  {lang_dock_have_dlg}\033[96m{protein_name}\033[0m")  # print result catalog
             else: # 如果二级目录不存在
-                print(f'\033[92m    {lang_dock_mk_dlg}\033[0m')
+                print(f"\033[92m    {lang_dock_mk_dlg}\033[0m")
                 os.system(f'mkdir {result_dlg}/{result_name_hat}\ {time_str_file}/{protein_name}') #make result file
-                print(f'\033[92m    {lang_dock_mk_dlg_suc}\033[96m{protein_name}\033[0m')  # print result catalog
+                print(f"\033[92m    {lang_dock_mk_dlg_suc}\033[96m{protein_name}\033[0m")  # print result catalog
         else: # 如果蛋白质被注释
             no_work_protein = protein_name.replace("#", "")
-            print(f'\033[92m    {lang_dock_pro_commend}\033[96m{no_work_protein}\033[0m')
+            print(f"\033[92m    {lang_dock_pro_commend}\033[96m{no_work_protein}\033[0m")
     # # Make result_complex/protein
     # for protein_name in os.listdir(protein_list_path): # make protein list
     #     # checking do .result_dlg have protein ?
@@ -61,11 +61,11 @@ def dock():
     #         print(f'\033[92m<<<======[ Performing catalog completion > result_complex ]======>>>\033[0m')
     #         os.system(f'mkdir {result_complex}/{protein_name}') #make result file
     #         print(f'\033[92m  make result_complex catalog > \033[96m{protein_name}\033[0m')  # print result catalog
-    print(f'\033[92m{lang_dock_workfile_end}\033[0m') # 打印工作目录校验通过信息
+    print(f"\033[92m{lang_dock_workfile_end}\033[0m") # 打印工作目录校验通过信息
 
     # Set result csv file
     # 初始化csv文件和结果列表
-    print(f'\n\033[92m{lang_dock_csv_began}\033[0m')
+    print(f"\n\033[92m{lang_dock_csv_began}\033[0m")
     csv_name = f'{result_name_hat} {time_str}.csv' # 定义结果excel的名称
     csv_path = os.path.join(f'{result_csv}/', csv_name) # important! use save as docking cent(Best_Low_Energy)!
     # make protein list (line)
@@ -96,11 +96,11 @@ def dock():
     for i in range(1, num_rows):
         csv_data_2d[i][0] = first_column_list[i] # 从第一列开始纵向填充小分子名称列表到二维列表，小分子列表的第一个不填
     csv_data_2d[0][0] = first_line_list[0] # 填充标题名称
-    print(f'\033[92m{lang_dock_csv_end}\033[0m') # 打印csv模块初始化完毕与二维数组就绪信息
+    print(f"\033[92m{lang_dock_csv_end}\033[0m") # 打印csv模块初始化完毕与二维数组就绪信息
 
     # Make AutoDock-GPU docking
     # 运行AD-GPU主程序
-    print(f'\n\033[92m{lang_dock_main_began}\033[0m')
+    print(f"\n\033[92m{lang_dock_main_began}\033[0m")
     # matrix dot product
     for protein_name in os.listdir(protein_list_path): # make protein list 获取蛋白质名称到列表
         no_work_pro = '#' in protein_name  # the protein to_work or no_work ?  判断蛋白质是否参与对接
@@ -125,7 +125,7 @@ def dock():
                                 end = pdbqt_path.rfind('.')
                                 ligand_name = pdbqt_path[start + 1:end]
                                 dock_number += 1  # give ligand number 对接计数器+1，用于该模块运行完毕后的总结输出
-                                print(f'{lang_dock_mess.format(dock_number, protein_name ,ligand_name)}\033[0m')
+                                print(f"{lang_dock_mess.format(dock_number, protein_name ,ligand_name)}\033[0m")
                                 result_path = f'{result_dlg}/{result_name_hat} {time_str}/{protein_name}/'
                                 if len(seed) == 0:
                                     dock_cmd = [AD_GPU,
@@ -148,7 +148,7 @@ def dock():
                                     # abstracting(extracted) last
                                     energy = result_class[-1] # 寻找最优构象自由能
                                     energy_unit = f'{energy} kcal/mol' # 添加量纲
-                                    print(f'    \033[92m{lang_dock_suc.format(protein_name, ligand_name, energy)}\033[0m')  # print docking result
+                                    print(f"    \033[92m{lang_dock_suc.format(protein_name, ligand_name, energy)}\033[0m")  # print docking result
                                     # abstracting dlg and out put complex pdbqt
                                     # 提取最优构象分子并输出复合物3D结构
                                     dlg_path = f'{result_dlg}/{result_name_hat} {time_str}/{protein_name}/{ligand_name}.dlg' # find dlg file 寻找dlg文件所在路径
@@ -168,7 +168,7 @@ def dock():
                                     complex_data = protein_pdbqt_data + "\n" + ligand_pdbqt_data # 将蛋白质文件与小分子最优构象组合
                                     with open(f'{result_complex}/{result_name_hat} {time_str}/{protein_name}-{ligand_name}-complex.pdbqt', "w", encoding="utf-8") as fout: # 定义复合物文件路径和名称
                                         fout.write(complex_data) # 输出复合物的pdbqt文件
-                                    print(f'\033[92m    {lang_dock_complex_suc}\033[0m')
+                                    print(f"\033[92m    {lang_dock_complex_suc}\033[0m")
                                     # writer energy to csv
                                     # 将能量数据准备写入csv文件
                                     # read csv_data_2d git positioning
@@ -179,18 +179,18 @@ def dock():
                                 else: # 若对接出现错误
                                     energy = "Not found"
                                     dock_err_number += 1 # 错误计数器+1，用于该模块运行完毕后的总结输出
-                                    print(f'\033[91m{lang_dock_err.format(ligand_name, dock_out)}\033[0m')
+                                    print(f"\033[31m{lang_dock_err.format(ligand_name, dock_out)}\033[0m")
                     elif '#' in pdbqt_name: # 如果文件被“#”注释则停止执行操作
                         break
                     else:
                         error_pdbqt_path = os.path.join(ligand_pdbqt_path, pdbqt_name)  # fund error file path 获取错误分子路径
                         error_pqbqt_name = error_pdbqt_path.rsplit('/', 1)[-1]  # set error file name 获取错误分子名称
                         dock_war_number += 1 # 错误计数器+1，用于该模块运行完毕后的总结输出
-                        print(f'\033[93m    {lang_dock_war}\033[95m{error_pqbqt_name}\033[0m')  # print red error
+                        print(f"\033[33m    {lang_dock_war}\033[95m{error_pqbqt_name}\033[0m")  # print red error
                 else: # 如果文件被“#”注释
                     no_work_txt = pdbqt_name.replace("#", "") # 获取被注释的文件名称
-                    print(f'\033[92m    {lang_dock_pdbqt_commend}\033[95m{no_work_txt}\033[0m') # 打印注释信息
-    print(f'\033[92m{lang_dock_main_end}\033[0m') # 打印对接主程序执行完毕信息
+                    print(f"\033[92m    {lang_dock_pdbqt_commend}\033[95m{no_work_txt}\033[0m") # 打印注释信息
+    print(f"\033[92m{lang_dock_main_end}\033[0m") # 打印对接主程序执行完毕信息
 
     # Energy result (csv_data_2d) writer to csv file
     # 将含有自由能结果的二维数组写入csv文件作为结果输出

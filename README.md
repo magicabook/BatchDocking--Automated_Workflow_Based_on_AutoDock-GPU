@@ -1,4 +1,4 @@
-# Batch Docking: Automated Workflow Based on AutoDock-GPU (V 1.3.0)
+# Batch Docking: Automated Workflow Based on AutoDock-GPU (V 1.3.2)
 这是一个基于AutoDock-GPU的自动化批量对接程序，只需输入小分子的smiles结构文档（支持批量输入）并且提供蛋白质的网格文件（maps.fld）即可自动完成小分子预处理，分子对接，结果提取等步骤。<br>
 This project is an automated batch docking pipeline built on AutoDock-GPU, designed to streamline virtual screening workflows.<br>
 
@@ -8,28 +8,24 @@ This program is currently in an early beta phase. The author is not very familia
 More complete features and a user manual will be added in future updates!<br>
 
 ## 更新日志
-### 数字化浪潮（图形化操作？数字化操作！） 
-1）实装交互式终端，让您的工作更为便捷<br>
-2）终端整合了各种功能，可根据工作需求自行选择执行的模块<br>
-3）快捷自定义结果文件名称<br>
-4）玩了几乎一天魔法少女小圆 MagiaExedra，战力提升怎么这么艰难<br>
-5）还是没有抽到晓美焰，没有抽到环彩羽，也没有二叶莎萘做大盾，要魔女化了<br>
-6）修复了部分已知的bug<br>
-7）优化了部分代码<br>
-8）刷了很多彩虹猫视频<br>
-9）移除了Herobrine<br>
+### 客制化服务 
+1）实装设置功能，可在程序内修改配置文件，支持自定义输出语言、对接次数、结果名称、程序种子<br>
+2）玩了一上午魔法少女小圆 MagiaExedra，人鱼魔女好难打<br>
+3）还是没有抽到晓美焰，没有抽到环彩羽，也没有二叶莎萘做大盾，要魔女化了<br>
+4）修复了部分已知的bug<br>
+5）优化了部分代码<br>
+6）刷了很多彩虹猫视频<br>
+7）移除了Herobrine<br>
 
 ## Changelog<br>
-### Digital Wave (Graphical Operation? Digital Operation!)
-1. Implemented an interactive terminal to streamline your workflow.<br>
-2. The terminal now integrates various features, allowing you to choose which modules to execute based on your work requirements.<br>
-3. Added quick customization for result file names.<br>
-4. Spent nearly an entire day playing Puella Magi Madoka Magica Magia Exedra is boosting combat power so challenging?<br>
-5. Still didn't pul Akeml Homurai, nor Tamaki Iroha, nor even Futaba Sana for a big shield; it's on the verge of witchification.<br>
-6. Fixed several known bugs.<br>
-7. Optimized portions of the code.<br>
-8. Watched lots of Nyan Cat videos.<br>
-9. Removed Herobrine.<br>
+### Customized Services
+1. Implemented a settings feature that allows modifying the configuration file within the program, supporting customization of output language, docking times, result names, and seeds.<br>
+2. Spent the entire morning playing Puella Magi Madoka Magica Magia Exedra; the Oktavia von Seckendorff is incredibly challenging to defeat.​<br>
+3. Still didn't pul Akeml Homurai, nor Tamaki Iroha, nor even Futaba Sana for a big shield; it's on the verge of witchification.<br>
+4. Fixed several known bugs.<br>
+5. Optimized portions of the code.<br>
+6. Watched lots of Nyan Cat videos.<br>
+7. Removed Herobrine.<br>
 
 
 ## 运行环境需求

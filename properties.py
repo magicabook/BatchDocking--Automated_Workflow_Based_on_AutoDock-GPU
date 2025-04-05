@@ -6,6 +6,10 @@ import datetime
 import subprocess
 import importlib
 
+program_path = '/root/CPT'
+ver = '1.3.3'
+work_path = '/root/test'
+
 # Your python2 path
 py2 = '/usr/bin/python2.7'
 # Your AutoDock-GPU path
@@ -14,7 +18,7 @@ AD_GPU = '/root/AutoDock-GPU-1.6/bin/autodock_gpu_128wi'
 Grid = '/root/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py'
 
 # Your result file name
-result_name_hat = 'work'
+result_name_hat = 'test'
 #Docking run number
 nrun = '1'
 # AutoDock-GPU seed
