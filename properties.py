@@ -48,4 +48,4 @@ result_dlg = work_path + '/result_dlg'
 # result csv path
 result_csv = work_path + '/result_csv'
 result_complex = work_path + '/result_complex'
-ver = '1.3.3'
+ver = '1.4.0'
