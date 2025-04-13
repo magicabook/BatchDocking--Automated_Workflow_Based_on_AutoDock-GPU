@@ -100,7 +100,7 @@ def dock():
 
     # Make AutoDock-GPU docking
     # 运行AD-GPU主程序
-    print(f"\n\033[92m{lang_dock_main_began}\033[0m")
+    print(f"\n\033[92m{lang_dock_main_began.format(nrun)}\033[0m")
     # matrix dot product
     for protein_name in os.listdir(protein_list_path): # make protein list 获取蛋白质名称到列表
         no_work_pro = '#' in protein_name  # the protein to_work or no_work ?  判断蛋白质是否参与对接
@@ -140,46 +140,57 @@ def dock():
                                                 '-nrun', nrun,
                                                 '-resnam', result_path,
                                                 '-seed',seed]
-                                dock_out = subprocess.check_output(dock_cmd, shell=False, stderr=subprocess.STDOUT, text=True)
-                                result_energy = r'([-+]?[0-9]*\.?[0-9]+)\s*kcal/mol'  # fund *kcal/mol 提取自由能
-                                # fund all *kcal/mol
-                                result_class = re.findall(result_energy, dock_out)  # all docking energy result 整理所有输出
-                                if result_class:
-                                    # abstracting(extracted) last
-                                    energy = result_class[-1] # 寻找最优构象自由能
-                                    energy_unit = f'{energy} kcal/mol' # 添加量纲
-                                    print(f"    \033[92m{lang_dock_suc.format(protein_name, ligand_name, energy)}\033[0m")  # print docking result
-                                    # abstracting dlg and out put complex pdbqt
-                                    # 提取最优构象分子并输出复合物3D结构
-                                    dlg_path = f'{result_dlg}/{result_name_hat} {time_str}/{protein_name}/{ligand_name}.dlg' # find dlg file 寻找dlg文件所在路径
-                                    ER_bast = fr'Estimated Free Energy of Binding\s*=\s*{energy}\s*kcal/mol(.*?)(?=DOCKED: ENDMDL)' # Expression for find bast low energy data 提取dlg文件中最优构象的相关内容
-                                    with open(dlg_path, "r", encoding="utf-8") as f_dlg:
-                                        dlg_data = f_dlg.read()
-                                    match = re.search(ER_bast, dlg_data, re.DOTALL)
-                                    extracted = match.group(1)
-                                    ligand_pdbqt_data = extracted.replace("DOCKED: ", "") # this complex.pdbqt in ligand part 删除每行开头的DOCK:
-                                    # find and read protein.pdbqt
-                                    # 寻找蛋白质文件
-                                    for pro_f in os.listdir(f'{protein_list_path}/{protein_name}/'):
-                                        if pro_f.endswith('.pdbqt'):
-                                            protein_pdbqt_name = pro_f
-                                    with open(f'{protein_list_path}/{protein_name}/{protein_pdbqt_name}', "r", encoding="utf-8") as protein_pdbqt:
-                                        protein_pdbqt_data = protein_pdbqt.read() # 读取蛋白质文件的全部内容
-                                    complex_data = protein_pdbqt_data + "\n" + ligand_pdbqt_data # 将蛋白质文件与小分子最优构象组合
-                                    with open(f'{result_complex}/{result_name_hat} {time_str}/{protein_name}-{ligand_name}-complex.pdbqt', "w", encoding="utf-8") as fout: # 定义复合物文件路径和名称
-                                        fout.write(complex_data) # 输出复合物的pdbqt文件
-                                    print(f"\033[92m    {lang_dock_complex_suc}\033[0m")
-                                    # writer energy to csv
-                                    # 将能量数据准备写入csv文件
-                                    # read csv_data_2d git positioning
-                                    # 获取csv文件对应二维列表的相关信息
-                                    x_coordinates = first_line_list.index(protein_name) # 获取蛋白质所对应的列坐标
-                                    y_coordinates = first_column_list.index(ligand_name) # 获取小分子所对应的行坐标
-                                    csv_data_2d[y_coordinates][x_coordinates] = energy # writer energy to csv 将自由能数据写入对应坐标
-                                else: # 若对接出现错误
-                                    energy = "Not found"
-                                    dock_err_number += 1 # 错误计数器+1，用于该模块运行完毕后的总结输出
-                                    print(f"\033[31m{lang_dock_err.format(ligand_name, dock_out)}\033[0m")
+                                # 防止程序报错后退出
+                                try:
+                                    dock_out = subprocess.check_output(dock_cmd, shell=False, stderr=subprocess.STDOUT, text=True)
+                                    result_energy = r'([-+]?[0-9]*\.?[0-9]+)\s*kcal/mol'  # fund *kcal/mol 提取自由能
+                                    # fund all *kcal/mol
+                                    result_class = re.findall(result_energy, dock_out)  # all docking energy result 整理所有输出
+                                    if result_class:
+                                        # abstracting(extracted) last
+                                        energy = result_class[-1] # 寻找最优构象自由能
+                                        energy_unit = f'{energy} kcal/mol' # 添加量纲
+                                        print(f"    \033[92m{lang_dock_suc.format(protein_name, ligand_name, energy)}\033[0m")  # print docking result
+                                        # abstracting dlg and out put complex pdbqt
+                                        # 提取最优构象分子并输出复合物3D结构
+                                        # 防止程序报错后退出
+                                        try:
+                                            dlg_path = f'{result_dlg}/{result_name_hat} {time_str}/{protein_name}/{ligand_name}.dlg' # find dlg file 寻找dlg文件所在路径
+                                            ER_bast = fr'Estimated Free Energy of Binding\s*=\s*{energy}\s*kcal/mol(.*?)(?=DOCKED: ENDMDL)' # Expression for find bast low energy data 提取dlg文件中最优构象的相关内容
+                                            with open(dlg_path, "r", encoding="utf-8") as f_dlg:
+                                                dlg_data = f_dlg.read()
+                                            match = re.search(ER_bast, dlg_data, re.DOTALL)
+                                            extracted = match.group(1)
+                                            ligand_pdbqt_data = extracted.replace("DOCKED: ", "") # this complex.pdbqt in ligand part 删除每行开头的DOCK:
+                                            # find and read protein.pdbqt
+                                            # 寻找蛋白质文件
+                                            for pro_f in os.listdir(f'{protein_list_path}/{protein_name}/'):
+                                                if pro_f.endswith('.pdbqt'):
+                                                    protein_pdbqt_name = pro_f
+                                            with open(f'{protein_list_path}/{protein_name}/{protein_pdbqt_name}', "r", encoding="utf-8") as protein_pdbqt:
+                                                protein_pdbqt_data = protein_pdbqt.read() # 读取蛋白质文件的全部内容
+                                            complex_data = protein_pdbqt_data + "\n" + ligand_pdbqt_data # 将蛋白质文件与小分子最优构象组合
+                                            with open(f'{result_complex}/{result_name_hat} {time_str}/{protein_name}-{ligand_name}-complex.pdbqt', "w", encoding="utf-8") as fout: # 定义复合物文件路径和名称
+                                                fout.write(complex_data) # 输出复合物的pdbqt文件
+                                            print(f"\033[92m    {lang_dock_complex_suc}\033[0m")
+                                        except: # 获取异常
+                                            dock_err_number += 1  # 错误计数器+1，用于该模块运行完毕后的总结输出
+                                            dlg_out = traceback.format_exc()
+                                            print(f"\033[31m{lang_dlgerr.format(ligand_name, dlg_out)}\033[0m")
+                                        # writer energy to csv
+                                        # 将能量数据准备写入csv文件
+                                        # read csv_data_2d git positioning
+                                        # 获取csv文件对应二维列表的相关信息
+                                        x_coordinates = first_line_list.index(protein_name) # 获取蛋白质所对应的列坐标
+                                        y_coordinates = first_column_list.index(ligand_name) # 获取小分子所对应的行坐标
+                                        csv_data_2d[y_coordinates][x_coordinates] = energy # writer energy to csv 将自由能数据写入对应坐标
+                                    else: # 若对接出现错误
+                                        energy = "Not found"
+                                        dock_err_number += 1 # 错误计数器+1，用于该模块运行完毕后的总结输出
+                                        print(f"\033[31m{lang_dock_err.format(ligand_name, dock_out)}\033[0m")
+                                except: # 获取异常
+                                    dock_err_number += 1  # 错误计数器+1，用于该模块运行完毕后的总结输出
+                                    dock_out = traceback.format_exc()
                     elif '#' in pdbqt_name: # 如果文件被“#”注释则停止执行操作
                         break
                     else:

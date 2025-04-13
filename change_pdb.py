@@ -20,15 +20,12 @@ def change_pdb():
                 # 防止程序报错后退出
                 try:
                     change_pdbqt_out = subprocess.check_output(change_pdbqt_cmd,shell=False,stderr=subprocess.STDOUT,text=True)
-                except:
-                    change_pdbqt_out = 'No Error Messages'
-                    pass
+                except: # 获取异常
+                    change_pdbqt_out = traceback.format_exc()
                 # 检查报错捕获是否有内容
                 if (len(change_pdbqt_out) < 1): # 如果无错误捕获
                     pdbqt_number += 1 # pdbqt计数器+1，用于该模块运行完毕后的总结
                     print(f"\033[92m    {lang_pdb_suc}\033[95m{ligand_pdbqt_name}\033[0m")  # print green information
-                elif '#' in pdb: # 如果文件被“#”注释
-                    break
                 else: # 如果报错捕获存在内容
                     pdbqt_err_number += 1 # 错误计数器+1，用于该模块运行完毕后的总结输出
                     error_pdb_path = os.path.join(ligand_pdb, pdb)  # fund error file path 获取错误分子路径

@@ -5,9 +5,9 @@ import csv
 import datetime
 import subprocess
 import importlib
+import traceback
 
 program_path = '/root/CPT'
-ver = '1.3.3'
 work_path = '/root/test'
 
 # Your python2 path
@@ -48,3 +48,4 @@ result_dlg = work_path + '/result_dlg'
 # result csv path
 result_csv = work_path + '/result_csv'
 result_complex = work_path + '/result_complex'
+ver = '1.3.3'

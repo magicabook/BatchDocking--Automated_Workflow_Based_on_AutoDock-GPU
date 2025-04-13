@@ -29,14 +29,16 @@ def change_smi_single():
                                 '--partialcharge', 'gasteiger',
                                 '--minimize',
                                 '--ff', 'gaff']
-                #print(obabel_smi_cmd)
-                obabel_out = subprocess.check_output(obabel_smi_cmd,shell=False,stderr=subprocess.STDOUT,text=True) # 捕获OpenBaBel输出
-                os.system('killall -9 obabel') # 杀死那个OpenBaBel进程
+                # print(obabel_smi_cmd)
+                # 防止程序报错后退出
+                try:
+                    obabel_out = subprocess.check_output(obabel_smi_cmd,shell=False,stderr=subprocess.STDOUT,text=True) # 捕获OpenBaBel输出
+                    os.system('killall -9 obabel') # 杀死那个OpenBaBel进程
+                except: # 获取异常
+                    obabel_out = traceback.format_exc()
                 if (obabel_out.find('1 molecule converted') >= 0): # 检查是否转换成功
                     pdb_number += 1 # pdb计数器+1，用于该模块运行完毕后的总结
                     print(f'    \033[92m{lang_smi_sing_suc} \033[95m{ligand_smi_single_name}\033[0m') # print green information # 打印成功信息
-                elif '#' in smi_sing: # 若该文件被“#”注释，则停止执行对该文件的操作
-                    break
                 else: # 文件后缀错误，停止执行操作并输出警告
                     pdb_err_number += 1 # 错误计数器+1，用于该模块运行完毕后的总结输出
                     error_smi_single_path = os.path.join(ligand_smi_single, smi_sing)  # fund error file path 获取错误分子路径
