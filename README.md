@@ -17,14 +17,13 @@ More complete features and a user manual will be added in future updates!<br>
 6）移除了Herobrine<br>
 
 ## Changelog<br>
-### Customized Services
-1. Implemented a settings feature that allows modifying the configuration file within the program, supporting customization of output language, docking times, result names, and seeds.<br>
-2) The separation between the working directory and program directory has been achieved. You can select different working directories for different tasks, similar to game saves.<br>
-3) I pulled Akemi Homura!!!!!!<br>
-4. Fixed several known bugs.<br>
-5. Optimized portions of the code.<br>
-6. Watched lots of Nyan Cat videos.<br>
-7. Removed Herobrine.<br>
+### Error Tracking & Improvements
+1. Implemented try/traceback-based runtime monitoring – The program now handles molecule-specific errors without system-level crashes.
+2. Enhanced debugging visibility – Added real-time display of per-docking iteration counts to prevent oversight after testing.
+3. Magia Exedra is addictive! Got Akimi Homura, Futaba Sana, and Yui Tsuruno... still hunting for Tamaki Iroha and Akino Kaede! 
+4. Squashed lingering bugs.
+5. Codebase optimizations.
+6. Removed Herobrine.
 
 
 ## 运行环境需求
