@@ -2,6 +2,7 @@
 import os
 import re
 import csv
+import random
 import datetime
 import subprocess
 import importlib
@@ -27,7 +28,7 @@ seed = ''
 ## Define and Set Your Work_Path and Basic Function
 
 # Your Language
-language = 'zh_cn'
+language = 'en'
 module_name = f"language.{language}"
 module = __import__(module_name, fromlist=["*"])
 globals().update({k: getattr(module, k) for k in dir(module) if not k.startswith("__")})
@@ -48,4 +49,4 @@ result_dlg = work_path + '/result_dlg'
 # result csv path
 result_csv = work_path + '/result_csv'
 result_complex = work_path + '/result_complex'
-ver = '1.3.3'
+ver = '1.4.1'

@@ -1,30 +1,29 @@
-# Batch Docking: Automated Workflow Based on AutoDock-GPU (V 1.4.0)
+# Batch Docking: Automated Workflow Based on AutoDock-GPU (V 1.4.1)
 这是一个基于AutoDock-GPU的自动化批量对接程序，只需输入小分子的smiles结构文档（支持批量输入）并且提供蛋白质的网格文件（maps.fld）即可自动完成小分子预处理，分子对接，结果提取等步骤。<br>
 This project is an automated batch docking pipeline built on AutoDock-GPU, designed to streamline virtual screening workflows.<br>
 
-本程序暂处于早期测试版，作者不太熟悉GitHub的使用，请见谅。<br>
 更多完善的功能和用户手册在将来的更新中被加入！<br>
-This program is currently in an early beta phase. The author is not very familiar with GitHub usage, so please excuse any shortcomings.<br>
 More complete features and a user manual will be added in future updates!<br>
 
 ## 更新日志
-### 错误追踪 
-1）实现了基于try与traceback模块的运行监视，现在程序不再会因为某一小分子的错误或偶然的对接失败而产生系统级报错导致运行中断<br>
-2）优化了信息显示，调试更为方便，并且显示单次对接迭代次数，防止调试后忘记更改<br>
-3）圆哆啦真好玩，我有晓美焰和二叶莎奈了，还抽到了由比鹤乃，什么时候把环彩羽和秋野枫也抽出来呀<br>
-4）修复了部分已知的bug<br>
-5）优化了部分代码<br>
-6）移除了Herobrine<br>
+### 地理与历史
+1. 实现了基于try与traceback模块的运行监视，现在程序不再会因为某一小分子的错误或偶然的对接失败而产生系统级报错导致运行中断<br>
+2. 优化了信息显示，调试更为方便，并且显示单次对接迭代次数，防止调试后忘记更改<br>
+3. 圆哆啦真好玩，我有晓美焰和二叶莎奈了，还抽到了由比鹤乃，什么时候把环彩羽和秋野枫也抽出来呀<br>
+4. 完善了语言包，现在南半球倒立的人们和古人使用该程序没有语言障碍了！<br>
+5. 修复了部分已知的bug<br>
+6. 优化了部分代码<br>
+7. 看了一些猫咪视频，埋了一点猫咪彩蛋<br>
+8. 移除了Herobrine<br>
 
 ## Changelog<br>
-### Customized Services
-1. Implemented a settings feature that allows modifying the configuration file within the program, supporting customization of output language, docking times, result names, and seeds.<br>
-2) The separation between the working directory and program directory has been achieved. You can select different working directories for different tasks, similar to game saves.<br>
-3) I pulled Akemi Homura!!!!!!<br>
-4. Fixed several known bugs.<br>
-5. Optimized portions of the code.<br>
-6. Watched lots of Nyan Cat videos.<br>
-7. Removed Herobrine.<br>
+### Error Tracking & Improvements
+1. Implemented try/traceback-based runtime monitoring – The program now handles molecule-specific errors without system-level crashes.
+2. Enhanced debugging visibility – Added real-time display of per-docking iteration counts to prevent oversight after testing.
+3. Magia Exedra is addictive! Got Akimi Homura, Futaba Sana, and Yui Tsuruno... still hunting for Tamaki Iroha and Akino Kaede! 
+4. Squashed lingering bugs.
+5. Codebase optimizations.
+6. Removed Herobrine.
 
 
 ## 运行环境需求

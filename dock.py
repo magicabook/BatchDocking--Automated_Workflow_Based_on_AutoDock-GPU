@@ -98,6 +98,18 @@ def dock():
     csv_data_2d[0][0] = first_line_list[0] # 填充标题名称
     print(f"\033[92m{lang_dock_csv_end}\033[0m") # 打印csv模块初始化完毕与二维数组就绪信息
 
+    # 彩虹猫彩蛋
+    pro_list = os.listdir(protein_list_path)
+    pro_number = len(pro_list)
+    lig_list = os.listdir(ligand_pdbqt_path)
+    lig_number = len(lig_list)
+    sum_number = pro_number * lig_number
+    if sum_number > 100:
+        if random.random() < 0.01:
+            print(homura_cat_bonus)
+        else:
+            print(nyan_cat_bonus)
+
     # Make AutoDock-GPU docking
     # 运行AD-GPU主程序
     print(f"\n\033[92m{lang_dock_main_began.format(nrun)}\033[0m")
@@ -140,6 +152,10 @@ def dock():
                                                 '-nrun', nrun,
                                                 '-resnam', result_path,
                                                 '-seed',seed]
+                                # 芝士汉堡猫彩蛋
+                                if 'cat' in protein_name or 'kit' in protein_name:
+                                    if 'cheese' in ligand_name or 'burger' in ligand_name:
+                                        print(cheese_bonus)
                                 # 防止程序报错后退出
                                 try:
                                     dock_out = subprocess.check_output(dock_cmd, shell=False, stderr=subprocess.STDOUT, text=True)
