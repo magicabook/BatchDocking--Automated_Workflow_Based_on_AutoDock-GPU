@@ -17,13 +17,15 @@ More complete features and a user manual will be added in future updates!<br>
 8. 移除了Herobrine<br>
 
 ## Changelog<br>
-### Error Tracking & Improvements
+### Geography and History
 1. Implemented try/traceback-based runtime monitoring – The program now handles molecule-specific errors without system-level crashes.
 2. Enhanced debugging visibility – Added real-time display of per-docking iteration counts to prevent oversight after testing.
 3. Magia Exedra is addictive! Got Akimi Homura, Futaba Sana, and Yui Tsuruno... still hunting for Tamaki Iroha and Akino Kaede! 
-4. Squashed lingering bugs.
-5. Codebase optimizations.
-6. Removed Herobrine.
+4. Improved the language pack, ensuring users in the Southern Hemisphere and ancient times can use the program without language barriers.
+5. Fixed several known bugs.
+6. Optimized parts of the code.
+7. Watched some cat videos and included a few cat Easter eggs.
+8. Removed Herobrine.
 
 
 ## 运行环境需求
