@@ -25,7 +25,7 @@ while True:
 
     # 打印选择结果
     select_out = f'lang_inter_select_{function_number}' # 基于用户的选择决定调用的输出变量名称
-    print(f"\n\033[92m    {lang_inter_suc.format(globals().get(select_out))}\033[0m") # 打印选择结果
+    print(f"\n\033[92m{lang_inter_suc.format(globals().get(select_out))}\033[0m") # 打印选择结果
 
 
 
@@ -36,7 +36,7 @@ while True:
         if __name__ == '__main__':
             set.set()
         reload(properties)
-        print(f"    \033[92m{lang_inter_set_end}\033[0m")
+        print(f"\033[92m{lang_inter_set_end}\033[0m")
 
     # 仅将输入的txt拆分为单个smiles小分子
     elif function_number == '1':
@@ -101,6 +101,7 @@ while True:
         import change_smi
         import change_smi_single
         import change_pdb
+
         if __name__ == '__main__':
             smi_number, smi_war_number, smi_err_number = change_smi.change_smi()  # 执行模块并将元组拆包
             pdb_number, pdb_war_number, pdb_err_number = change_smi_single.change_smi_single()
@@ -120,6 +121,7 @@ while True:
         import change_smi_single
         import change_pdb
         import dock
+
         # 自定义结果文件名称
         inter_result_name = input(lang_dock_inter_name).strip().lower()  # 获取用户自定义的名称
         if len(inter_result_name) > 0:  # 通过查询变量长度判断用户是否自定义名称
@@ -144,6 +146,7 @@ while True:
     # 仅将输入的txt拆分为单个smiles小分子
     elif function_number == 'x':
         import make_file
+
         if __name__ == '__main__':
             make_file.make_file()
             print(f"\033[92m{lang_inter_make_end}\033[0m")

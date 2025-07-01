@@ -15,7 +15,7 @@ def change_pdb():
                 pdb_path = os.path.join(ligand_pdb, pdb)  # fund file path list 该目录下所有.smi文件的路径
                 ligand_pdbqt_name = pdb_path.rsplit('/', 1)[-1]  # set pdbqt file name 获取PDB名称
                 change_pdbqt_cmd = [py2, Grid,
-                                    '-r', pdb_path,
+                                    '-l', pdb_path,
                                     '-o', f'{ligand_pdbqt_path}/{ligand_pdbqt_name}qt']
                 # 防止程序报错后退出
                 try:
@@ -44,10 +44,3 @@ def change_pdb():
 if __name__ == '__main__':
     result = change_pdb # 将元组作为函数的输出
     change_pdb()
-
-# # 输出总结信息
-# print(f'\033[92m{lang_pdb_end}\033[0m') # 打印将小分子转换为.PDBQT格式并设置为配体模块执行结束信息
-# if pdbqt_war_number + pdbqt_err_number == 0: # 判断异常计数是否为0
-#     print(f'\033[92m\n    {lang_pdb_summary_suc.format(pdbqt_number)}\033[0m') # 输出无异常结束语句
-# else: # 若异常计数器不为零，则将异常输出计数打印并调用异常提示信息
-#     print(f'\033[91m\n{lang_pdb_summary_failure.format(pdbqt_number, pdbqt_err_number, pdbqt_war_number)}\033[0m')

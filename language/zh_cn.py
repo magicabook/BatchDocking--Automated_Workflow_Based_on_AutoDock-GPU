@@ -1,5 +1,5 @@
 lang_inter_describe = '''
-欢迎使用批量对接程序！ 版本号：[1.4.1]
+欢迎使用批量对接程序！ 版本号：[1.5.0]
 项目地址：https://github.com/magicabook/Batch_Docking--Automated_Workflow_Based_on_AutoDock-GPU.git
 作者：附魔书  通讯地址：magica_book@qq.com  保留该程序的一切权益。'''
 
