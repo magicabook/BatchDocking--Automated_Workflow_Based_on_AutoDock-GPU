@@ -5,8 +5,8 @@ This project is an automated batch docking pipeline built on AutoDock-GPU, desig
 更多完善的功能和用户手册在将来的更新中被加入！<br>
 More complete features and a user manual will be added in future updates!<br>
 
-##联系作者 Correspoonding Author
-magica_book@qq.com
+## 联系作者 Correspoonding Author
+`magica_book@qq.com`
 
 ## 更新日志
 ### 紧急修复
