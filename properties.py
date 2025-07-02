@@ -8,20 +8,20 @@ import subprocess
 import importlib
 import traceback
 
-program_path = '/root/CPT'
-work_path = '/root/test'
+program_path = ''
+work_path = ''
 
 # Your python2 path
 py2 = '/usr/bin/python2.7'
 # Your AutoDock-GPU path
 AD_GPU = '/root/AutoDock-GPU-1.6/bin/autodock_gpu_128wi'
 # Your AutoDockTools about prepare_receptor4.py path
-Grid = '/root/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py'
+Grid = '/root/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py'
 
 # Your result file name
 result_name_hat = 'test'
 #Docking run number
-nrun = '1'
+nrun = '20'
 # AutoDock-GPU seed
 seed = ''
 
@@ -49,4 +49,5 @@ result_dlg = work_path + '/result_dlg'
 # result csv path
 result_csv = work_path + '/result_csv'
 result_complex = work_path + '/result_complex'
-ver = '1.4.1'
+ver = '1.5.0'
+ligand_tools = 'obabel'

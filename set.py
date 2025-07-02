@@ -4,6 +4,7 @@ import importlib
 from importlib import reload
 
 
+
 # 定义检查函数，检查输入是否为整数，输出布尔值
 def is_integer(s):
     try:
@@ -33,7 +34,7 @@ def set():
                 print(f"\033[33m\n{lang_inter_function_err}\n\033[0m")
         # 打印选择结果
         set_select_out = f'lang_inter_set_select_{set_function_number}'  # 基于用户的选择决定调用的输出变量名称
-        print(f"\n\033[92m    {lang_inter_suc.format(globals().get(set_select_out))}\033[0m")  # 打印选择结果
+        print(f"\n\033[92m{lang_inter_suc.format(globals().get(set_select_out))}\033[0m")  # 打印选择结果
 
 
 
@@ -51,9 +52,9 @@ def set():
                     elif set_lang == 'z': # 若选择返回则结束循环
                         break
                     else:  # 输出警告信息
-                        print(f"    \033[33m\n{lang_inter_function_err}\033[0m")
+                        print(f"\033[33m\n{lang_inter_function_err}\033[0m")
                 except ValueError:  # 输出警告信息
-                    print(f"    \033[33m\n{lang_inter_function_err}\033[0m")
+                    print(f"\033[33m\n{lang_inter_function_err}\033[0m")
             if set_lang == 'z': # 判断是否返回上级目录
                 print(f"{lang_return_list}\n")
             else:
@@ -69,7 +70,7 @@ def set():
                 with open(f'{program_path}/BatchDock-{ver}/properties.py', 'w') as properties_data:
                     properties_data.write(content_lang)
                 reload(properties)
-                print(f"\n\033[92m    {lang_inter_set_lang_suc}{set_lang}\n\033[0m")
+                print(f"\n\033[92m{lang_inter_set_lang_suc}{set_lang}\n\033[0m")
 
         # 设置单次对接迭代次数
         elif set_function_number == '2':
@@ -85,9 +86,9 @@ def set():
                 elif set_nrun == 'z': # 若选择返回则结束循环
                     break
                 elif (is_integer(set_nrun)) == False:
-                    print(f"    \033\n[33m{lang_inter_set_nrun_war}\033[0m")
+                    print(f"\033\n[33m{lang_inter_set_nrun_war}\033[0m")
                 elif len(set_nrun) == 0:
-                    print(f"    \033[33m{lang_inter_set_nrun_none}\033[0m")
+                    print(f"\033[33m{lang_inter_set_nrun_none}\033[0m")
             if set_nrun == 'z': # 判断是否返回上级目录
                 print(f"{lang_return_list}\n")
             else:
@@ -98,7 +99,7 @@ def set():
                 # 保存修改
                 with open(f'{program_path}/BatchDock-{ver}/properties.py', 'w') as properties_data:
                     properties_data.write(content_nrun)
-                print(f"\n\033[92m    {lang_inter_set_nrun_suc}{set_nrun}\n\033[0m")
+                print(f"\n\033[92m{lang_inter_set_nrun_suc}{set_nrun}\n\033[0m")
 
         # 设置默认结果文件名
         elif set_function_number == '3':
@@ -117,7 +118,7 @@ def set():
                 # 保存修改
                 with open(f'{program_path}/BatchDock-{ver}/properties.py', 'w') as properties_data:
                     properties_data.write(content_name)
-                print(f"\n\033[92m    {lang_inter_set_name_suc}{set_name}\n\033[0m")
+                print(f"\n\033[92m{lang_inter_set_name_suc}{set_name}\n\033[0m")
 
         #设置对接程序运行种子
         elif set_function_number == '4':
@@ -138,7 +139,7 @@ def set():
                 elif (is_integer(set_seed)) == True:
                     break
                 elif (is_integer(set_seed)) == False:
-                    print(f"    \033[33m\n{lang_inter_set_seed_war}\033[0m")
+                    print(f"\033[33m\n{lang_inter_set_seed_war}\033[0m")
             if set_seed == 'z': # 判断是否返回上级目录
                 print(f"{lang_return_list}\n")
             else:
@@ -150,9 +151,9 @@ def set():
                 with open(f'{program_path}/BatchDock-{ver}/properties.py', 'w') as properties_data:
                     properties_data.write(content_seed)
                 if len(set_seed) == 0:
-                    print(f"\n\033[92m    {lang_inter_set_seed_suc1}{set_seed}\n\033[0m")
+                    print(f"\n\033[92m{lang_inter_set_seed_suc1}{set_seed}\n\033[0m")
                 else:
-                    print(f"\n\033[92m    {lang_inter_set_seed_suc}{set_seed}\n\033[0m")
+                    print(f"\n\033[92m{lang_inter_set_seed_suc}{set_seed}\n\033[0m")
 
         #返回上级目录
         elif set_function_number == 'z':

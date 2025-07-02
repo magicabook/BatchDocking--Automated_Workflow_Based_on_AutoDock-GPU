@@ -1,4 +1,7 @@
+import re
+
 from properties import *
+import xml.etree.ElementTree as ET
 
 def dock():
     # get system time to make file sign
@@ -159,24 +162,34 @@ def dock():
                                 # 防止程序报错后退出
                                 try:
                                     dock_out = subprocess.check_output(dock_cmd, shell=False, stderr=subprocess.STDOUT, text=True)
+                                    print(dock_out)
                                     result_energy = r'([-+]?[0-9]*\.?[0-9]+)\s*kcal/mol'  # fund *kcal/mol 提取自由能
                                     # fund all *kcal/mol
                                     result_class = re.findall(result_energy, dock_out)  # all docking energy result 整理所有输出
                                     if result_class:
                                         # abstracting(extracted) last
-                                        energy = result_class[-1] # 寻找最优构象自由能
+                                        xml_path = f'{result_dlg}/{result_name_hat} {time_str}/{protein_name}/{ligand_name}.xml' # find xml file 寻找xml文件所在路径
+                                        # 解析 XML 文件
+                                        with open(xml_path, 'r', encoding='utf-8') as file: # 寻找xml文件中最佳构象
+                                            # 解析 XML 文件
+                                            tree = ET.parse(file)
+                                            root = tree.getroot()
+                                        # 查找符合条件的 <run> 标签
+                                        run_element = root.find('.//run[@rank="1"][@sub_rank="1"]')
+                                        run = run_element.get('run')
+                                        energy = run_element.get('binding_energy')
                                         energy_unit = f'{energy} kcal/mol' # 添加量纲
-                                        print(f"    \033[92m{lang_dock_suc.format(protein_name, ligand_name, energy)}\033[0m")  # print docking result
+                                        print(f"\033[92m{lang_dock_suc.format(protein_name, ligand_name, energy_unit)}\033[0m")  # print docking result
                                         # abstracting dlg and out put complex pdbqt
                                         # 提取最优构象分子并输出复合物3D结构
                                         # 防止程序报错后退出
                                         try:
                                             dlg_path = f'{result_dlg}/{result_name_hat} {time_str}/{protein_name}/{ligand_name}.dlg' # find dlg file 寻找dlg文件所在路径
-                                            ER_bast = fr'Estimated Free Energy of Binding\s*=\s*{energy}\s*kcal/mol(.*?)(?=DOCKED: ENDMDL)' # Expression for find bast low energy data 提取dlg文件中最优构象的相关内容
+                                            lig_bast = fr'Run:\s*{run}\s*/\s*{nrun}.*?Estimated Free Energy of Binding\s*=\s*{energy}\s*kcal/mol(.*?)(?=DOCKED: ENDMDL)' # Expression for find bast low energy data 提取dlg文件中最优构象的相关内容
                                             with open(dlg_path, "r", encoding="utf-8") as f_dlg:
                                                 dlg_data = f_dlg.read()
-                                            match = re.search(ER_bast, dlg_data, re.DOTALL)
-                                            extracted = match.group(1)
+                                            dlg_match = re.search(lig_bast, dlg_data, re.DOTALL)
+                                            extracted = dlg_match.group(1)
                                             ligand_pdbqt_data = extracted.replace("DOCKED: ", "") # this complex.pdbqt in ligand part 删除每行开头的DOCK:
                                             # find and read protein.pdbqt
                                             # 寻找蛋白质文件
@@ -229,10 +242,3 @@ def dock():
 if __name__ == '__main__':
     result = dock # 将元组作为函数的输出
     dock()
-
-# # 输出总结信息
-# print(f'\n\033[92m    {lang_dock_csv_suc} "{csv_name}"\033[0m')
-# if dock_war_number + dock_err_number == 0: # 判断异常计数是否为0
-#     print(f'\n\033[92m    {lang_dock_summary_suc.format(dock_number)}\033[0m') # 输出无异常结束语句
-# else: # 若异常计数器不为零，则将异常输出计数打印并调用异常提示信息
-#     print(f'\n\033[91m{lang_dock_summary_failure.format(dock_number, dock_err_number, dock_war_number)}\033[0m')

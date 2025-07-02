@@ -21,6 +21,8 @@ def change_smi():
                     with open(smi_path, "r", encoding="utf-8") as smi_txt_data: # 开始阅读.txt文件
                         for line in smi_txt_data: # 读取每一行
                             smi_txt_all = (line.strip()) # delete \n 删除所有换行符
+                            if not smi_txt_all:
+                                continue
                             # abstracting structure and name
                             # 分别提取结构字符串和名称字符串
                             parts = smi_txt_all.split() # 按行进行切片
@@ -47,10 +49,3 @@ def change_smi():
 if __name__ == '__main__':
     result = change_smi # 将元组作为函数的输出
     change_smi()
-
-# 输出总结信息
-# print(f'\033[92m{lang_smi_end}\033[0m') # 打印提取单个smi模块执行结束信息
-# if smi_err_number + smi_war_number == 0: # 判断异常计数是否为0
-#     print(f'\033[92m\n    {lang_smi_summary_suc.format(smi_number)}\033[0m') # 输出无异常结束语句
-# else: # 若异常计数器不为零，则将异常输出计数打印并调用异常提示信息
-#     print(f'\033[91m\n{lang_smi_summary_failure.format(smi_number, smi_err_number, smi_war_number)}\033[0m')
