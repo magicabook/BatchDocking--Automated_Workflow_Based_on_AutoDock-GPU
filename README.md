@@ -352,7 +352,7 @@ BatchDock provides non-critical error tracking and handling. When unsupported fi
 2. **优化软件输出** 添加可视化的进度条、进程监视与看门狗<br>
 3. **蛋白质预处理和盲对接的支持** 自动识别蛋白质的大小并完成除水、除离子、除共结晶化合物、设置为配体，并自动计算对接盒子的参数，完成盲对接操作，助力高通量筛选和超前期药物研究工作
 
-##Future Directions
+## Future Directions
 1. **Optimize Program Execution Logic**Flag suspicious molecules that fail conversion in result files for separate identification.
 2. **Enhance Software Output**Introduce visual progress bars, process monitoring, and watchdog functionality.
 3. **Support Automated Protein Preprocessing and Blind Docking**Automatically detect protein dimensions to perform: Removal of water molecules, ions, and co-crystallized compounds, Ligand parameterization, Autonomous calculation of docking box parameters. Enable blind docking operations to facilitate high-throughput screening and ultra-early-stage drug discovery research.
