@@ -152,7 +152,7 @@ batchdock
 <br>
 
 6. **小分子准备**<br>
-绘制小分子的smiles结构式，并保存在一个.txt文件中，一个.txt支持存储多个小分子，示例如下：（smiles结构语法为：[smiles字符串][空格][自定义名称]）
+绘制小分子的smiles结构式，并保存在一个.txt文件中，一个.txt支持存储多个小分子，示例如下：（smiles结构语法为：`[smiles字符串][空格][自定义名称]`）
 ```smiles.txt
 CC(=O)NC1=CC=C(O)C=C1 Paracetamol
 CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O S-Ibuprofen
@@ -204,7 +204,7 @@ BatchDock支持批量对接，因此您可以为多个蛋白创建目录`pro2`�
 10. **注释功能**<br>
 BatchDock提供了注释功能，若您不希望某个小分子或蛋白质参与对接工作，只需在该分子或蛋白对应的名称前加入前缀`#`，BatchDock在运行时便会自动跳过。<br>
 如果您进行了小分子abc和蛋白质ABC的对接，但由于一些问题导致小分子c和蛋白质B对接失败，那么您在修正问题后只需要用小分子c和蛋白质B重新对接，而不必做其他工作。<br>
-此时您只需要进入`ligand_pdbqt`目录将小分子ab的名称打上前缀`#`，随后进入`protein`目录将蛋白质AC的名称打上前缀`#`，再运行BatchDock，选择功能**[4] 仅运行批量自动对接**即可完成补充工作。
+此时您只需要进入`ligand_pdbqt`目录将小分子ab的名称打上前缀`#`，随后进入`protein`目录将蛋白质AC的名称打上前缀`#`，再运行BatchDock，选择功能`[4] 仅运行批量自动对接`即可完成补充工作。
 <br>
 
 11. **错误追踪**<br>
@@ -385,7 +385,7 @@ Launch the BatchDock main program and select the corresponding function key to p
 BatchDock provides a comment feature. To exclude specific small molecules or proteins from docking, simply prefix their names with `#`. BatchDock will automatically skip these during execution.<br>
 If docking fails for molecule *c* with protein *B* after processing molecules *abc* and proteins *ABC*, you only need to re-dock molecule *c* with protein *B* after fixing the issue.<br>
 Navigate to the `ligand_pdbqt` directory and prefix molecule names *a* and *b* with `#`. Go to the `protein` directory and prefix protein names *A* and *C* with `#`
-Run BatchDock and select function **[4] Run batch docking automation only** to complete supplementary docking.
+Run BatchDock and select function `[4] Run batch docking automation only` to complete supplementary docking.
 <br>
 
 11. **Error Tracking**<br>
