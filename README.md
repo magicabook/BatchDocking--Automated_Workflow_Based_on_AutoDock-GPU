@@ -338,10 +338,6 @@ Create SMILES file format:<br>
 CC(=O)NC1=CC=C(O)C=C1 Paracetamol
 CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O S-Ibuprofen
 CC(=O)OC1=CC=CC=C1C(O)=O Aspirin
-```smiles.txt
-CC(=O)NC1=CC=C(O)C=C1 Paracetamol
-CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O S-Ibuprofen
-CC(=O)OC1=CC=CC=C1C(O)=O Aspirin
 ```
 <br>
 
