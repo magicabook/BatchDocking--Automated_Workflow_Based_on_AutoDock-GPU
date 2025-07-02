@@ -34,8 +34,8 @@ An urgent remediation was implemented to correct an erroneous invocation of the 
 6. Install Python 2 with the numpy library.<br>
 7. Ensure that the above software and related environment variables are set up correctly.<br>
 
-##操作简述
-####！重要提醒 ！虽然我们充分理解非英语母语研究者的困难，但为了考虑到系统和软件的兼容性，我们强烈不建议您使用英语以外的其他语言命名任何文件！包括特殊字符和空格！您可以使用驼峰命名法加编号以区分不同的分子。
+## 操作简述
+#### ！重要提醒 ！虽然我们充分理解非英语母语研究者的困难，但为了考虑到系统和软件的兼容性，我们强烈不建议您使用英语以外的其他语言命名任何文件！包括特殊字符和空格！您可以使用驼峰命名法加编号以区分不同的分子。
 1. **修改BatchDock配置文件**
 将BatchDock的GitHub仓库克隆到本地，或在Releases下载最新版本的压缩包后解压。进入BatchDock，您可以看到一系列.py文件、运行库和语言包。<br>
 您需要打开`batchDock[版本号]`目录下的`properties.py`文件完成配置。<br>
