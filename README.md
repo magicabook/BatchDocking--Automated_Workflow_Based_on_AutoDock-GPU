@@ -37,8 +37,10 @@ An urgent remediation was implemented to correct an erroneous invocation of the 
 7. Ensure that the above software and related environment variables are set up correctly.<br>
 
 ## 操作简述
-#### ！重要提醒 ！虽然我们充分理解非英语母语研究者的困难，但为了考虑到系统和软件的兼容性，我们强烈不建议您使用英语以外的其他语言命名任何文件！包括特殊字符和空格！您可以使用驼峰命名法加编号以区分不同的分子。
-1. **修改BatchDock配置文件**
+#### ！重要提醒 ！虽然我们充分理解非英语母语研究者的困难，但为了考虑到系统和软件的兼容性，我们强烈不建议您使用英语以外的其他语言命名任何文件！包括特殊字符和空格！您可以使用驼峰命名法加编号以区分不同的分子。<br>
+<br>
+
+1. **修改BatchDock配置文件**<br>
 将BatchDock的GitHub仓库克隆到本地，或在Releases下载最新版本的压缩包后解压。进入BatchDock，您可以看到一系列.py文件、运行库和语言包。<br>
 您需要打开`batchDock[版本号]`目录下的`properties.py`文件完成配置。<br>
 ```
@@ -58,7 +60,9 @@ AD_GPU = '？/AutoDock-GPU-1.6/bin/autodock_gpu_？wi'
 Grid = '？/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py'
 ```
 编辑完成后保存并退出文本编辑器。<br>
-2. **运行BatchDock主程序**
+<br>
+
+2. **运行BatchDock主程序**<br>
 BatchDock中的所有模块和语言包受到主模块`main.py`的统一调度，您需要为该文件赋予可执行权限，随后运行主模块`main.py`。<br>
 赋予`main.py`可执行权限：<br>
 ```
@@ -69,23 +73,25 @@ chmod +x main.py
 ./main.py
 ```
 您也可以将其写入环境变量中<br>
-1）使用文本编辑器修改shell配置文件<br>
+a）使用文本编辑器修改shell配置文件<br>
 ```
 vim ~/.bashrc
 ```
-2）在末尾加入环境变量<br>
+b）在末尾加入环境变量<br>
 ```
 alias batchdock="python3 YourBatchDockPath/main.py"
 ```
-3）保存关闭文本编辑器后，刷新使环境变量生效<br>
+c）保存关闭文本编辑器后，刷新使环境变量生效<br>
 ```
 source ~/.bashrc
 ```
-4）现在您可以直接在控制台输入batchdock以运行BatchDock<br>
+d）现在您可以直接在控制台输入batchdock以运行BatchDock<br>
 ```
 batchdock
 ```
-3. **进行初始设置**
+<br>
+
+3. **进行初始设置**<br>
 软件默认语言为英文，软件主程序运行后您可以看到以下内容：<br>
 ```
 <<================[ Mode Selection ]================>>>
@@ -120,7 +126,9 @@ Select language:
 您需要输入您需要的语言，如`zh_cn`后`回车`，随后**一直输入`z`并`回车`直到软件完全退出，此时您的设置才会生效！！！**<br>
 再次进入软件，设置单次工作中LGA运行次数（AutoDock-GPU默认20次）与随机数种子（AutoDock-GPU默认系统时间+进程PID），结果文件的默认名称。<br>
 **切记每次修改默认设置后需一直`返回上级目录`直到软件完全退出，此时您的设置才会生效！！！**
-4. **文件补全**
+<br>
+
+4. **文件补全**<br>
 在终端输入`batchdock`进入BatchDock的主目录<br>
 ```
 batchdock
@@ -137,16 +145,22 @@ batchdock
 ├── result_csv/             # 结合自由能的存储目录
 └── result_dlg/             # 对接产生的所有构象存储目录
 ```
-5. **蛋白质准备**
+<br>
+
+5. **蛋白质准备**<br>
 预先用Pymol或AutoDockTools去除蛋白质的水、离子和共结晶化合物，然后用AutoDockTools生成网格文件（.map和.maps.fld与.maps.xyz）
-6. **小分子准备**
+<br>
+
+6. **小分子准备**<br>
 绘制小分子的smiles结构式，并保存在一个.txt文件中，一个.txt支持存储多个小分子，示例如下：（smiles结构语法为：[smiles字符串][空格][自定义名称]）
 ```smiles.txt
 CC(=O)NC1=CC=C(O)C=C1 Paracetamol
 CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O S-Ibuprofen
 CC(=O)OC1=CC=CC=C1C(O)=O Aspirin
 ```
-7. **蛋白质文件就位**
+<br>
+
+7. **蛋白质文件就位**<br>
 在`protein`目录下创建用于存放蛋白质网格文件（.map和.maps.fld与.maps.xyz）的目录，例如`pro1`，随后将该蛋白质的所有网格文件（.map和.maps.fld与.maps.xyz）复制到`pro1`目录下。<br>
 BatchDock支持批量对接，因此您可以为多个蛋白创建目录`pro2`、`pro3`、`pro4`……请注意，您需要确保所有的蛋白质目录都被正确存放在`protein`目录下，即：<br>
 ```protein目录结构示例
@@ -168,7 +182,9 @@ BatchDock支持批量对接，因此您可以为多个蛋白创建目录`pro2`�
 │   │
 ……  └── ……
 ```
-8. **小分子文件就位**
+<br>
+
+8. **小分子文件就位**<br>
 复制第2步中创建的小分子smiles.txt文件到`ligand_smi`目录下，支持存放多个smiles.txt文件，其目录结构为：<br>
 ```ligand_smi目录结构示例
 工作目录/
@@ -179,19 +195,30 @@ BatchDock支持批量对接，因此您可以为多个蛋白创建目录`pro2`�
 │   ├── Method2.txt         # 使用方法2改造的小分子的smiles集
 ……  └── ……
 ```
-9. **分子对接**
+<br>
+
+9. **分子对接**<br>
 进入BatchDock主程序，选择对应的功能键即可完成分子对接，其结果会自动整合输出到**result**相关目录下。
-10. **注释功能**
+<br>
+
+10. **注释功能**<br>
 BatchDock提供了注释功能，若您不希望某个小分子或蛋白质参与对接工作，只需在该分子或蛋白对应的名称前加入前缀`#`，BatchDock在运行时便会自动跳过。<br>
 如果您进行了小分子abc和蛋白质ABC的对接，但由于一些问题导致小分子c和蛋白质B对接失败，那么您在修正问题后只需要用小分子c和蛋白质B重新对接，而不必做其他工作。<br>
 此时您只需要进入`ligand_pdbqt`目录将小分子ab的名称打上前缀`#`，随后进入`protein`目录将蛋白质AC的名称打上前缀`#`，再运行BatchDock，选择功能**[4] 仅运行批量自动对接**即可完成补充工作。
-11. **错误追踪**
+<br>
+
+11. **错误追踪**<br>
 BatchDock提供了非严重错误追踪与处理功能，当检测到目录下有不支持的文件（通常情况下是文件误移动导致），软件会跳过一次相关操作并抛出一个**警告**，当检测到运行失败，软件会跳过一次相关操作并抛出一个**错误**，同时会打印**系统输出的错误信息**以便于您检查与调试。<br>
 **请注意！该功能并不能避免int3指令和环境缺失、环境变量错配、配置文件错误书写导致的软件崩溃！**
+<br>
+
 
 ## Operation Overview
 #### ! Important Notice ! While we fully understand the challenges faced by non-native English-speaking researchers, for optimal system and software compatibility, we strongly advise against using any language other than English for file naming! This includes avoiding special characters and spaces! You may use camelCase naming with numbering to distinguish different molecules.
-1. **Configure BatchDock Settings**
+<br>
+<br>
+
+1. **Configure BatchDock Settings**<br>
 Clone the BatchDock GitHub repository locally, or download and extract the latest release package. Navigate to the BatchDock directory where you will find .py files, libraries, and language packs.<br>
 Edit the `properties.py` file located in the `batchDock[version]` directory:<br>
 ```
@@ -211,7 +238,9 @@ AD_GPU = '？/AutoDock-GPU-1.6/bin/autodock_gpu_？wi'
 Grid = '？/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py'
 ```
 Save changes and exit the editor.<br>
-2. **Run BatchDock Main Program**
+<br>
+
+2. **Run BatchDock Main Program**<br>
 All modules and language packs in BatchDock are centrally managed by the main module `main.py`. You need to grant executable permission to this file and then run the main module `main.py`.<br>
 Grant executable permission to `main.py`:<br>
 ```
@@ -222,24 +251,26 @@ Execute`main.py`<br>
 ./main.py
 ```
 You can also add it to environment variables<br>
-1) Use a text editor to modify the shell configuration file<br>
+a) Use a text editor to modify the shell configuration file<br>
 The default language of the software is English. After running the main program, you will see the following content:<br>
 ```
 vim ~/.bashrc
 ```
-2) Add alias at end:<br>
+b) Add alias at end:<br>
 ```
 alias batchdock="python3 YourBatchDockPath/main.py"
 ```
-3) Reload configuration:<br>
+c) Reload configuration:<br>
 ```
 source ~/.bashrc
 ```
-4) Now you can directly enter `batchdock` in the console to run BatchDock<br>
+d) Now you can directly enter `batchdock` in the console to run BatchDock<br>
 ```
 batchdock
 ```
-3. **Initial Setup**
+<br>
+
+3. **Initial Setup**<br>
 Default language is English. After launch, you'll see:<br>
 ```
 <<================[ Mode Selection ]================>>>
@@ -274,7 +305,9 @@ Select language:
 Enter preferred language (e.g., `zh_cn`), then **enter `z` repeatedly until full exit to apply settings!**<br>
 Configure docking iterations (default:20) and random seed (default: system time + PID).<br>
 **Always exit completely after configuration changes!**
-4. **File Completion**
+<br>
+
+4. **File Completion**<br>
 Run `batchdock`, then enter `x` to auto-generate directory structure:<br>
 ```
 batchdock
@@ -291,11 +324,15 @@ Working Directory/
 ├── result_csv/             # Directory for binding free energy results
 └── result_dlg/             # Directory for all generated docking conformations
 ```
-5. **Protein Preparation**
+<br>
+
+5. **Protein Preparation**<br>
 Preprocess proteins with PyMOL/AutoDockTools:<br>
 - Remove water/ions/co-crystallized ligands<br>
 - Generate grid files (.map, .maps.fld, .maps.xyz)<br>
-6. **Ligand Preparation**
+<br>
+
+6. **Ligand Preparation**<br>
 Create SMILES file format:<br>
 ```smiles.txt
 CC(=O)NC1=CC=C(O)C=C1 Paracetamol
@@ -306,7 +343,9 @@ CC(=O)NC1=CC=C(O)C=C1 Paracetamol
 CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O S-Ibuprofen
 CC(=O)OC1=CC=CC=C1C(O)=O Aspirin
 ```
-7. Protein Deployment
+<br>
+
+7. Protein Deployment<br>
 Place grid files in protein/[name]/ directories:
 ```Protein Directory Structure e.g.
 Working Directory/
@@ -327,7 +366,9 @@ Working Directory/
 │   │
 ……  └── ……
 ```
-8. **Ligand File Deployment**
+<br>
+
+8. **Ligand File Deployment**<br>
 Copy the small molecule SMILES.txt file created in Step 2 to the `ligand_smi` directory. Multiple SMILES.txt files are supported, with the directory structure as follows:<br>
 ```ligand_smi Directory Structure e.g.
 Working Directory/
@@ -338,16 +379,24 @@ Working Directory/
 │   ├── Method2.txt         # SMILES collection for molecules modified by Method 2
 ……  └── ……
 ```
-9. **Molecular Docking**
+<br>
+
+9. **Molecular Docking**<br>
 Launch the BatchDock main program and select the corresponding function key to perform molecular docking. The results will be automatically consolidated and output to relevant **result** directories.
-10. **Comment Functionality**
+<br>
+
+10. **Comment Functionality**<br>
 BatchDock provides a comment feature. To exclude specific small molecules or proteins from docking, simply prefix their names with `#`. BatchDock will automatically skip these during execution.<br>
 If docking fails for molecule *c* with protein *B* after processing molecules *abc* and proteins *ABC*, you only need to re-dock molecule *c* with protein *B* after fixing the issue.<br>
 Navigate to the `ligand_pdbqt` directory and prefix molecule names *a* and *b* with `#`. Go to the `protein` directory and prefix protein names *A* and *C* with `#`
 Run BatchDock and select function **[4] Run batch docking automation only** to complete supplementary docking.
-11. **Error Tracking**
+<br>
+
+11. **Error Tracking**<br>
 BatchDock provides non-critical error tracking and handling. When unsupported files are detected (typically caused by accidental file movement), the software skips the operation and throws a **warning**. For runtime failures, it skips the operation and throws an **error** while printing **system error messages** for inspection and debugging.<br>
 **Note: This functionality cannot prevent crashes caused by int3 instructions, missing environments, environment variable mismatches, or configuration file errors!**
+<br>
+
 
 ## 未来的方向
 1. **进一步优化程序运行的逻辑** 让转化失败的可疑分子在结果文件中单独标识出来<br>
