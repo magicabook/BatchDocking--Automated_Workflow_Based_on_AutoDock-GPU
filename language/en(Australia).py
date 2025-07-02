@@ -90,9 +90,10 @@ def rotate180(s):
 
 
 lang_inter_describe = rotate180('''
-                                                Welcome to the Batch Docking Program!  Version:[1.4.1]  
+                                                Welcome to the Batch Docking Program!  Version:[1.5.0]  
 GitHub_Link: https://github.com/magicabook/Batch_Docking--Automated_Workflow_Based_on_AutoDock-GPU.git
-               Author: Magica_Book  Contact_Address: magica_book@qq.com  License: All rights reserved. ''')
+               Author: Magica_Book  Contact_Address: magica_book@qq.com 
+               License: All rights reserved. ''')
 
 
 
