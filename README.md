@@ -48,7 +48,7 @@ magica_book@qq.com
 ```
 vim properties.py
 ```
-您需要修改配置文件第11~19行的内容：<br>
+您需要修改配置文件第12~18行的内容：<br>
 ```
 # 这里是BatchDock的父目录，若您的BatchDock在/home/user1/Batchdock，则修改为program_path = '/home/user1/'
 program_path = ''
@@ -224,7 +224,7 @@ Edit the `properties.py` file located in the `batchDock[version]` directory:<br>
 ```
 vim properties.py
 ```
-You need to modify the content of lines 11 to 19 in the configuration file:<br>
+You need to modify the content of lines 12 to 18 in the configuration file:<br>
 ```
 # BatchDock parent directory (e.g., if BatchDock is at /home/user1/Batchdock, set: program_path = '/home/user1/')
 program_path = ''
