@@ -7,6 +7,7 @@ import datetime
 import subprocess
 import importlib
 import traceback
+ver = '1.6.0'
 
 program_path = ''
 work_path = ''
@@ -15,11 +16,10 @@ work_path = ''
 py2 = '/usr/bin/python2.7'
 # Your AutoDock-GPU path
 AD_GPU = '/root/AutoDock-GPU-1.6/bin/autodock_gpu_128wi'
-# Your AutoDockTools about prepare_receptor4.py path
-Grid = '/root/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py'
+
 
 # Your result file name
-result_name_hat = 'test'
+result_name_hat = ''
 #Docking run number
 nrun = '20'
 # AutoDock-GPU seed
@@ -35,19 +35,20 @@ globals().update({k: getattr(module, k) for k in dir(module) if not k.startswith
 # Your work path
 path = subprocess.check_output('pwd',shell=False,stderr=subprocess.STDOUT,text=True).replace("\n", "")
 # Protein .maps,fld path
-protein_list_path = work_path + '/protein'
+protein_path = work_path + '/protein'
 #.smi path
-ligand_smi = work_path + '/ligand_smi'
+ligand_smi_path = work_path + '/ligand_smi'
 # single.smi path
-ligand_smi_single = work_path + '/ligand_smi_single'
+ligand_smi_single_path = work_path + '/ligand_smi_single'
 # .pdb path
-ligand_pdb = work_path + '/ligand_pdb'
+ligand_pdb_path = work_path + '/ligand_pdb'
 # .pdbqt path
 ligand_pdbqt_path = work_path + '/ligand_pdbqt'
 # AutoDock-GPU run docking output for path
-result_dlg = work_path + '/result_dlg'
+result_dlg_path = work_path + '/result_dlg'
 # result csv path
-result_csv = work_path + '/result_csv'
-result_complex = work_path + '/result_complex'
-ver = '1.5.0'
+result_csv_path = work_path + '/result_csv'
+result_complex_path = work_path + '/result_complex'
+# Your AutoDockTools about prepare_receptor4.py path
+Grid = work_path + 'BatchDock-' + ver + '/prepare_ligand4.py'
 ligand_tools = 'obabel'

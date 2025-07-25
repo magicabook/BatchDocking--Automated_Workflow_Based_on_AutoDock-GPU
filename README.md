@@ -1,4 +1,4 @@
-# Batch Docking: Automated Workflow Based on AutoDock-GPU (V 1.5.0)
+# Batch Docking: Automated Workflow Based on AutoDock-GPU (V 1.6.0)
 这是一个基于AutoDock-GPU的自动化批量对接程序，只需输入小分子的smiles结构文档（支持批量输入）并且提供蛋白质的网格文件（maps.fld）即可自动完成小分子预处理，分子对接，结果提取等步骤。<br>
 This project is an automated batch docking pipeline built on AutoDock-GPU, designed to streamline virtual screening workflows.<br>
 
@@ -11,12 +11,14 @@ magica_book@qq.com
 ```
 
 ## 更新日志
-### 紧急修复
-紧急修复了小分子预处理时ADT模块调用错误，旧版本BatchDock错误调用了ADT的prepare_receptor4.py模块，正确的调用应为prepare_ligand4.py，1.5.0版本修复了这个BUG。
+### 为AutoDockTools善后！！！
+1. 修复了AutoDockTools中官方尚未修复的存在大量BUG的`prepare_ligand4.py`文件，使AutoDockTools能够正确运行<br>
+2. 将程序的工作逻辑由乱序工作改为顺序工作，以便更好地查看运行状态和结果<br>
 
 ## Changelog
-### Emergency Repair
-An urgent remediation was implemented to correct an erroneous invocation of the ADT module during small-molecule preprocessing. In previous iterations of BatchDock, the prepare_receptor4.py module was improperly executed, whereas the appropriate procedure requires utilization of prepare_ligand4.py. This software defect was systematically resolved in version 1.5.0.
+### Addressing Legacy Issues in AutoDockTools ! ! !
+1. Rectified the problematic prepare_ligand4.py script (containing persistent unresolved bugs in the official AutoDockTools release), enabling reliable execution of the software suite.<br>
+2. Restructured the program workflow from non-sequential execution to sequential processing, significantly enhancing operational traceability and output monitoring capabilities.<br>
 
 ## 运行环境需求
 1. 装有Ubuntu的WSL2环境或其他Linux发行版<br>
@@ -56,8 +58,6 @@ work_path = ''
 py2 = '/usr/bin/python2.7'
 # 这里需要将第一个？修改为您的AutoDock-GPU程序所在路径，第二个？修改为您自己编译后的可执行文件名称
 AD_GPU = '？/AutoDock-GPU-1.6/bin/autodock_gpu_？wi'
-# 这里需要将？修改为您的mgltools_x86_64Linux2_1.5.7所在路径
-Grid = '？/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py'
 ```
 编辑完成后保存并退出文本编辑器。<br>
 <br>
@@ -234,8 +234,6 @@ work_path = ''
 py2 = '/usr/bin/python2.7'
 # AutoDock-GPU path (replace first ? with path, second ? with compiled executable name)
 AD_GPU = '？/AutoDock-GPU-1.6/bin/autodock_gpu_？wi'
-# MGLTools path (replace ? with actual mgltools_x86_64Linux2_1.5.7 path)
-Grid = '？/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py'
 ```
 Save changes and exit the editor.<br>
 <br>
