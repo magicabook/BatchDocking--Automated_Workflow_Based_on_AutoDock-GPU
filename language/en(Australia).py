@@ -1,3 +1,5 @@
+from properties import ver
+
 # 定义旋转180°的转换函数：首先颠倒字符串，再对其中的字母进行映射转换
 def rotate180(s):
     mapping = {
@@ -90,10 +92,11 @@ def rotate180(s):
 
 
 lang_inter_describe = rotate180('''
-                                                Welcome to the Batch Docking Program!  Version:[1.5.0]  
+                                                Welcome to the Batch Docking Program!  Version:[''' + ver + ''']  
 GitHub_Link: https://github.com/magicabook/Batch_Docking--Automated_Workflow_Based_on_AutoDock-GPU.git
-               Author: Magica_Book  Contact_Address: magica_book@qq.com 
-               License: All rights reserved. ''')
+               Author: Magica_Book  Contact_Address: magica_book@qq.com   License: All rights reserved.
+                                  Second Author: ZhuErding   Contact_Address: zhuerding@zhuerding.top
+                                                                             Third Author: Rex   Miya ''')
 
 
 

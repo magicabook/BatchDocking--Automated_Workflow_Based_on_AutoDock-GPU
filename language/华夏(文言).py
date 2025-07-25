@@ -1,9 +1,13 @@
+from properties import ver
+
 lang_inter_describe = '''
-恭迎大人使用批量對接之程式！ 版本號：[1.5.0]
+恭迎大人使用批量對接之程式！ 版本號：[''' + ver + ''']
 項目之所在：https://github.com/magicabook/Batch_Docking--Automated_Workflow_Based_on_AutoDock-GPU.git
-作者：附魔書  通訊之所：magica_book@qq.com  徭役之所：滇穀學堂農桑版電動煉金樞機
+主筆：靈符附卷  通訊之所：magica_book@qq.com  徭役之所：滇穀學堂農桑版電動煉金樞機   明嘉靖廿一年乃生命科學之年矣。
+次纂：丹亭二郎  通訊之所：zhuerding@zhuerding.top  徭役之所：齐鲁次医府·临证院
+協篆·序叁：醉抱瓊瑤   溟海喵吟映芙蓉
 此程式之一切權益，悉皆保留。
-明嘉靖廿一年乃生命科學之年矣。'''
+'''
 
 
 
