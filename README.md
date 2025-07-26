@@ -44,11 +44,11 @@ magica_book@qq.com
 
 1. **修改BatchDock配置文件**<br>
 将BatchDock的GitHub仓库克隆到本地，或在Releases下载最新版本的压缩包后解压。进入BatchDock，您可以看到一系列.py文件、运行库和语言包。<br>
-您需要打开`batchDock[版本号]`目录下的`properties.py`文件完成配置。<br>
+您需要打开`batchDock[版本号]`目录下的`config.py`文件完成配置。<br>
 ```
-vim properties.py
+vim config.py
 ```
-您需要修改配置文件第12~18行的内容：<br>
+您需要修改配置文件第14~20行的内容：<br>
 ```
 # 这里是BatchDock的父目录，若您的BatchDock在/home/user1/Batchdock，则修改为program_path = '/home/user1/'
 program_path = ''
@@ -220,11 +220,11 @@ BatchDock提供了非严重错误追踪与处理功能，当检测到目录下�
 
 1. **Configure BatchDock Settings**<br>
 Clone the BatchDock GitHub repository locally, or download and extract the latest release package. Navigate to the BatchDock directory where you will find .py files, libraries, and language packs.<br>
-Edit the `properties.py` file located in the `batchDock[version]` directory:<br>
+Edit the `config.py` file located in the `batchDock[version]` directory:<br>
 ```
-vim properties.py
+vim config.py
 ```
-You need to modify the content of lines 12 to 18 in the configuration file:<br>
+You need to modify the content of lines 14 to 20 in the configuration file:<br>
 ```
 # BatchDock parent directory (e.g., if BatchDock is at /home/user1/Batchdock, set: program_path = '/home/user1/')
 program_path = ''
