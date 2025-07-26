@@ -1,4 +1,4 @@
-from properties import ver
+from config import ver
 
 # 定义旋转180°的转换函数：首先颠倒字符串，再对其中的字母进行映射转换
 def rotate180(s):

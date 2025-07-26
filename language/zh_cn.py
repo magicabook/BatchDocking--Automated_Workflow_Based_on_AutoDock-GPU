@@ -1,4 +1,6 @@
-from properties import ver
+# -*- coding: utf-8 -*-
+
+from config import ver
 
 lang_inter_describe = '''
 欢迎使用批量对接程序！ 版本号：[''' + ver + ''']
@@ -104,6 +106,7 @@ lang_smi_suc = '已提取小分子 >'
 lang_smi_war = '警告：请检查或清除格式错误的文件，问题所在目录 > ligand_smi 问题文件名：'
 lang_smi_end = '<<<=======================[ 输入文件拆分完成 ]=======================>>>'
 lang_smi_commend = '找到被注释的小分子集合：'
+lang_smi_jump = '已跳过文件 {} 第{}行的 {}'
 lang_smi_summary_suc = '本次工作共提取 {} 个分子，产生 0 个错误与 0 个警告\n    圆满完成预期任务！'
 lang_smi_summary_failure = '''\
 本次工作共提取 {} 个分子，产生 {} 个错误与 {} 个警告

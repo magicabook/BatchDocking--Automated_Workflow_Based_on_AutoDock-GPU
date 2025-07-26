@@ -1,4 +1,4 @@
-from properties import ver
+from config import ver
 
 lang_inter_describe = '''
 Welcome to the Batch Docking Program!  Version:[''' + ver + ''']
