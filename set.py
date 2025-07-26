@@ -1,5 +1,7 @@
-import properties
-from properties import *
+# -*- coding: utf-8 -*-
+
+import config
+from config import *
 import importlib
 from importlib import reload
 
@@ -41,7 +43,7 @@ def set():
         # 基于用户的选择，执行相关模块
         # 语言
         if set_function_number == '1':
-            lang_list_raw = os.listdir(f'{program_path}/BatchDock-{ver}/language')
+            lang_list_raw = os.listdir(f'{program_path}BatchDock-{ver}/language')
             lang_list = [s[:-3] for s in lang_list_raw if s.endswith(".py") and s not in ["__init__.py", "__pycharm__.py"]] # 提取language目录下的所有语言包文件
             set_lang = None
             while set_lang not in lang_list:  # 检查输入的选择是否合法
@@ -69,7 +71,7 @@ def set():
                 # 保存修改
                 with open(f'{program_path}/BatchDock-{ver}/properties.py', 'w') as properties_data:
                     properties_data.write(content_lang)
-                reload(properties)
+                reload(config)
                 print(f"\n\033[92m{lang_inter_set_lang_suc}{set_lang}\n\033[0m")
 
         # 设置单次对接迭代次数

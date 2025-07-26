@@ -1,6 +1,6 @@
 import os
-import properties
-from properties import *
+import config
+from config import *
 
 
 

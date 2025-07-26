@@ -1,5 +1,7 @@
-import properties
-from properties import *
+# -*- coding: utf-8 -*-
+
+import config
+from config import *
 from importlib import reload
 
 # 定义合法的选择集合
@@ -35,7 +37,7 @@ while True:
         import set
         if __name__ == '__main__':
             set.set()
-        reload(properties)
+        reload(config)
         print(f"\033[92m{lang_inter_set_end}\033[0m")
 
     # 仅将输入的txt拆分为单个smiles小分子
