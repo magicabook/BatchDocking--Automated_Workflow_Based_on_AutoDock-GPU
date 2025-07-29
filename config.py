@@ -52,5 +52,5 @@ result_dlg_path = work_path + '/result_dlg'
 result_csv_path = work_path + '/result_csv'
 result_complex_path = work_path + '/result_complex'
 # Your AutoDockTools about prepare_receptor4.py path
-Grid = work_path + 'BatchDock-' + ver + '/prepare_ligand4.py'
+Grid = program_path + 'BatchDock-' + ver + '/prepare_ligand4.py'
 ligand_tools = 'obabel'
