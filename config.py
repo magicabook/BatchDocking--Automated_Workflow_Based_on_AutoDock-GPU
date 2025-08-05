@@ -9,7 +9,7 @@ import subprocess
 import importlib
 import traceback
 import pandas as pd
-ver = '1.6.1'
+ver = '1.6.2'
 
 program_path = '/root'
 work_path = '/root/test'
