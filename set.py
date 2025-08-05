@@ -61,24 +61,24 @@ def set():
                 print(f"{lang_return_list}\n")
             else:
                 # 打开配置文件
-                with open(f'{program_path}/BatchDock-{ver}/properties.py', 'r') as properties_data:
-                    content_lang = properties_data.read()
+                with open(f'{program_path}/BatchDock-{ver}/config.py', 'r') as config_data:
+                    content_lang = config_data.read()
                 old_lang = re.search(r"language\s*=\s*'([^']*)'", content_lang).group(1)  # 使用正则表达式提取language = ‘？’
                 # 替换文件内容
                 new_lang = set_lang
                 # 查询并修改
                 content_lang = content_lang.replace(f"language = '{old_lang}'", f"language = '{new_lang}'")
                 # 保存修改
-                with open(f'{program_path}/BatchDock-{ver}/properties.py', 'w') as properties_data:
-                    properties_data.write(content_lang)
+                with open(f'{program_path}/BatchDock-{ver}/config.py', 'w') as config_data:
+                    config_data.write(content_lang)
                 reload(config)
                 print(f"\n\033[92m{lang_inter_set_lang_suc}{set_lang}\n\033[0m")
 
         # 设置单次对接迭代次数
         elif set_function_number == '2':
             # 打开配置文件
-            with open(f'{program_path}/BatchDock-{ver}/properties.py', 'r') as properties_data:
-                content_nrun = properties_data.read()
+            with open(f'{program_path}/BatchDock-{ver}/config.py', 'r') as config_data:
+                content_nrun = config_data.read()
             while True:
                 old_nrun = re.search(r"nrun\s*=\s*[’']?(\d+)[’']?", content_nrun).group(1)  # 使用正则表达式提取nrun = ‘？’并提取其中的数字
                 set_nrun = input(lang_inter_set_nrun.format(old_nrun)).strip().lower()  # 获取用户输入的种子
@@ -99,15 +99,15 @@ def set():
                 # 查询并修改
                 content_nrun = content_nrun.replace(f"nrun = '{old_nrun}'", f"nrun = '{new_run}'")
                 # 保存修改
-                with open(f'{program_path}/BatchDock-{ver}/properties.py', 'w') as properties_data:
-                    properties_data.write(content_nrun)
+                with open(f'{program_path}/BatchDock-{ver}/config.py', 'w') as config_data:
+                    config_data.write(content_nrun)
                 print(f"\n\033[92m{lang_inter_set_nrun_suc}{set_nrun}\n\033[0m")
 
         # 设置默认结果文件名
         elif set_function_number == '3':
             # 打开配置文件
-            with open(f'{program_path}/BatchDock-{ver}/properties.py', 'r') as properties_data:
-                content_name = properties_data.read()
+            with open(f'{program_path}/BatchDock-{ver}/config.py', 'r') as config_data:
+                content_name = config_data.read()
             old_name = re.search(r"result_name_hat\s*=\s*'([^']*)'", content_name).group(1)  # 使用正则表达式提取name = ‘？’
             set_name = input(lang_inter_set_name.format(old_name)).strip().lower()  # 获取用户输入的名称
             if set_name == 'z': # 判断是否返回上级目录
@@ -118,15 +118,15 @@ def set():
                 # 查询并修改
                 content_name = content_name.replace(f"result_name_hat = '{old_name}'", f"result_name_hat = '{new_name}'")
                 # 保存修改
-                with open(f'{program_path}/BatchDock-{ver}/properties.py', 'w') as properties_data:
-                    properties_data.write(content_name)
+                with open(f'{program_path}/BatchDock-{ver}/config.py', 'w') as config_data:
+                    config_data.write(content_name)
                 print(f"\n\033[92m{lang_inter_set_name_suc}{set_name}\n\033[0m")
 
         #设置对接程序运行种子
         elif set_function_number == '4':
             # 打开配置文件
-            with open(f'{program_path}/BatchDock-{ver}/properties.py', 'r') as properties_data:
-                content_seed = properties_data.read()
+            with open(f'{program_path}/BatchDock-{ver}/config.py', 'r') as config_data:
+                content_seed = config_data.read()
             while True:
                 try:
                     old_seed = re.search(r"seed\s*=\s*'([^']*)'", content_seed).group(1)  # 使用正则表达式提取seed = ‘？’
@@ -150,8 +150,8 @@ def set():
                 # 查询并修改
                 content_seed = content_seed.replace(f"seed = '{old_seed}'", f"seed = '{new_seed}'")
                 # 保存修改
-                with open(f'{program_path}/BatchDock-{ver}/properties.py', 'w') as properties_data:
-                    properties_data.write(content_seed)
+                with open(f'{program_path}/BatchDock-{ver}/config.py', 'w') as config_data:
+                    config_data.write(content_seed)
                 if len(set_seed) == 0:
                     print(f"\n\033[92m{lang_inter_set_seed_suc1}{set_seed}\n\033[0m")
                 else:
