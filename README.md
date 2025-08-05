@@ -7,10 +7,7 @@ More complete features and a user manual will be added in future updates!<br>
 
 ## 联系作者 Correspoonding Author
 ```
-# 附魔书，主要开发者（Magica_Book | Main Developer）
 magica_book@qq.com
-# 朱二丁，修复AutoDockTools（ZhuErding | Fixes AutoDockTools）
-zhuerding@zhuerding.top
 ```
 
 ## 更新日志
