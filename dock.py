@@ -1,6 +1,6 @@
-import re
-from properties import *
-from properties import protein_path
+# -*- coding: utf-8 -*-
+
+from config import *
 import xml.etree.ElementTree as ET
 
 def dock():
@@ -102,7 +102,7 @@ def dock():
     for i in range(1, num_rows):
         csv_data_2d[i][0] = first_column_list[i] # 从第一列开始纵向填充小分子名称列表到二维列表，小分子列表的第一个不填
     csv_data_2d[0][0] = first_line_list[0] # 填充标题名称
-    print(f"\033[92m{lang_dock_csv_end}\033[0m") # 打印csv模块初始化完毕与二维数组就绪信息
+    print(f"\033[92m    {lang_dock_csv_end}\033[0m") # 打印csv模块初始化完毕与二维数组就绪信息
 
 
 
@@ -171,7 +171,9 @@ def dock():
                                 # 防止程序报错后退出
                                 try:
                                     dock_out = subprocess.check_output(dock_cmd, shell=False, stderr=subprocess.STDOUT, text=True)
-                                    #print(dock_out)
+                                    # 用户选择是否输出详细信息
+                                    if print_details == "true":
+                                        print(dock_out)
                                     result_energy = r'([-+]?[0-9]*\.?[0-9]+)\s*kcal/mol'  # fund *kcal/mol 提取自由能
                                     # fund all *kcal/mol
                                     result_class = re.findall(result_energy, dock_out)  # all docking energy result 整理所有输出
@@ -188,7 +190,7 @@ def dock():
                                         run = run_element.get('run')
                                         energy = run_element.get('binding_energy')
                                         energy_unit = f'{energy} kcal/mol' # 添加量纲
-                                        print(f"\033[92m{lang_dock_suc.format(protein_name, ligand_name, energy_unit)}\033[0m")  # print docking result
+                                        print(f"\033[92m    {lang_dock_suc.format(protein_name, ligand_name, energy_unit)}\033[0m")  # print docking result
                                         
                                         # abstracting dlg and out put complex pdbqt
                                         # 提取最优构象分子并输出复合物3D结构
@@ -198,8 +200,8 @@ def dock():
                                             lig_bast = fr'Run:\s*{run}\s*/\s*{nrun}.*?Estimated Free Energy of Binding\s*=\s*{energy}\s*kcal/mol(.*?)(?=DOCKED: ENDMDL)' # Expression for find bast low energy data 提取dlg文件中最优构象的相关内容
                                             with open(dlg_path, "r", encoding="utf-8") as f_dlg:
                                                 dlg_data = f_dlg.read()
-                                            dlg_match = re.search(lig_bast, dlg_data, re.DOTALL)
-                                            extracted = dlg_match.group(1)
+                                            dlg_match = re.search(lig_bast, dlg_data, re.DOTALL) # 执行正则匹配
+                                            extracted = dlg_match.group(1) # 提取匹配的第一个组
                                             ligand_pdbqt_data = extracted.replace("DOCKED: ", "") # this complex.pdbqt in ligand part 删除每行开头的DOCK:
                                             # find and read protein.pdbqt
                                             # 寻找蛋白质文件
@@ -211,11 +213,11 @@ def dock():
                                             complex_data = protein_pdbqt_data + "\n" + ligand_pdbqt_data # 将蛋白质文件与小分子最优构象组合
                                             with open(f'{result_complex_path}/{result_name_hat} {time_str}/{protein_name}-{ligand_name}-complex.pdbqt', "w", encoding="utf-8") as fout: # 定义复合物文件路径和名称
                                                 fout.write(complex_data) # 输出复合物的pdbqt文件
-                                            print(f"\033[92m{lang_dock_complex_suc}\033[0m")
+                                            print(f"\033[92m    {lang_dock_complex_suc}\033[0m")
                                         except: # 获取异常
                                             dock_err_number += 1  # 错误计数器+1，用于该模块运行完毕后的总结输出
                                             dlg_out = traceback.format_exc()
-                                            print(f"\033[31m{lang_dlg_err.format(ligand_name, dlg_out)}\033[0m")
+                                            print(f"\033[31m    {lang_dlg_err.format(ligand_name, dlg_out)}\033[0m")
 
                                         # writer energy to csv
                                         # 将能量数据准备写入csv文件
@@ -227,7 +229,7 @@ def dock():
                                     else: # 若对接出现错误
                                         energy = "Not found"
                                         dock_err_number += 1 # 错误计数器+1，用于该模块运行完毕后的总结输出
-                                        print(f"\033[31m{lang_dock_err.format(ligand_name, dock_out)}\033[0m")
+                                        print(f"\033[31m    {lang_dock_err.format(ligand_name, dock_out)}\033[0m")
                                 except: # 获取异常
                                     dock_err_number += 1  # 错误计数器+1，用于该模块运行完毕后的总结输出
                                     dock_out = traceback.format_exc()
@@ -241,7 +243,7 @@ def dock():
                 else: # 如果文件被“#”注释
                     no_work_txt = pdbqt_name.replace("#", "") # 获取被注释的文件名称
                     print(f"\033[92m    {lang_dock_pdbqt_commend}\033[95m{no_work_txt}\033[0m") # 打印注释信息
-    print(f"\033[92m{lang_dock_main_end}\033[0m") # 打印对接主程序执行完毕信息
+    print(f"\033[92m    {lang_dock_main_end}\033[0m") # 打印对接主程序执行完毕信息
 
     # Energy result (csv_data_2d) writer to csv file
     # 将含有自由能结果的二维数组写入csv文件作为结果输出

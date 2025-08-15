@@ -1,4 +1,6 @@
-from properties import ver
+# -*- coding: utf-8 -*-
+
+from config import ver
 
 lang_inter_describe = '''
 恭迎大人使用批量對接之程式！ 版本號：[''' + ver + ''']

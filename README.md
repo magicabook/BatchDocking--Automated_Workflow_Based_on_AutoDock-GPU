@@ -1,4 +1,4 @@
-# Batch Docking: Automated Workflow Based on AutoDock-GPU (V 1.5.0)
+# Batch Docking: Automated Workflow Based on AutoDock-GPU ( V 1.7.0 Alpha )
 这是一个基于AutoDock-GPU的自动化批量对接程序，只需输入小分子的smiles结构文档（支持批量输入）并且提供蛋白质的网格文件（maps.fld）即可自动完成小分子预处理，分子对接，结果提取等步骤。<br>
 This project is an automated batch docking pipeline built on AutoDock-GPU, designed to streamline virtual screening workflows.<br>
 
@@ -7,34 +7,71 @@ More complete features and a user manual will be added in future updates!<br>
 
 ## 联系作者 Correspoonding Author
 ```
+# 附魔书，主要开发者（Magica_Book | Main Developer）
 magica_book@qq.com
+# 朱二丁，修复AutoDockTools（ZhuErding | Fixes AutoDockTools）
+zhuerding@zhuerding.top
 ```
 
-## 更新日志
-### 紧急修复
-紧急修复了小分子预处理时ADT模块调用错误，旧版本BatchDock错误调用了ADT的prepare_receptor4.py模块，正确的调用应为prepare_ligand4.py，1.5.0版本修复了这个BUG。
+## V 1.7.0 Alpha 更新日志
+### 改变软件的更新
+1. 支持采用`.csv`格式输入小分子，同时以`.txt`格式输入小分子时不会对空白行进行操作，某一行转换失败后软件运行不会终止，而是会输出错误提示语<br>
+2. 输入的smiles小分子集合现在可以直接被提取为`.pdb`格式而无需经过中间步骤！因此我们删除了`change_smi_sing.py`模块和`ligand_smi_sing`目录<br>
+3. 您现在可以在`设置`中模块自由地选择生成`.pdb`文件时所采用的`分子力场`，关于分子力场的解释请阅读Open Babel的这篇技术文档：https://openbabel.org/docs/Forcefields/Overview.html<br>
+4. 您现在可以自定义软件是否打印分子对接结果的详细信息<br>
+5. 优化了`设置`模块的功能布局，以CADD的流程先后顺序进行排列，更符合逻辑直觉<br>
+6. 尝试对`set.py`模块的算法进行优化，降低了代码的冗杂度和执行效率<br>
+7. 修复了一些长期存在的顽固Bug<br>
+8. 看了更多猫猫视频，暹罗猫可爱捏！(=^･ｪ･^=)<br>
+9. 撸了撸隔壁同事养的银渐层ヽ(=^･ω･^=)丿，很乖很软萌<br>
+10. 更新制作人员名单<br>
+11. 移除了 Herobrine<br>
 
-## Changelog
-### Emergency Repair
-An urgent remediation was implemented to correct an erroneous invocation of the ADT module during small-molecule preprocessing. In previous iterations of BatchDock, the prepare_receptor4.py module was improperly executed, whereas the appropriate procedure requires utilization of prepare_ligand4.py. This software defect was systematically resolved in version 1.5.0.
+## V 1.7.0 Alpha Changelog
+### The Update that Changed the Software
+1. Support for inputting small molecules in `.csv` format. When using `.txt` format inputs, blank lines are skipped without processing. Conversion failures no longer terminate software execution - instead, error messages are displayed<br>
+2. SMILES molecule collections can now be directly extracted as `.pdb` format without intermediate steps! Consequently, we've removed the `change_smi_sing.py` module and `ligand_smi_sing` directory<br>
+3. You can now freely select `molecular force fields` for .pdb generation in Settings. For force field explanations, see Open Babel's technical documentation: https://openbabel.org/docs/Forcefields/Overview.html<br>
+4. Added customizable options for printing molecular docking result details<br>
+5. Optimized the functional layout of `Settings` module following CADD workflow sequence for more intuitive logic<br>
+6. Algorithm optimization in `set.py` module to reduce code clutter and improve execution efficiency<br>
+7. Fixed several long-standing persistent bugs<br>
+8. Watched more cat videos - Siamese cats are adorable! (=^･ｪ･^=)<br>
+9. Petted a colleague's British Shorthair cat ヽ(=^･ω･^=)丿 - very well-behaved and soft<br>
+10. Updated contributor credits<br>
+11. Removed Herobrine<br>
+
+## 现版本已知的问题和缺陷
+1. 对`.csv`的处理存在缺陷，无法跳过空白行和自动识别字符串为名称还是smiles结构<br>
+2. 输出内容缩进与颜色待统一标准<br>
+3. 若用户选择输出对接详细信息，会造成信息过载导致界面排版混乱<br>
+4. `set.py`模块算法混乱，有较高冗杂度<br>
+5. 部分新功能尚待实装<br>
+
+## Known Issues and Defects in Current Version
+1. Imperfect handling of `.csv` files: cannot skip blank lines or automatically distinguish between names and SMILES structures<br>
+2. Inconsistent indentation and color standards in output<br>
+3. Detailed docking outputs cause information overload and interface layout chaos<br>
+4. Disorganized algorithms and high code clutter in `set.py` module<br>
+5. Some new features pending implementation<br>
 
 ## 运行环境需求
-1. 装有Ubuntu的WSL2环境或其他Linux发行版<br>
-2. 已编译的AutoDock-GPU程序<br>
-3. 安装OpenBaBel<br>
-4. 安装AutoDockTools<br>
-5. 安装Python3<br>
-6. 安装Python2并且具备numpy库<br>
-7. 上述软件及相关环境变量设置正确<br>
+1. 装有Ubuntu的`WSL2`环境或其他`Linux发行版`<br>
+2. 已编译的`AutoDock-GPU`程序<br>
+3. 安装`OpenBaBel`<br>
+4. 安装`AutoDockTools`<br>
+5. 安装`Python3`<br>
+6. 安装`Python2`并且具备`numpy`库<br>
+7. 上述软件及相关`环境变量`设置正确<br>
 
 ## System Requirements
-1. A WSL2 environment running Ubuntu, or another Linux distribution.<br>
-2. The pre-compiled AutoDock-GPU program.<br>
-3. Installation of OpenBaBel.<br>
-4. Installation of AutoDockTools.<br>
-5. Installation of Python3.<br>
-6. Install Python 2 with the numpy library.<br>
-7. Ensure that the above software and related environment variables are set up correctly.<br>
+1. A `WSL2` environment running Ubuntu, or another `Linux distribution`.<br>
+2. The pre-compiled `AutoDock-GPU` program.<br>
+3. Installation of `OpenBaBel`.<br>
+4. Installation of `AutoDockTools`.<br>
+5. Installation of `Python3`.<br>
+6. Install `Python2` with the `numpy` library.<br>
+7. Ensure that the above software and related `environment variables` are set up correctly.<br>
 
 ## 操作简述
 #### ！重要提醒 ！虽然我们充分理解非英语母语研究者的困难，但为了考虑到系统和软件的兼容性，我们强烈不建议您使用英语以外的其他语言命名任何文件！包括特殊字符和空格！您可以使用驼峰命名法加编号以区分不同的分子。<br>
@@ -42,12 +79,13 @@ An urgent remediation was implemented to correct an erroneous invocation of the 
 
 1. **修改BatchDock配置文件**<br>
 将BatchDock的GitHub仓库克隆到本地，或在Releases下载最新版本的压缩包后解压。进入BatchDock，您可以看到一系列.py文件、运行库和语言包。<br>
-您需要打开`batchDock[版本号]`目录下的`properties.py`文件完成配置。<br>
+您需要打开`batchDock[版本号]`目录下的`config.py`文件完成配置。<br>
 ```
-vim properties.py
+vim config.py
 ```
-您需要修改配置文件第11~19行的内容：<br>
+您需要修改配置文件第21~34行的内容：<br>
 ```
+### ！！！重要设置！！！【无法在软件中更改】
 # 这里是BatchDock的父目录，若您的BatchDock在/home/user1/Batchdock，则修改为program_path = '/home/user1/'
 program_path = ''
 # 这里是BatchDock的工作目录，由于工作过程中产生的文件较多，我们建议您新建一个目录，例如mkdir /home/user1/docking_test。此时则修改为work_path = '/home/user1/docking_test'
@@ -55,9 +93,7 @@ work_path = ''
 # 这里需要修改为您的Python2路径，由于AutoDockTools还停留在Python2，因此需要您提供Python2运行环境
 py2 = '/usr/bin/python2.7'
 # 这里需要将第一个？修改为您的AutoDock-GPU程序所在路径，第二个？修改为您自己编译后的可执行文件名称
-AD_GPU = '？/AutoDock-GPU-1.6/bin/autodock_gpu_？wi'
-# 这里需要将？修改为您的mgltools_x86_64Linux2_1.5.7所在路径
-Grid = '？/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py'
+AD_GPU = '?/bin/?'
 ```
 编辑完成后保存并退出文本编辑器。<br>
 <br>
@@ -137,7 +173,6 @@ batchdock
 ```工作目录下完整文件展示
 工作目录/
 ├── ligand_smi/             # 输入小分子smiles文件的目录
-├── ligand_smi_single/      # 软件自动识别并拆分的小分子存储目录
 ├── ligand_pdb/             # 软件自动转换3D小分子存储目录
 ├── ligand_pdbqt/           # 软件自动设置的配体小分子目录
 ├── protein/                # 输入蛋白质的目录
@@ -152,14 +187,35 @@ batchdock
 <br>
 
 6. **小分子准备**<br>
-绘制小分子的smiles结构式，并保存在一个.txt文件中，一个.txt支持存储多个小分子，示例如下：（smiles结构语法为：`[smiles字符串][空格][自定义名称]`）
-```smiles.txt
+绘制小分子的smiles结构式，并保存在一个`.txt`或`.csv`文件中，一个`.txt`或`.csv`支持存储多个小分子，示例如下：
+smiles结构语法为：`[smiles字符串][空格或制表符][自定义名称]`
+采用空格分隔示例
+```smiles_eg1.txt
 CC(=O)NC1=CC=C(O)C=C1 Paracetamol
 CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O S-Ibuprofen
 CC(=O)OC1=CC=CC=C1C(O)=O Aspirin
 ```
+采用制表符分隔示例
+```smiles_eg2.txt
+CC(=O)NC1=CC=C(O)C=C1   Paracetamol
+CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O   S-Ibuprofen
+CC(=O)OC1=CC=CC=C1C(O)=O    Aspirin
+```
+结构列在前，名称列在后的.CSV示例
+```smiles_eg1.csv
+│ 结构                              │ 名称         |
+│ CC(=O)NC1=CC=C(O)C=C1             │ Paracetamol  │
+│ CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O │ S-Ibuprofen  │
+│ CC(=O)OC1=CC=CC=C1C(O)=O          │ Aspirin      │
+```
+结构列在前，名称列在后的.CSV示例
+```smiles_eg2.csv
+│ 名称        │ 结构                               │
+│ Paracetamol │ CC(=O)NC1=CC=C(O)C=C1              │
+│ S-Ibuprofen │ CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O  │
+│ Aspirin     │ CC(=O)OC1=CC=CC=C1C(O)=O           │
+```
 <br>
-
 7. **蛋白质文件就位**<br>
 在`protein`目录下创建用于存放蛋白质网格文件（.map和.maps.fld与.maps.xyz）的目录，例如`pro1`，随后将该蛋白质的所有网格文件（.map和.maps.fld与.maps.xyz）复制到`pro1`目录下。<br>
 BatchDock支持批量对接，因此您可以为多个蛋白创建目录`pro2`、`pro3`、`pro4`……请注意，您需要确保所有的蛋白质目录都被正确存放在`protein`目录下，即：<br>
@@ -220,22 +276,22 @@ BatchDock提供了非严重错误追踪与处理功能，当检测到目录下�
 
 1. **Configure BatchDock Settings**<br>
 Clone the BatchDock GitHub repository locally, or download and extract the latest release package. Navigate to the BatchDock directory where you will find .py files, libraries, and language packs.<br>
-Edit the `properties.py` file located in the `batchDock[version]` directory:<br>
+Edit the `config.py` file located in the `batchDock[version]` directory:<br>
 ```
-vim properties.py
+vim config.py
 ```
-You need to modify the content of lines 11 to 19 in the configuration file:<br>
+You need to modify the content of lines 21 to 34 in the configuration file:<br>
 ```
+### !!! IMPORTANT SETTINGS !!! 【Cannot be changed in the software】
 # BatchDock parent directory (e.g., if BatchDock is at /home/user1/Batchdock, set: program_path = '/home/user1/')
-program_path = ''
+program_path = '/root'
+= '/home/user1/docking_test'
 # Working directory (create new directory, e.g.: mkdir /home/user1/docking_test → work_path = '/home/user1/docking_test')
-work_path = ''
+work_path = '/root/test'
 # Python2 path (required for AutoDockTools)
 py2 = '/usr/bin/python2.7'
 # AutoDock-GPU path (replace first ? with path, second ? with compiled executable name)
-AD_GPU = '？/AutoDock-GPU-1.6/bin/autodock_gpu_？wi'
-# MGLTools path (replace ? with actual mgltools_x86_64Linux2_1.5.7 path)
-Grid = '？/mgltools_x86_64Linux2_1.5.7/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py'
+AD_GPU = '/root/AutoDock-GPU-1.6/bin/autodock_gpu_128wi'
 ```
 Save changes and exit the editor.<br>
 <br>
@@ -316,7 +372,6 @@ After entering `x` followed by `Enter`, BatchDock will automatically complete mi
 ```Complete File Structure in Working Directory
 Working Directory/
 ├── ligand_smi/             # Directory for input small molecule SMILES files
-├── ligand_smi_single/      # Directory for automatically split individual molecules
 ├── ligand_pdb/             # Directory for 3D-converted small molecules
 ├── ligand_pdbqt/           # Directory for prepared ligand molecules in PDBQT format
 ├── protein/                # Directory for input protein files
@@ -333,11 +388,33 @@ Preprocess proteins with PyMOL/AutoDockTools:<br>
 <br>
 
 6. **Ligand Preparation**<br>
-Create SMILES file format:<br>
-```smiles.txt
+Visualize SMILES structures of small molecules and save them in `.txt` or `.csv` files. A single `.txt` or `.csv` file supports storing multiple molecules with the following syntax:<br>
+`[SMILES string][space or tab][custom name]`<br>
+Space-Separated Example
+```smiles_eg1.txt
 CC(=O)NC1=CC=C(O)C=C1 Paracetamol
 CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O S-Ibuprofen
 CC(=O)OC1=CC=CC=C1C(O)=O Aspirin
+```
+Tab-Separated Example
+```smiles_eg2.txt
+CC(=O)NC1=CC=C(O)C=C1	Paracetamol
+CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O	S-Ibuprofen
+CC(=O)OC1=CC=CC=C1C(O)=O	Aspirin
+```
+Structure-First CSV Example
+```smiles_eg1.csv
+│ Structure                        │ Name          │
+│ CC(=O)NC1=CC=C(O)C=C1            │ Paracetamol   │
+│ CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O│ S-Ibuprofen   │
+│ CC(=O)OC1=CC=CC=C1C(O)=O         │ Aspirin       │
+```
+Name-First CSV Example
+```smiles_eg2.csv
+│ Name          │ Structure                        │
+│ Paracetamol   │ CC(=O)NC1=CC=C(O)C=C1            │
+│ S-Ibuprofen   │ CC(C)CC1=CC=C(C=C1)[C@H](C)C(O)=O│
+│ Aspirin       │ CC(=O)OC1=CC=CC=C1C(O)=O         │
 ```
 <br>
 
@@ -394,12 +471,12 @@ BatchDock provides non-critical error tracking and handling. When unsupported fi
 <br>
 
 
-## 未来的方向
+## 远期规划
 1. **进一步优化程序运行的逻辑** 让转化失败的可疑分子在结果文件中单独标识出来<br>
 2. **优化软件输出** 添加可视化的进度条、进程监视与看门狗<br>
 3. **蛋白质预处理和盲对接的支持** 自动识别蛋白质的大小并完成除水、除离子、除共结晶化合物、设置为配体，并自动计算对接盒子的参数，完成盲对接操作，助力高通量筛选和超前期药物研究工作
 
-## Future Directions
+## Long-term Roadmap
 1. **Optimize Program Execution Logic**Flag suspicious molecules that fail conversion in result files for separate identification.
 2. **Enhance Software Output**Introduce visual progress bars, process monitoring, and watchdog functionality.
 3. **Support Automated Protein Preprocessing and Blind Docking**Automatically detect protein dimensions to perform: Removal of water molecules, ions, and co-crystallized compounds, Ligand parameterization, Autonomous calculation of docking box parameters. Enable blind docking operations to facilitate high-throughput screening and ultra-early-stage drug discovery research.

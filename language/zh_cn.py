@@ -1,4 +1,6 @@
-from properties import ver
+# -*- coding: utf-8 -*-
+
+from config import ver
 
 lang_inter_describe = '''
 欢迎使用批量对接程序！ 版本号：[''' + ver + ''']
@@ -12,52 +14,99 @@ lang_inter_describe = '''
 lang_inter_select = '''
 <<<=========================[ 模式选择 ]==========================>>>
 [0] 设置界面
-[1] 仅将输入的.txt拆分为单个.smiles小分子
-[2] 仅将单个.smiles小分子转换为.PDB格式
-[3] 仅将.PDB格式的小分子转换为.PDBQT配体格式
-[4] 仅运行批量自动对接
-[a] 运行小分子前处理的全部流程（ 1 ~ 3 ）
-[b] 运行分子对接的全部流程（ 1 ~ 4 ）
+[1] 仅将输入的.smiles小分子转换为.PDB格式
+[2] 仅将.PDB格式的小分子转换为.PDBQT配体格式
+[3] 仅运行批量自动对接
+[a] 运行小分子前处理的全部流程（ 1 ~ 2 ）
+[b] 运行分子对接的全部流程（ 1 ~ 3 ）
 [x] 文件补全
 [z] 退出程序'''
 lang_inter_function_number = '请选择您需要运行的功能：'
 lang_inter_function_err = '警告：请输入正确的参数！'
 lang_inter_suc = '您选择的工作模式是：{}'
-lang_inter_select_1 = '仅将输入的.txt拆分为单个.smiles小分子'
-lang_inter_select_2 = '仅将单个.smiles小分子转换为.PDB格式'
-lang_inter_select_3 = '仅将.PDB格式的小分子转换为.PDBQT配体格式'
-lang_inter_select_4 = '仅运行批量自动对接'
-lang_inter_select_a = '运行小分子前处理的全部流程（ 1 ~ 3 ）'
-lang_inter_select_b = '运行分子对接的全部流程（ 1 ~ 4 ）'
+lang_inter_select_1 = '仅将输入的.smiles小分子转换为.PDB格式'
+lang_inter_select_2 = '仅将.PDB格式的小分子转换为.PDBQT配体格式'
+lang_inter_select_3 = '仅运行批量自动对接'
+lang_inter_select_a = '运行小分子前处理的全部流程（ 1 ~ 2 ）'
+lang_inter_select_b = '运行分子对接的全部流程（ 1 ~ 3 ）'
 lang_inter_select_x = '文件补全'
 lang_inter_select_z = '退出程序'
 lang_inter_quit = '程序已退出，感谢使用！'
 lang_return_list = '已返回上级列表'
 
+
+
 lang_inter_select_0 = '设置界面\n'
 lang_inter_set = '''\
 [模式选择]-[设置界面]:
     [1] 语言
-    [2] 单次对接迭代次数
-    [3] 默认结果文件名
+    [2] OpenBabel生成3D小分子的力场方法
+    [3] 单次对接迭代次数
     [4] 对接程序运行种子
+    [5] 是否显示对接详细信息
+    [6] 默认结果文件名
+    [7] 是否输出.mol2文件以用于分子动力学模拟
+    [8] 是否覆盖.pdb旧文件
     [z] 返回上级目录'''
 lang_inter_set_select = '请选择您需要设置的内容：'
-lang_inter_set_select_1 = '语言'
-lang_inter_set_select_2 = '设置单次对接迭代次数'
-lang_inter_set_select_3 = '设置默认结果文件名'
+lang_inter_set_select_1 = '设置语言'
+lang_inter_set_select_2 = '设置Obabel力场方法'
+lang_inter_set_select_3 = '设置单次对接迭代次数'
 lang_inter_set_select_4 = '设置对接程序运行种子'
+lang_inter_set_select_5 = '设置对接详细信息显示'
+lang_inter_set_select_6 = '设置默认结果文件名'
+lang_inter_set_select_7 = '设置是否输出.mol2文件'
+lang_inter_set_select_8 = '设置是否覆盖.pdb旧文件'
 lang_inter_set_select_z = '返回上级目录'
 lang_inter_set_end = '设置已应用'
 
+
+
 lang_inter_set_lang = '''
+[模式选择]-[设置]-[语言]
+
+【说明】选择适合您的语言
+
     \033[92m[z] 返回上级目录\033[0m
     存在的语言包列表：\033[92m{}\033[0m
     
 请选择您需要的语言：'''
 lang_inter_set_lang_suc = '成功设置语言为：'
 
+
+
+lang_inter_set_fields = '''
+[模式选择]-[设置]-[Obabel力场]
+
+【说明】详细内容见：https://openbabel.org/docs/Forcefields/Overview.html
+GAFF：该方法提供了一套适用于小有机分子的通用参数集，可用于药物及小分子配体与生物分子结合的模拟研究。该参数集几乎涵盖所有由 C、N、O、H、S、P、F、Cl、Br 和 I 元素构成的分子，并与 AMBER 函数形式完全兼容。
+Ghemical：该力场与现有的开源软件包相匹配，该软件包提供了类似于Tripos-5.2力场方法（专有）的几何优化和分子动力学力场。它在提供类有机分子几何结构方面表现尚可。
+MMFF94：该方法在各类有机分子和类药分子上均表现出良好的精确度。其核心参数化过程基于约 500 个测试分子体系的高质量量子计算数据，而非实验数据。
+UFF：传统力场存在的一个问题是元素和原子类型有限。通用力场（UFF）的开发旨在为整个元素周期表提供一套生成合适参数的规则和程序。UFF 的原著论文作者在参数化过程中并未使用静电模型。因此，Open Babel 的默认实现不包含静电相互作用。
+
+【建议】
+对于有机分子，Obabel推荐使用广义Amber力场(gaff)或MMFF94力场(mmff94)；对于其他类型分子，则建议采用通用力场(uff)。
+
+    \033[92m[z] 返回上级目录\033[0m
+
+    此前程序默认的力场为 \033[92m{}\033[0m
+
+    OpenBabel支持的力场：
+        [1] GAFF
+        [2] Ghemical
+        [3] MMFF94
+        [4] UFF
+    
+请选择您需要的力场：'''
+lang_inter_set_fields_suc = '成功设置OpenBabel力场为：'
+
+
+
 lang_inter_set_nrun = '''
+[模式选择]-[设置]-[单次对接数]
+
+【说明】若您设置单次对接次数为100，那么在一次蛋白质-小分子对接工作中则会平行计算100次，生成100个构象，得到100个结合能结果，软件会自动提取其中结合能力最好的结果并输出蛋白质-小分子的复合物到一个.pdbqt中，其余结果会保存在.dlg文件中。
+
     \033[92m[z] 返回上级目录\033[0m
     此前程序默认的单次对接迭代次数为 \033[92m{}\033[0m
     注意：请输入整数
@@ -67,15 +116,13 @@ lang_inter_set_nrun_suc = '成功设置默认对接次数为：'
 lang_inter_set_nrun_war = '警告：请输入整数'
 lang_inter_set_nrun_none = '警告：请输入对接次数'
 
-lang_inter_set_name = '''
-    \033[92m[z] 返回上级目录\033[0m
-    此前程序默认的结果文件名为 \033[92m{}\033[0m
-    注意：文件名称不要使用除下划线 _ 以外的特殊字符
-    
-请输入您希望的默认结果文件名：'''
-lang_inter_set_name_suc = '成功设置默认结果文件名为：'
+
 
 lang_inter_set_seed = '''
+[模式选择]-[设置]-[程序种子]
+
+【说明】随机数种子为计算提供初始构象，若固定随机数种子，得到的结果将具有很强的重现性。
+
     \033[92m[z] 返回上级目录\033[0m
     此前程序默认的种子为 \033[92m{}\033[0m
     留空则使用AutoDock-GPU程序默认的种子（ 系统时间 + 进程PID ）
@@ -85,6 +132,62 @@ lang_inter_set_seed = '''
 lang_inter_set_seed_suc = '成功设置默认种子为：'
 lang_inter_set_seed_suc1 = '种子已恢复为AutoDock-GPU默认的值'
 lang_inter_set_seed_war = '警告：请输入整数或留空（直接回车）！'
+
+
+
+lang_inter_set_details = '''
+[模式选择]-[设置]-[显示对接详细信息]
+
+【说明】开启此选项后软件会显示AutoDock-GPU的每一次输出，若关闭此项，只会显示基础信息。
+
+    \033[92m[z] 返回上级目录\033[0m
+    此前程序默认的结果文件名为 \033[92m{}\033[0m
+    注意：文件名称不要使用除下划线 _ 以外的特殊字符
+    
+请输入您希望的默认结果文件名：'''
+lang_inter_set_name_suc = '成功设置默认结果文件名为：'
+
+
+
+lang_inter_set_name = '''
+[模式选择]-[设置]-[默认结果名称前缀]
+
+【说明】软件的结果.csv与复合物文件夹命名格式为“[前缀] + 空格 +[日期YYYY-MM-DD] + 空格 + [时间HH-MM-SS]
+
+    \033[92m[z] 返回上级目录\033[0m
+    此前程序默认的结果文件名为 \033[92m{}\033[0m
+    注意：文件名称不要使用除下划线 _ 以外的特殊字符
+    
+请输入您希望的默认结果文件名：'''
+lang_inter_set_name_suc = '成功设置默认结果文件名为：'
+
+
+
+lang_inter_set_mol2 = '''
+[模式选择]-[设置]-[输出.mol2文件]
+
+【说明】开启此选项后，软件在输出对接复合物的同时还会输出最优构象的.mol2文件以便于用户进行分子动力学模拟
+
+    \033[92m[z] 返回上级目录\033[0m
+    此前程序默认的结果文件名为 \033[92m{}\033[0m
+    注意：文件名称不要使用除下划线 _ 以外的特殊字符
+    
+请输入您希望的默认结果文件名：'''
+lang_inter_set_name_suc = '成功设置默认结果文件名为：'
+
+
+
+lang_inter_set_delete = '''
+[模式选择]-[设置]-[覆盖.pdb旧文件]
+
+【说明】开启此选项后，每次执行输入小分子转换都会删除前一次转换的分子（不会删除注释）
+
+    \033[92m[z] 返回上级目录\033[0m
+    此前程序默认的结果文件名为 \033[92m{}\033[0m
+    注意：文件名称不要使用除下划线 _ 以外的特殊字符
+    
+请输入您希望的默认结果文件名：'''
+lang_inter_set_name_suc = '成功设置默认结果文件名为：'
 
 
 
@@ -99,11 +202,25 @@ lang_inter_make_end = '<<<======================[ 工作目录完整性校验通
 
 
 
-lang_smi_began = '<<<===================[ 正在拆分输入的小分子集合 ]===================>>>'
+lang_smi_began = '<<<======================[ 正在转换输入的小分子 ]======================>>>'
 lang_smi_suc = '已提取小分子 >'
 lang_smi_war = '警告：请检查或清除格式错误的文件，问题所在目录 > ligand_smi 问题文件名：'
-lang_smi_end = '<<<=======================[ 输入文件拆分完成 ]=======================>>>'
+lang_smi_csv_list_number = '''
+错误：工作表 \033[95m{}\033[91m 阐述小分子结构与名称的行数不相等！
+为避免小分子命名错误，已强行终止对工作表 \033[95m{}\033[91m 的全部转换工作！'''
+lang_smi_make_err = '''\
+错误：小分子 \033[95m{}\033[91m 转换为.PDB失败!
+请检查： 位于 \033[95m{}\033[91m 文件中第 \033[95m{}\033[91m 行。
+
+                  vvvvv 请根据下列报错信息进行整改！ vvvvv
+<<<==================[ OpenBaBel程序输出的错误报告: ]==================>>>
+
+{}
+                  ^^^^^ 请根据以上报错信息进行整改！ ^^^^^
+'''
+lang_smi_end = '<<<=======================[ 输入文件转换完成 ]=======================>>>'
 lang_smi_commend = '找到被注释的小分子集合：'
+lang_smi_jump = '已跳过文件 {} 第{}行的 {}'
 lang_smi_summary_suc = '本次工作共提取 {} 个分子，产生 0 个错误与 0 个警告\n    圆满完成预期任务！'
 lang_smi_summary_failure = '''\
 本次工作共提取 {} 个分子，产生 {} 个错误与 {} 个警告
@@ -115,16 +232,6 @@ lang_smi_summary_failure = '''\
 lang_smi_sing_began = '<<<===================[ 正在转换小分子为.PDB格式 ]===================>>>'
 lang_smi_sing_commend = '找到被注释的小分子：'
 lang_smi_sing_suc = '成功将该小分子转换为.PDB格式 > '
-lang_smi_sing_err = '''\
-错误：该小分子转换为.PDB失败!
-请检查： \033[95m{}\033[91m
-
-                  vvvvv 请根据下列报错信息进行整改！ vvvvv
-<<<==================[ OpenBaBel程序输出的错误报告: ]==================>>>
-
-{}
-                  ^^^^^ 请根据以上报错信息进行整改！ ^^^^^
-'''
 lang_smi_sing_war = '警告：请检查或清除格式错误的文件，问题所在目录 > ligand_smi_single 问题文件名：'
 lang_smi_sing_end = '<<<==================[ 合格小分子已全部转换为.PDB格式 ]==================>>>'
 lang_smi_sing_summary_suc = '本次工作共转换 {} 个分子，产生 0 个错误与 0 个警告\n    圆满完成预期任务！'
@@ -199,7 +306,7 @@ lang_dlg_err = '''\
                   ^^^^^ 请根据以上报错信息进行整改！ ^^^^^
 '''
 lang_dock_war = '警告：请检查或清除格式错误的文件，问题所在目录 > ligand_pdbqt 问题文件名：'
-lang_dock_complex_suc = '最优构象提取成功，复合物3D结构已生成！'
+lang_dock_complex_suc = '最优构象提取成功，复合物3D结构已生成！\n'
 lang_dock_main_end = '<<<===================[ 分子对接主程序运行完毕 ]=====================>>>'
 lang_dock_csv_suc = '所有最优构象的自由能提取并写入Excel成功！文件名称为'
 lang_dock_summary_suc = '本次工作共运行 {} 次对接，产生 0 个错误与 0 个警告\n    圆满完成预期任务！'
@@ -217,11 +324,11 @@ cheese_bonus = '''\
 
 nyan_cat_bonus = '''\
     您的小分子似乎有些多，分子对接需要的时间有些长，快来这个网站获取一些催化剂吧！
-    https://www.bilibili.com/video/BV1vW411T7HM/?spm_id_from=333.337.search-card.all.click&vd_source=cacde7cc9cb211ea5af2636b44fc3c30
+    https://www.bilibili.com/video/BV1vW411T7HM
 '''
 
 homura_cat_bonus = '''\
     您的小分子似乎有些多，分子对接需要的时间有些长，快来这个网站获取一些催化剂吧！
     吼姆拉特供！！！
-    https://www.bilibili.com/video/BV11x411c7xH?spm_id_from=333.788.recommend_more_video.10&vd_source=cacde7cc9cb211ea5af2636b44fc3c30
+    https://www.bilibili.com/video/BV11x411c7xH
 '''

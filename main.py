@@ -1,5 +1,7 @@
-import properties
-from properties import *
+# -*- coding: utf-8 -*-
+
+import config
+from config import *
 from importlib import reload
 
 # 定义合法的选择集合
@@ -35,10 +37,10 @@ while True:
         import set
         if __name__ == '__main__':
             set.set()
-        reload(properties)
+        reload(config)
         print(f"\033[92m{lang_inter_set_end}\033[0m")
 
-    # 仅将输入的txt拆分为单个smiles小分子
+    # 仅将输入的.smiles小分子转换为.PDB格式
     elif function_number == '1':
         import change_smi
         if __name__ == '__main__':
@@ -50,20 +52,20 @@ while True:
         else:  # 若异常计数器不为零，则将异常输出计数打印并调用异常提示信息
             print(f"\033[31m\n{lang_smi_summary_failure.format(smi_number, smi_err_number, smi_war_number)}\033[0m")
 
-    # 仅将单个smiles小分子转换为PDB格式
-    elif function_number == '2':
-        import change_smi_single
-        if __name__ == '__main__':
-            pdb_number, pdb_war_number, pdb_err_number = change_smi_single.change_smi_single() # 执行模块并将元组拆包
-        # 输出总结信息
-        print(f"\033[92m{lang_smi_sing_end}\033[0m")  # 打印smi转换到pdb模块执行结束信息
-        if pdb_err_number + pdb_war_number == 0:  # 判断异常计数是否为0
-            print(f"\033[92m\n    {lang_smi_sing_summary_suc.format(pdb_number)}\033[0m")  # 输出无异常结束语句
-        else:  # 若异常计数器不为零，则将异常输出计数打印并调用异常提示信息
-            print(f"\033[31m\n{lang_smi_sing_summary_failure.format(pdb_number, pdb_err_number, pdb_war_number)}\033[0m")
+    # # 仅将单个smiles小分子转换为PDB格式
+    # elif function_number == '2':
+    #     import change_smi_single
+    #     if __name__ == '__main__':
+    #         pdb_number, pdb_war_number, pdb_err_number = change_smi_single.change_smi_single() # 执行模块并将元组拆包
+    #     # 输出总结信息
+    #     print(f"\033[92m{lang_smi_sing_end}\033[0m")  # 打印smi转换到pdb模块执行结束信息
+    #     if pdb_err_number + pdb_war_number == 0:  # 判断异常计数是否为0
+    #         print(f"\033[92m\n    {lang_smi_sing_summary_suc.format(pdb_number)}\033[0m")  # 输出无异常结束语句
+    #     else:  # 若异常计数器不为零，则将异常输出计数打印并调用异常提示信息
+    #         print(f"\033[31m\n{lang_smi_sing_summary_failure.format(pdb_number, pdb_err_number, pdb_war_number)}\033[0m")
 
     # 仅将PDB格式的小分子转换为PDBQT配体格式
-    elif function_number == '3':
+    elif function_number == '2':
         import change_pdb
         if __name__ == '__main__':
             pdbqt_number, pdbqt_war_number, pdbqt_err_number = change_pdb.change_pdb() # 执行模块并将元组拆包
@@ -75,7 +77,7 @@ while True:
             print(f"\033[31m\n{lang_pdb_summary_failure.format(pdbqt_number, pdbqt_err_number, pdbqt_war_number)}\033[0m")
 
     # 仅运行批量自动对接
-    elif function_number == '4':
+    elif function_number == '3':
         import dock
 
         # 自定义结果文件名称
@@ -99,15 +101,13 @@ while True:
     # 运行小分子前处理的全部流程（ 1 ~ 3 ）
     elif function_number == 'a':
         import change_smi
-        import change_smi_single
         import change_pdb
 
         if __name__ == '__main__':
             smi_number, smi_war_number, smi_err_number = change_smi.change_smi()  # 执行模块并将元组拆包
-            pdb_number, pdb_war_number, pdb_err_number = change_smi_single.change_smi_single()
             pdbqt_number, pdbqt_war_number, pdbqt_err_number = change_pdb.change_pdb()
-        change_error_number = smi_err_number + pdb_err_number + pdbqt_err_number
-        change_warning_number = smi_war_number + pdb_war_number + pdbqt_war_number
+        change_error_number = smi_err_number + pdbqt_err_number
+        change_warning_number = smi_war_number + pdbqt_war_number
         # 输出总结信息
         print(f"\033[92m{lang_pdb_end}\033[0m")  # 打印将小分子转换为.PDBQT格式并设置为配体模块执行结束信息
         if change_error_number + change_warning_number == 0:  # 判断异常计数是否为0
@@ -118,7 +118,6 @@ while True:
     # 运行分子对接的全部流程（ 1 ~ 4 ）
     elif function_number == 'b':
         import change_smi
-        import change_smi_single
         import change_pdb
         import dock
 
@@ -131,11 +130,10 @@ while True:
             dock.globel_result_name_hat = result_name_hat
         if __name__ == '__main__':
             smi_number, smi_war_number, smi_err_number = change_smi.change_smi()  # 执行模块并将元组拆包
-            pdb_number, pdb_war_number, pdb_err_number = change_smi_single.change_smi_single()
             pdbqt_number, pdbqt_war_number, pdbqt_err_number = change_pdb.change_pdb()
             dock_number, dock_war_number, dock_err_number, csv_name = dock.dock()
-        error_number = smi_err_number + pdb_err_number + pdbqt_err_number + dock_err_number
-        warning_number = smi_war_number + pdb_war_number + pdbqt_war_number + dock_war_number
+        error_number = smi_err_number + pdbqt_err_number + dock_err_number
+        warning_number = smi_war_number + pdbqt_war_number + dock_war_number
         # 输出总结信息
         print(f"\n\033[92m    {lang_dock_csv_suc} '{csv_name}'\033[0m")
         if dock_war_number + dock_err_number == 0:  # 判断异常计数是否为0
@@ -143,7 +141,7 @@ while True:
         else:  # 若异常计数器不为零，则将异常输出计数打印并调用异常提示信息
             print(f"\n\033[31m{lang_dock_summary_failure.format(dock_number, error_number, warning_number)}\033[0m")
 
-    # 仅将输入的txt拆分为单个smiles小分子
+    # 文件补全
     elif function_number == 'x':
         import make_file
 

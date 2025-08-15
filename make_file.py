@@ -1,6 +1,6 @@
 import os
-import properties
-from properties import *
+import config
+from config import *
 
 
 
@@ -24,7 +24,7 @@ def make_file():
         os.system(f'mkdir {work_path}')
         print(f"\033[92m    {lang_inter_make_work_path_suc.format(work_path)}\033[0m")
     # 检测工作目录下文件完整性
-    work_catalog = ['ligand_smi', 'ligand_smi_single', 'ligand_pdb', 'ligand_pdbqt', 'protein', 'result_csv',
+    work_catalog = ['ligand_smi', 'ligand_pdb', 'ligand_pdbqt', 'protein', 'result_csv',
                     'result_complex', 'result_dlg']
     for dir_name in work_catalog:
         check_directory(work_path, dir_name)
