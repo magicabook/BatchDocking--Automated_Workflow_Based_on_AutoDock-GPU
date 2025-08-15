@@ -171,9 +171,13 @@ def dock():
                                 # 防止程序报错后退出
                                 try:
                                     dock_out = subprocess.check_output(dock_cmd, shell=False, stderr=subprocess.STDOUT, text=True)
+<<<<<<< HEAD
                                     # 用户选择是否输出详细信息
                                     if print_details == "true":
                                         print(dock_out)
+=======
+                                    #print(dock_out)
+>>>>>>> 4cff25072ae22bb865412a7bd78d8ef2f6eee5b7
                                     result_energy = r'([-+]?[0-9]*\.?[0-9]+)\s*kcal/mol'  # fund *kcal/mol 提取自由能
                                     # fund all *kcal/mol
                                     result_class = re.findall(result_energy, dock_out)  # all docking energy result 整理所有输出
@@ -200,8 +204,13 @@ def dock():
                                             lig_bast = fr'Run:\s*{run}\s*/\s*{nrun}.*?Estimated Free Energy of Binding\s*=\s*{energy}\s*kcal/mol(.*?)(?=DOCKED: ENDMDL)' # Expression for find bast low energy data 提取dlg文件中最优构象的相关内容
                                             with open(dlg_path, "r", encoding="utf-8") as f_dlg:
                                                 dlg_data = f_dlg.read()
+<<<<<<< HEAD
                                             dlg_match = re.search(lig_bast, dlg_data, re.DOTALL) # 执行正则匹配
                                             extracted = dlg_match.group(1) # 提取匹配的第一个组
+=======
+                                            dlg_match = re.search(lig_bast, dlg_data, re.DOTALL)
+                                            extracted = dlg_match.group(1)
+>>>>>>> 4cff25072ae22bb865412a7bd78d8ef2f6eee5b7
                                             ligand_pdbqt_data = extracted.replace("DOCKED: ", "") # this complex.pdbqt in ligand part 删除每行开头的DOCK:
                                             # find and read protein.pdbqt
                                             # 寻找蛋白质文件
