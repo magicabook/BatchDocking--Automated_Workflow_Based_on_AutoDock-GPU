@@ -25,13 +25,8 @@ def change_pdb():
                 pdb_path = os.path.join(ligand_pdb_path, pdb)  # fund file path list 该目录下所有.smi文件的路径
                 ligand_pdbqt_name = pdb_path.rsplit('/', 1)[-1]  # set pdbqt file name 获取PDB名称
                 change_pdbqt_cmd = [py2, Grid,
-<<<<<<< HEAD
                                     '-l', f"{pdb_path}",
                                     '-o', f"{ligand_pdbqt_path}/{ligand_pdbqt_name}qt"]
-=======
-                                    '-l', pdb_path,
-                                    '-o', f'{ligand_pdbqt_path}/{ligand_pdbqt_name}qt']
->>>>>>> 4cff25072ae22bb865412a7bd78d8ef2f6eee5b7
                 # 防止程序报错后退出
                 try:
                     change_pdbqt_out = subprocess.check_output(change_pdbqt_cmd, shell=False, stderr=subprocess.STDOUT, text=True)

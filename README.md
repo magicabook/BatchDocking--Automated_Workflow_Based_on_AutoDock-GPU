@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # Batch Docking: Automated Workflow Based on AutoDock-GPU ( V 1.7.0 Alpha )
-=======
-# Batch Docking: Automated Workflow Based on AutoDock-GPU (V 1.6.2)
->>>>>>> 4cff25072ae22bb865412a7bd78d8ef2f6eee5b7
 这是一个基于AutoDock-GPU的自动化批量对接程序，只需输入小分子的smiles结构文档（支持批量输入）并且提供蛋白质的网格文件（maps.fld）即可自动完成小分子预处理，分子对接，结果提取等步骤。<br>
 This project is an automated batch docking pipeline built on AutoDock-GPU, designed to streamline virtual screening workflows.<br>
 
@@ -68,27 +64,6 @@ zhuerding@zhuerding.top
 5. 安装`Python3`<br>
 6. 安装`Python2`并且具备`numpy`库<br>
 7. 上述软件及相关`环境变量`设置正确<br>
-=======
-
-## 更新日志
-### 为AutoDockTools善后！！！
-1. 修复了AutoDockTools中官方尚未修复的存在大量BUG的`prepare_ligand4.py`文件，使AutoDockTools能够正确运行<br>
-2. 将程序的工作逻辑由乱序工作改为顺序工作，以便更好地查看运行状态和结果<br>
-
-## Changelog
-### Addressing Legacy Issues in AutoDockTools ! ! !
-1. Rectified the problematic prepare_ligand4.py script (containing persistent unresolved bugs in the official AutoDockTools release), enabling reliable execution of the software suite.<br>
-2. Restructured the program workflow from non-sequential execution to sequential processing, significantly enhancing operational traceability and output monitoring capabilities.<br>
-
-## 运行环境需求
-1. 装有Ubuntu的WSL2环境或其他Linux发行版<br>
-2. 已编译的AutoDock-GPU程序<br>
-3. 安装OpenBaBel<br>
-4. 安装AutoDockTools<br>
-5. 安装Python3<br>
-6. 安装Python2并且具备numpy库<br>
-7. 上述软件及相关环境变量设置正确<br>
->>>>>>> 4cff25072ae22bb865412a7bd78d8ef2f6eee5b7
 
 ## System Requirements
 1. A `WSL2` environment running Ubuntu, or another `Linux distribution`.<br>
@@ -794,20 +769,14 @@ BatchDock provides non-critical error tracking and handling. When unsupported fi
 <br>
 
 
-<<<<<<< HEAD
 ## 远期规划
-=======
 ## 未来的方向
->>>>>>> 4cff25072ae22bb865412a7bd78d8ef2f6eee5b7
 1. **进一步优化程序运行的逻辑** 让转化失败的可疑分子在结果文件中单独标识出来<br>
 2. **优化软件输出** 添加可视化的进度条、进程监视与看门狗<br>
 3. **蛋白质预处理和盲对接的支持** 自动识别蛋白质的大小并完成除水、除离子、除共结晶化合物、设置为配体，并自动计算对接盒子的参数，完成盲对接操作，助力高通量筛选和超前期药物研究工作
 
-<<<<<<< HEAD
 ## Long-term Roadmap
-=======
 ## Future Directions
->>>>>>> 4cff25072ae22bb865412a7bd78d8ef2f6eee5b7
 1. **Optimize Program Execution Logic**Flag suspicious molecules that fail conversion in result files for separate identification.
 2. **Enhance Software Output**Introduce visual progress bars, process monitoring, and watchdog functionality.
 3. **Support Automated Protein Preprocessing and Blind Docking**Automatically detect protein dimensions to perform: Removal of water molecules, ions, and co-crystallized compounds, Ligand parameterization, Autonomous calculation of docking box parameters. Enable blind docking operations to facilitate high-throughput screening and ultra-early-stage drug discovery research.

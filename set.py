@@ -78,11 +78,7 @@ def set():
                 # 打开配置文件
                 with open(f'{program_path}/BatchDock-{ver}/config.py', 'r') as config_data:
                     content_lang = config_data.read()
-<<<<<<< HEAD
                 old_lang = re.search(r"language\s*=\s*'([^']*)'", content_lang).group(1)  # 使用正则表达式提取language = '？'
-=======
-                old_lang = re.search(r"language\s*=\s*'([^']*)'", content_lang).group(1)  # 使用正则表达式提取language = ‘？’
->>>>>>> 4cff25072ae22bb865412a7bd78d8ef2f6eee5b7
                 # 替换文件内容
                 new_lang = set_lang
                 # 查询并修改
@@ -98,11 +94,7 @@ def set():
             fields_list = {'1', '2', '3', '4', 'z'}
             # 打开配置文件
             with open(f'{program_path}/BatchDock-{ver}/config.py', 'r') as config_data:
-<<<<<<< HEAD
                 content_fields = config_data.read()
-=======
-                content_nrun = config_data.read()
->>>>>>> 4cff25072ae22bb865412a7bd78d8ef2f6eee5b7
             while True:
                 old_fields = re.search(r"fields\s*=\s*'([^']*)'", content_fields).group(1)  # 使用正则表达式提取fields = '？'并提取其中的数字
                 input_fields = input(lang_inter_set_fields.format(old_fields)).strip().lower()  # 获取用户输入的方法
@@ -154,28 +146,6 @@ def set():
                 with open(f'{program_path}/BatchDock-{ver}/config.py', 'w') as config_data:
                     config_data.write(content_nrun)
                 print(f"\n\033[92m{lang_inter_set_nrun_suc}{set_nrun}\n\033[0m")
-<<<<<<< HEAD
-=======
-
-        # 设置默认结果文件名
-        elif set_function_number == '3':
-            # 打开配置文件
-            with open(f'{program_path}/BatchDock-{ver}/config.py', 'r') as config_data:
-                content_name = config_data.read()
-            old_name = re.search(r"result_name_hat\s*=\s*'([^']*)'", content_name).group(1)  # 使用正则表达式提取name = ‘？’
-            set_name = input(lang_inter_set_name.format(old_name)).strip().lower()  # 获取用户输入的名称
-            if set_name == 'z': # 判断是否返回上级目录
-                print(f"{lang_return_list}\n")
-            else:
-                # 替换文件内容
-                new_name = set_name
-                # 查询并修改
-                content_name = content_name.replace(f"result_name_hat = '{old_name}'", f"result_name_hat = '{new_name}'")
-                # 保存修改
-                with open(f'{program_path}/BatchDock-{ver}/config.py', 'w') as config_data:
-                    config_data.write(content_name)
-                print(f"\n\033[92m{lang_inter_set_name_suc}{set_name}\n\033[0m")
->>>>>>> 4cff25072ae22bb865412a7bd78d8ef2f6eee5b7
 
         # 4 设置对接程序运行种子
         elif set_function_number == '4':
@@ -211,7 +181,6 @@ def set():
                     print(f"\n\033[92m{lang_inter_set_seed_suc1}{set_seed}\n\033[0m")
                 else:
                     print(f"\n\033[92m{lang_inter_set_seed_suc}{set_seed}\n\033[0m")
-<<<<<<< HEAD
 
         # 5 设置是否显示对接详细信息
         elif set_function_number == '5':
@@ -262,8 +231,6 @@ def set():
                 print(f"\n\033[92m{lang_inter_set_name_suc}{set_name}\n\033[0m")
 
 
-=======
->>>>>>> 4cff25072ae22bb865412a7bd78d8ef2f6eee5b7
 
         # z 返回上级目录
         elif set_function_number == 'z':
