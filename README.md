@@ -36,7 +36,7 @@ zhuerding@zhuerding.top
 2. SMILES molecule collections can now be directly extracted as `.pdb` format without intermediate steps! Consequently, we've removed the `change_smi_sing.py` module and `ligand_smi_sing` directory<br>
 3. You can now freely select `molecular force fields` for .pdb generation in Settings. For force field explanations, see Open Babel's technical documentation: https://openbabel.org/docs/Forcefields/Overview.html<br>
 4. Added customizable options for printing molecular docking result details<br>
-5. You can now customize whether the software generates small molecules in .mol2 format to facilitate usage with certain molecular dynamics software.<br>
+5. You can now customize whether the software generates small molecules in `.mol2` format to facilitate usage with certain molecular dynamics software.<br>
 6. Optimized the functional layout of `Settings` module following CADD workflow sequence for more intuitive logic<br>
 7. Algorithm optimization in `set.py` module to reduce code clutter and improve execution efficiency<br>
 8. Fixed several long-standing persistent bugs<br>
