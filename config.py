@@ -14,7 +14,7 @@ import datetime
 import subprocess
 import importlib
 import traceback
-ver = '1.7.0'
+ver = '1.7.1'
 
 
 
@@ -41,18 +41,18 @@ AD_GPU = '/root/AutoDock-GPU-1.6/bin/autodock_gpu_128wi'
 language = 'zh_cn'
 # OpenBabel Molecular Mechanics and Force Fields
 fields = 'gaff'
+# Whether to output .mol2 files for molecular dynamics simulation
+out_mol2 = 'true'
 # Docking run number
 nrun = '20'
 # AutoDock-GPU seed
 seed = ''
 # Show docking details
-print_details = 'true'
+print_details = 'false'
 # Your result file name
 result_name_hat = ''
-# Whether to output .mol2 files for molecular dynamics simulation
-out_mol2 = 'fales'
-# Delete old .pdb file
-delete_pdb = 'fales'
+# Delete old ligand file
+delete = 'true'
 
 
 
@@ -67,8 +67,8 @@ path = subprocess.check_output('pwd',shell=False,stderr=subprocess.STDOUT,text=T
 protein_path = work_path + '/protein'
 #.smi path
 ligand_smi_path = work_path + '/ligand_smi'
-# single.smi path
-ligand_smi_single_path = work_path + '/ligand_smi_single'
+# .mol2 path
+ligand_mol2_path = work_path +'/ligand_mol2'
 # .pdb path
 ligand_pdb_path = work_path + '/ligand_pdb'
 # .pdbqt path

@@ -24,8 +24,10 @@ def make_file():
         os.system(f'mkdir {work_path}')
         print(f"\033[92m    {lang_inter_make_work_path_suc.format(work_path)}\033[0m")
     # 检测工作目录下文件完整性
-    work_catalog = ['ligand_smi', 'ligand_pdb', 'ligand_pdbqt', 'protein', 'result_csv',
-                    'result_complex', 'result_dlg']
+    if out_mol2 == "true":
+        work_catalog = ['ligand_smi', 'ligand_pdb', 'ligand_mol2', 'ligand_pdbqt', 'protein', 'result_csv', 'result_complex', 'result_dlg']
+    elif out_mol2 == 'false':
+        work_catalog = ['ligand_smi', 'ligand_pdb', 'ligand_pdbqt', 'protein', 'result_csv', 'result_complex', 'result_dlg']
     for dir_name in work_catalog:
         check_directory(work_path, dir_name)
 

@@ -14,25 +14,49 @@ def is_integer(s):
         return True
     except ValueError:
         return False
+    
+
+
+# 定义力场更改方法
+def set_fields(content_fields, old_fields, fields_name):
+    # 查询并修改
+    content_fields = content_fields.replace(f"fields = '{old_fields}'", f"fields = '{fields_name}'")
+    # 保存修改
+    with open(f'{program_path}/BatchDock-{ver}/config.py', 'w') as config_data:
+        config_data.write(content_fields)
+    print(f"\n\033[92m{lang_inter_set_fields_suc}{fields_name}\n\033[0m")
+    return
 
 
 
+# 定义布尔配置更改方法
+def set_change(set_name): # 更改的配置名
+    permit_list = {'true', 'false', 'z'}
+    with open(f'{program_path}/BatchDock-{ver}/config.py', 'r') as config_data: # 加载配置文件
+            content_set = config_data.read()
+    old_content = re.search(f"{set_name}\s*=\s*'([^']*)'", content_set).group(1)  # type: ignore # 使用正则表达式提取旧内容
+    while True:
+        lang_template = globals().get(f"lang_inter_set_{set_name}", "None") # 获取语言提示模板（带默认值）
+        prompt = lang_template.format(old_content) # 格式化提示信息
+        input_content = input(prompt).strip().lower() # 获取用户输入
+        if input_content not in permit_list: # 检查参数是否合法
+            print(f"\033[33m\n{lang_inter_function_err}\033[0m")
+        elif input_content in {'true', 'false'}: # 执行
+            new_content = content_set.replace(f"{set_name} = '{old_content}'", f"{set_name} = '{input_content}'") # 替换参数
+            with open(f'{program_path}/BatchDock-{ver}/config.py', 'w') as config_data:
+                        config_data.write(new_content)
+            reload(config)
+            print(f"\n\033[92m{lang_inter_set_boole_suc}{input_content}\n\033[0m")
+            break
+        elif input_content == 'z': # 判断是否返回上级目录
+            print(f"{lang_return_list}\n")
+            break
+    return
+
+
+
+# 设置模块主函数
 def set():
-
-
-
-    # 定义力场更改方法
-    def set_fields(content_fields, old_fields, fields_name):
-        # 查询并修改
-        content_fields = content_fields.replace(f"fields = '{old_fields}'", f"fields = '{fields_name}'")
-        # 保存修改
-        with open(f'{program_path}/BatchDock-{ver}/config.py', 'w') as config_data:
-            config_data.write(content_fields)
-        print(f"\n\033[92m{lang_inter_set_fields_suc}{fields_name}\n\033[0m")
-        return
-
-
-
     # 定义合法的选择集合
     set_select_list = {'1', '2', '3','4','5','6','7','8','z'}
     # 程序交互的主要代码
@@ -58,7 +82,7 @@ def set():
         # 基于用户的选择，执行相关模块
         # 1 设置语言
         if set_function_number == '1':
-            lang_list_raw = os.listdir(f'{program_path}BatchDock-{ver}/language')
+            lang_list_raw = os.listdir(f'{program_path}/BatchDock-{ver}/language')
             lang_list = [s[:-3] for s in lang_list_raw if s.endswith(".py") and s not in ["__init__.py", "__pycharm__.py"]] # 提取language目录下的所有语言包文件
             set_lang = None
             while set_lang not in lang_list:  # 检查输入的选择是否合法
@@ -118,8 +142,13 @@ def set():
                 except ValueError:  # 输出警告信息
                     print(f"\033[33m\n{lang_inter_function_err}\033[0m")
 
-        # 3 设置单次对接迭代次数
+        # 3 设置是否输出.mol2文件以用于分子动力学模拟
         elif set_function_number == '3':
+            set_name = 'out_mol2'
+            set_change(set_name)
+
+        # 4 设置单次对接迭代次数
+        elif set_function_number == '4':
             # 打开配置文件
             with open(f'{program_path}/BatchDock-{ver}/config.py', 'r') as config_data:
                 content_nrun = config_data.read()
@@ -147,8 +176,8 @@ def set():
                     config_data.write(content_nrun)
                 print(f"\n\033[92m{lang_inter_set_nrun_suc}{set_nrun}\n\033[0m")
 
-        # 4 设置对接程序运行种子
-        elif set_function_number == '4':
+        # 5 设置对接程序运行种子
+        elif set_function_number == '5':
             # 打开配置文件
             with open(f'{program_path}/BatchDock-{ver}/config.py', 'r') as config_data:
                 content_seed = config_data.read()
@@ -182,37 +211,13 @@ def set():
                 else:
                     print(f"\n\033[92m{lang_inter_set_seed_suc}{set_seed}\n\033[0m")
 
-        # 5 设置是否显示对接详细信息
-        elif set_function_number == '5':
-            details_list = {'true', 'false'}
-            # 打开配置文件
-            with open(f'{program_path}/BatchDock-{ver}/config.py', 'r') as config_data:
-                content_details = config_data.read()
-            while True:
-                old_details = re.search(r"print_details\s*=\s*'([^']*)'", content_details).group(1)  # 使用正则表达式提取fields = '？'并提取其中的数字
-                input_details = input(lang_inter_set_details.format(old_details)).strip().lower()  # 获取用户输入的方法
-                try:
-                    if input_details in details_list:  # 检查输入的选择是否合法
-                        if input_details == '1':
-                            set_details(content_fields, old_fields, 'gaff')
-                            break
-                        elif input_fields == '2':
-                            set_fields(content_fields, old_fields, 'ghemical')
-                            break
-                        elif input_fields == '3':
-                            set_fields(content_fields, old_fields, 'mmff94')
-                            break
-                        elif input_fields == '4':
-                            set_fields(content_fields, old_fields, 'uff')
-                            break
-                        elif input_fields == 'z': # 判断是否返回上级目录
-                            print(f"{lang_return_list}\n")
-                            break
-                except ValueError:  # 输出警告信息
-                    print(f"\033[33m\n{lang_inter_function_err}\033[0m")
-
-        # 6 设置默认结果文件名
+        # 6 设置是否显示对接详细信息
         elif set_function_number == '6':
+            set_name = 'print_details'
+            set_change(set_name)
+
+        # 7 设置默认结果文件名
+        elif set_function_number == '7':
             # 打开配置文件
             with open(f'{program_path}/BatchDock-{ver}/config.py', 'r') as config_data:
                 content_name = config_data.read()
@@ -229,6 +234,11 @@ def set():
                 with open(f'{program_path}/BatchDock-{ver}/config.py', 'w') as config_data:
                     config_data.write(content_name)
                 print(f"\n\033[92m{lang_inter_set_name_suc}{set_name}\n\033[0m")
+
+        # 8 设置是否覆盖旧小分子文件
+        elif set_function_number == '8':
+            set_name = 'delete'
+            set_change(set_name)
 
 
 

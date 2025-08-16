@@ -98,7 +98,7 @@ while True:
         else:  # 若异常计数器不为零，则将异常输出计数打印并调用异常提示信息
             print(f"\n\033[31m{lang_dock_summary_failure.format(dock_number, dock_err_number, dock_war_number)}\033[0m")
 
-    # 运行小分子前处理的全部流程（ 1 ~ 3 ）
+    # 运行小分子前处理的全部流程（ 1 ~ 2 ）
     elif function_number == 'a':
         import change_smi
         import change_pdb
@@ -115,7 +115,7 @@ while True:
         else:  # 若异常计数器不为零，则将异常输出计数打印并调用异常提示信息
             print(f"\033[31m\n{lang_pdb_summary_failure.format(pdbqt_number, change_error_number, change_warning_number)}\033[0m")
 
-    # 运行分子对接的全部流程（ 1 ~ 4 ）
+    # 运行分子对接的全部流程（ 1 ~ 3 ）
     elif function_number == 'b':
         import change_smi
         import change_pdb

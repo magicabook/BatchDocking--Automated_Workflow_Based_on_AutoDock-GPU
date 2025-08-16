@@ -2,6 +2,182 @@
 
 from config import *
 
+
+
+# 定义mol2生成模块主函数
+def make_mol2(line, smi_file, smi_str, smi_name , smi_number, smi_war_number, smi_err_number, input_tag):
+    # 判断.mol2目录是否存在
+    target_path = os.path.join(work_path, 'ligand_mol2')
+    if os.path.isdir(target_path) : # 如果目录存在，则不执行
+        None
+    else:
+        print(f"\033[92m    {lang_inter_make_file_dir_make.format('ligand_mol2')}\033[0m")
+        os.system(f'\mkdir {work_path}/ligand_mol2')
+        print(f"\033[92m    {lang_inter_make_file_dir_suc.format('ligand_mol2')}\033[0m")
+    # 构造转换命令
+    obabel_smi_cmd2 = ['obabel',
+                    '-:' + smi_str,
+                    '-omol2',
+                    '-O', f"{ligand_mol2_path}/{smi_name}.mol2",
+                    '-h',
+                    '--partialcharge', 'gasteiger',
+                    '--minimize',
+                    '--gen3D',
+                    '--ff', fields]
+    try:
+        obabel_out2 = subprocess.check_output(obabel_smi_cmd2, shell=False, stderr=subprocess.STDOUT, text=True)  # 捕获OpenBaBel输出
+    except:  # 分类处理
+        if input_tag == "txt": # txt输入直接报异常内容
+            obabel_out2 = traceback.format_exc()
+        elif input_tag == "csv": # csv输入对调结构与名称后再运行
+            try:
+                print('我工作了！')
+                # 对调结构与名称变量
+                tmp_name = smi_str
+                tmp_str = smi_name
+                smi_str = tmp_str
+                smi_name = tmp_name
+                obabel_out2 = subprocess.check_output(obabel_smi_cmd2, shell=False, stderr=subprocess.STDOUT, text=True)  # 捕获OpenBaBel输出
+            except:  # 获取异常
+                obabel_out2 = traceback.format_exc()
+
+    # 检查是否转换成功
+    if (obabel_out2.find('1 molecule converted') >= 0): # pyright: ignore[reportPossiblyUnboundVariable]
+        smi_number += 1  # pdb计数器+1，用于该模块运行完毕后的总结
+        print(f'\033[92m    {lang_smi_sing_suc2} \033[95m{smi_name}\033[0m')  # print green information # 打印成功信息
+    else:  # 文件后缀错误，停止执行操作并输出警告
+        smi_err_number += 1  # 错误计数器+1，用于该模块运行完毕后的总结输出
+        print(f'\033[91m    {lang_smi_make_err2.format(smi_name, smi_file, line, obabel_out2)}\033[0m') # type: ignore
+
+    os.system('killall -9 obabel')  # 杀死那个OpenBaBel进程
+
+    return smi_number, smi_war_number, smi_err_number # 将运行信息打包为元组
+    
+
+
+
+# 定义pdb生成模块主函数
+def make_pdb(line, smi_file, smi_str, smi_name , smi_number, smi_war_number, smi_err_number, input_tag):
+    # 运行OpenBaBel
+    obabel_smi_cmd = ['obabel',
+                        '-:' + smi_str,
+                        '-opdb',
+                        '-O', f"{ligand_pdb_path}/{smi_name}.pdb",
+                        '-h',
+                        '--partialcharge', 'gasteiger',
+                        '--minimize',
+                        '--gen3D',
+                        '--ff', fields]
+    # print(obabel_smi_cmd) # 预留调试接口
+    # 防止程序报错后退出
+    try:
+        obabel_out = subprocess.check_output(obabel_smi_cmd, shell=False, stderr=subprocess.STDOUT, text=True)  # 捕获OpenBaBel输出
+    except:  # 分类处理
+        if input_tag == "txt": # txt输入直接报异常内容
+            obabel_out = traceback.format_exc()
+        elif input_tag == "csv": # csv输入对调结构与名称后再运行
+            try:
+                print('我工作了！')
+                # 对调结构与名称变量
+                tmp_name = smi_str
+                tmp_str = smi_name
+                smi_str = tmp_str
+                smi_name = tmp_name
+                obabel_out = subprocess.check_output(obabel_smi_cmd, shell=False, stderr=subprocess.STDOUT, text=True)  # 捕获OpenBaBel输出
+            except:  # 获取异常
+                obabel_out = traceback.format_exc()
+
+    # 检查是否转换成功
+    if (obabel_out.find('1 molecule converted') >= 0):
+        smi_number += 1  # pdb计数器+1，用于该模块运行完毕后的总结
+        print(f'\033[92m    {lang_smi_sing_suc} \033[95m{smi_name}\033[0m')  # print green information # 打印成功信息
+    else:  # 文件后缀错误，停止执行操作并输出警告
+        smi_err_number += 1  # 错误计数器+1，用于该模块运行完毕后的总结输出
+        print(f'\033[91m    {lang_smi_make_err.format(smi_name, smi_file, line, obabel_out)}\033[0m')
+
+    os.system('killall -9 obabel')  # 杀死那个OpenBaBel进程
+
+    return smi_number, smi_war_number, smi_err_number # 将运行信息打包为元组
+
+
+
+# 定义对txt文件的处理模式
+def txt_change(smi_path, smi_file , smi_number, smi_war_number, smi_err_number):
+
+    input_tag = "txt" # 定义传入数据的所属标签
+
+    # read smi.txt
+    # 开始阅读小分子集的.txt文件
+    with open(smi_path, "r", encoding="utf-8") as smi_txt_data: #  txt 数据写入 smi_txt_data
+        # line read
+        # 每次读取一行
+        line_txt_number = 0 # 初始化运行定位
+        for line_txt in smi_txt_data: # 读取每一行
+            line_txt_number += 1
+            smi_txt_all = (line_txt.strip()) # delete \n 删除所有换行符
+            if not smi_txt_all:
+                continue
+            # abstracting structure and name
+            # 分别提取结构字符串和名称字符串
+            parts = smi_txt_all.split() # 按行进行切片
+            #print(parts)
+            try:
+                smi_str_raw, smi_name_raw = parts[0], parts[1] # abstracting and set 第一个空格前切片为结构字符串，第二个空格前切片为名称字符串
+                # 删除引号
+                smi_str = smi_str_raw.replace("'", '')
+                smi_name = smi_name_raw.replace("'", '')
+                # 执行转换模块
+                smi_number, smi_war_number, smi_err_number = make_pdb(line_txt_number, smi_file, smi_str, smi_name , smi_number, smi_war_number, smi_err_number, input_tag)
+                if out_mol2 == 'true':
+                    smi_number, smi_war_number, smi_err_number = make_mol2(line_txt_number, smi_file, smi_str, smi_name , smi_number, smi_war_number, smi_err_number, input_tag)
+            except: # 若无法提取与转换则跳过
+                print(f"\033[33m    {lang_smi_jump.format(smi_file, line_txt_number, parts)}\033[0m")
+
+    return smi_number, smi_war_number, smi_err_number # 将运行信息打包为元组
+
+
+
+# 定义对.csv文件的处理
+def csv_change(smi_path, smi_file , smi_number, smi_war_number, smi_err_number):
+
+    input_tag = "csv" # 定义传入数据的所属标签
+
+    # 初始化.csv缓存列表
+    smi_str_list = []
+    smi_name_list = []
+
+    # read smi.csv
+    # 开始阅读小分子集的.csv文件
+    with open(smi_path, 'r', newline='', encoding='utf-8') as file:
+        csv_data = csv.reader(file) # csv内容写入
+        next(csv_data)  # 跳过首行（标题行）
+        # 读取每一行的第一列
+        for row in csv_data:
+            smi_name_list.append(row[0]) # 添加第一列数据
+            smi_str_list.append(row[1]) # 添加第二列数据
+    # print(smi_name_list) # 调试预留功能
+    # print(smi_str_list)  # 调试预留功能
+    # 转换为.pdb
+    if len(smi_name_list) == len(smi_str_list):
+        line_csv_number = 1 # 初始化运行定位
+        for smi_name in smi_name_list:
+            smi_str = smi_str_list[line_csv_number - 1]
+            # 跳过结构与名称均为空的行
+            if len(smi_str) != None and len(smi_name) != None:
+                line_csv_number += 1
+                # 执行转换模块
+                smi_number, smi_war_number, smi_err_number = make_pdb(line_csv_number, smi_file, smi_str, smi_name , smi_number, smi_war_number, smi_err_number, input_tag)
+                if out_mol2 == 'true':
+                    smi_number, smi_war_number, smi_err_number = make_mol2(line_csv_number, smi_file, smi_str, smi_name , smi_number, smi_war_number, smi_err_number, input_tag)
+    else:
+        print(f"\033[31mlang_smi_csv_list_number.format(smi_file)\033[0m")
+        smi_err_number += 1 # 错误计数器+1，用于该模块运行完毕后的总结输出
+
+    return smi_number, smi_war_number, smi_err_number # 将运行信息打包为元组
+
+
+
+# smi处理模块主函数
 def change_smi():
 
     # 初始化计数器
@@ -12,126 +188,6 @@ def change_smi():
     # 加载与排序相关目录下的文件（名称顺序）
     ligand_smi_txt_list = os.listdir(ligand_smi_path) # 获取输入目录ligand_smi_path下所有文件到一个列表
     ligand_smi_txt_list.sort() # 为输入蛋白质列表进行顺序排序
-
-
-
-    def make_pdb(line, smi_file, smi_str, smi_name , smi_number, smi_war_number, smi_err_number, input_tag):
-
-        # 运行OpenBaBel
-        obabel_smi_cmd = ['obabel',
-                            '-:' + smi_str,
-                            '-opdb',
-                            '-O', f"{ligand_pdb_path}/{smi_name}.pdb",
-                            '-h',
-                            '--partialcharge', 'gasteiger',
-                            '--minimize',
-                            '--gen3D',
-                            '--ff', fields]
-        # print(obabel_smi_cmd) # 预留调试接口
-        # 防止程序报错后退出
-        try:
-            obabel_out = subprocess.check_output(obabel_smi_cmd, shell=False, stderr=subprocess.STDOUT, text=True)  # 捕获OpenBaBel输出
-        except:  # 分类处理
-            if input_tag == "txt": # txt输入直接报异常内容
-                obabel_out = traceback.format_exc()
-            elif input_tag == "csv": # csv输入对调结构与名称后再运行
-                try:
-                    print('我工作了！')
-                    # 对调结构与名称变量
-                    tmp_name = smi_str
-                    tmp_str = smi_name
-                    smi_str = tmp_str
-                    smi_name = tmp_name
-                    obabel_out = subprocess.check_output(obabel_smi_cmd, shell=False, stderr=subprocess.STDOUT, text=True)  # 捕获OpenBaBel输出
-                except:  # 获取异常
-                    obabel_out = traceback.format_exc()
-
-        # 检查是否转换成功
-        if (obabel_out.find('1 molecule converted') >= 0):
-            smi_number += 1  # pdb计数器+1，用于该模块运行完毕后的总结
-            print(f'\033[92m    {lang_smi_sing_suc} \033[95m{smi_name}\033[0m')  # print green information # 打印成功信息
-        else:  # 文件后缀错误，停止执行操作并输出警告
-            smi_err_number += 1  # 错误计数器+1，用于该模块运行完毕后的总结输出
-            print(f'\033[91m    {lang_smi_make_err.format(smi_name, smi_file, line, obabel_out)}\033[0m')
-
-        os.system('killall -9 obabel')  # 杀死那个OpenBaBel进程
-
-        return smi_number, smi_war_number, smi_err_number # 将运行信息打包为元组
-
-
-    
-
-    # 定义对txt文件的处理模式
-    def txt_change(smi_path, smi_file , smi_number, smi_war_number, smi_err_number):
-
-        input_tag = "txt" # 定义传入数据的所属标签
-
-        # read smi.txt
-        # 开始阅读小分子集的.txt文件
-        with open(smi_path, "r", encoding="utf-8") as smi_txt_data: #  txt 数据写入 smi_txt_data
-            # line read
-            # 每次读取一行
-            line_txt_number = 0 # 初始化运行定位
-            for line_txt in smi_txt_data: # 读取每一行
-                line_txt_number += 1
-                smi_txt_all = (line_txt.strip()) # delete \n 删除所有换行符
-                if not smi_txt_all:
-                    continue
-                # abstracting structure and name
-                # 分别提取结构字符串和名称字符串
-                parts = smi_txt_all.split() # 按行进行切片
-                #print(parts)
-                try:
-                    smi_str_raw, smi_name_raw = parts[0], parts[1] # abstracting and set 第一个空格前切片为结构字符串，第二个空格前切片为名称字符串
-                    # 删除引号
-                    smi_str = smi_str_raw.replace("'", '')
-                    smi_name = smi_name_raw.replace("'", '')
-                    # 执行转换模块
-                    smi_number, smi_war_number, smi_err_number = make_pdb(line_txt_number, smi_file, smi_str, smi_name , smi_number, smi_war_number, smi_err_number, input_tag)
-                except: # 若无法提取与转换则跳过
-                    print(f"\033[33m    {lang_smi_jump.format(smi_file, line_txt_number, parts)}\033[0m")
-
-        return smi_number, smi_war_number, smi_err_number # 将运行信息打包为元组
-    
-
-
-    # 定义对.csv文件的处理
-    def csv_change(smi_path, smi_file , smi_number, smi_war_number, smi_err_number):
-
-        input_tag = "csv" # 定义传入数据的所属标签
-
-        # 初始化.csv缓存列表
-        smi_str_list = []
-        smi_name_list = []
-
-        # read smi.csv
-        # 开始阅读小分子集的.csv文件
-        with open(smi_path, 'r', newline='', encoding='utf-8') as file:
-            csv_data = csv.reader(file) # csv内容写入
-            next(csv_data)  # 跳过首行（标题行）
-            # 读取每一行的第一列
-            for row in csv_data:
-                smi_name_list.append(row[0]) # 添加第一列数据
-                smi_str_list.append(row[1]) # 添加第二列数据
-        # print(smi_name_list) # 调试预留功能
-        # print(smi_str_list)  # 调试预留功能
-        # 转换为.pdb
-        if len(smi_name_list) == len(smi_str_list):
-            line_csv_number = 1 # 初始化运行定位
-            for smi_name in smi_name_list:
-                smi_str = smi_str_list[line_csv_number - 1]
-                # 跳过结构与名称均为空的行
-                if len(smi_str) != None and len(smi_name) != None:
-                    line_csv_number += 1
-                    # 执行转换模块
-                    smi_number, smi_war_number, smi_err_number = make_pdb(line_csv_number, smi_file, smi_str, smi_name , smi_number, smi_war_number, smi_err_number, input_tag)
-        else:
-            print(f"\033[31mlang_smi_csv_list_number.format(smi_file)\033[0m")
-            smi_err_number += 1 # 错误计数器+1，用于该模块运行完毕后的总结输出
-
-        return smi_number, smi_war_number, smi_err_number # 将运行信息打包为元组
-
-
 
     # Change to single_file
     # 将ligand_smi目录下的.txt文件拆分为单个.smi文件存储到ligand_smi_single目录下，并以小分子名称命名
