@@ -5,11 +5,11 @@ This project is an automated batch docking pipeline built on AutoDock-GPU, desig
 更多完善的功能和用户手册在将来的更新中被加入！<br>
 More complete features and a user manual will be added in future updates!<br>
 
-## 联系作者 Correspoonding Author
+## 联系作者 Corresponding Author
 ```
 # 附魔书，主要开发者（Magica_Book | Main Developer）
 magica_book@qq.com
-# 朱二丁，修复AutoDockTools（ZhuErding | Fixes AutoDockTools）
+# 朱二丁，修复AutoDockTools（ZhuErding | Fixed AutoDockTools）
 zhuerding@zhuerding.top
 ```
 
@@ -33,11 +33,12 @@ zhuerding@zhuerding.top
 
 ## V 1.7.2 Alpha Changelog
 ### The Update that Changed the Software
-1. Support for inputting small molecules in `.csv` format. When using `.txt` format inputs, blank lines are skipped without processing. Conversion failures no longer terminate software execution - instead, error messages are displayed<br>
-2. SMILES molecule collections can now be directly extracted as `.pdb` format without intermediate steps! Consequently, we've removed the `change_smi_sing.py` module and `ligand_smi_sing` directory<br>
-3. You can now freely select `molecular force fields` for .pdb generation in Settings. For force field explanations, see Open Babel's technical documentation: https://openbabel.org/docs/Forcefields/Overview.html<br>
-4. Added customizable options for printing molecular docking result details<br>
-5. You can now customize whether the software generates small molecules in `.mol2` format to facilitate usage with certain molecular dynamics software.<br>
+1. It is recommended to delete any residual ligands from previous simulations prior to initiating a new docking run to prevent potential interference<br>
+2. Support for inputting small molecules in `.csv` format. When using `.txt` format inputs, blank lines are skipped without processing. Conversion failures no longer terminate software execution - instead, error messages are displayed<br>
+3. SMILES molecule collections can now be directly extracted as `.pdb` format without intermediate steps! Consequently, we've removed the `change_smi_sing.py` module and `ligand_smi_sing` directory<br>
+4. You can now freely select `molecular force fields` for .pdb generation in Settings. For force field explanations, see Open Babel's technical documentation: https://openbabel.org/docs/Forcefields/Overview.html<br>
+5. Added customizable options for printing molecular docking result details<br>
+6. You can now customize whether the software generates small molecules in `.mol2` format to facilitate usage with certain molecular dynamics software.<br>
 6. Optimized the functional layout of `Settings` module following CADD workflow sequence for more intuitive logic<br>
 7. Algorithm optimization in `set.py` module to reduce code clutter and improve execution efficiency<br>
 8. Fixed several long-standing persistent bugs<br>
