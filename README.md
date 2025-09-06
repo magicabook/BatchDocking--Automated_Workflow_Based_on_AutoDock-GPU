@@ -13,7 +13,7 @@ magica_book@qq.com
 zhuerding@zhuerding.top
 ```
 
-<img width="1200" height="1016" alt="Batchdock" src="https://github.com/user-attachments/assets/39ebd82a-3dae-492a-94eb-a0a6fec419b5" />
+<img width="50%" height="50%" alt="Batchdock" src="https://github.com/user-attachments/assets/39ebd82a-3dae-492a-94eb-a0a6fec419b5" />
 
 ## V 1.7.2 Alpha 更新日志
 ### 改变软件的更新
