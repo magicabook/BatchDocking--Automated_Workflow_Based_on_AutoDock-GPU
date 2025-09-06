@@ -1,4 +1,4 @@
-# Batch Docking: Automated Workflow Based on AutoDock-GPU ( V 1.7.1 Alpha )
+# Batch Docking: Automated Workflow Based on AutoDock-GPU ( V 1.7.2 Alpha )
 这是一个基于AutoDock-GPU的自动化批量对接程序，只需输入小分子的smiles结构文档（支持批量输入）并且提供蛋白质的网格文件（maps.fld）即可自动完成小分子预处理，分子对接，结果提取等步骤。<br>
 This project is an automated batch docking pipeline built on AutoDock-GPU, designed to streamline virtual screening workflows.<br>
 
@@ -15,22 +15,23 @@ zhuerding@zhuerding.top
 
 <img width="1200" height="1016" alt="Batchdock" src="https://github.com/user-attachments/assets/39ebd82a-3dae-492a-94eb-a0a6fec419b5" />
 
-## V 1.7.1 Alpha 更新日志
+## V 1.7.2 Alpha 更新日志
 ### 改变软件的更新
-1. 支持采用`.csv`格式输入小分子，同时以`.txt`格式输入小分子时不会对空白行进行操作，某一行转换失败后软件运行不会终止，而是会输出错误提示语<br>
-2. 输入的smiles小分子集合现在可以直接被提取为`.pdb`格式而无需经过中间步骤！因此我们删除了`change_smi_sing.py`模块和`ligand_smi_sing`目录<br>
-3. 您现在可以在`设置`中模块自由地选择生成`.pdb`文件时所采用的`分子力场`，关于分子力场的解释请阅读Open Babel的这篇技术文档：https://openbabel.org/docs/Forcefields/Overview.html<br>
-4. 您现在可以自定义软件是否打印分子对接结果的详细信息<br>
-5. 您现在可以自定义软件是否生成`.mol2`格式的小分子以便于某些分子动力学软件使用<br>
-6. 优化了`设置`模块的功能布局，以CADD的流程先后顺序进行排列，更符合逻辑直觉<br>
-7. 尝试对`set.py`模块的算法进行优化，降低了代码的冗杂度和执行效率<br>
-8. 修复了一些长期存在的顽固Bug<br>
-9. 看了更多猫猫视频，暹罗猫可爱捏！(=^･ｪ･^=)<br>
-10. 撸了撸隔壁同事养的银渐层ヽ(=^･ω･^=)丿，很乖很软萌<br>
-11. 更新制作人员名单<br>
-12. 移除了 Herobrine<br>
+1. 您现在可以选择进行新工作前是否删除旧的小分子以防止上次工作留下的小分子造成的影响<br>
+2. 支持采用`.csv`格式输入小分子，同时以`.txt`格式输入小分子时不会对空白行进行操作，某一行转换失败后软件运行不会终止，而是会输出错误提示语<br>
+3. 输入的smiles小分子集合现在可以直接被提取为`.pdb`格式而无需经过中间步骤！因此我们删除了`change_smi_sing.py`模块和`ligand_smi_sing`目录<br>
+4. 您现在可以在`设置`中模块自由地选择生成`.pdb`文件时所采用的`分子力场`，关于分子力场的解释请阅读Open Babel的这篇技术文档：https://openbabel.org/docs/Forcefields/Overview.html<br>
+5. 您现在可以自定义软件是否打印分子对接结果的详细信息<br>
+6. 您现在可以自定义软件是否生成`.mol2`格式的小分子以便于某些分子动力学软件使用<br>
+7. 优化了`设置`模块的功能布局，以CADD的流程先后顺序进行排列，更符合逻辑直觉<br>
+8. 尝试对`set.py`模块的算法进行优化，降低了代码的冗杂度和执行效率<br>
+9. 修复了一些长期存在的顽固Bug<br>
+10. 看了更多猫猫视频，暹罗猫可爱捏！(=^･ｪ･^=)<br>
+11. 撸了撸隔壁同事养的银渐层ヽ(=^･ω･^=)丿，很乖很软萌<br>
+12. 更新制作人员名单<br>
+13. 移除了 Herobrine<br>
 
-## V 1.7.1 Alpha Changelog
+## V 1.7.2 Alpha Changelog
 ### The Update that Changed the Software
 1. Support for inputting small molecules in `.csv` format. When using `.txt` format inputs, blank lines are skipped without processing. Conversion failures no longer terminate software execution - instead, error messages are displayed<br>
 2. SMILES molecule collections can now be directly extracted as `.pdb` format without intermediate steps! Consequently, we've removed the `change_smi_sing.py` module and `ligand_smi_sing` directory<br>

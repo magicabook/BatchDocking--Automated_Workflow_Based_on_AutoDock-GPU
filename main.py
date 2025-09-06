@@ -42,6 +42,12 @@ while True:
 
     # 仅将输入的.smiles小分子转换为.PDB格式
     elif function_number == '1':
+
+        import delete_mol
+        if delete == 'true':
+            name_list = ['ligand_pdb']
+            delete_mol.delete_mol(name_list, function_number)
+
         import change_smi
         if __name__ == '__main__':
             smi_number, smi_war_number, smi_err_number = change_smi.change_smi() # 执行模块并将元组拆包
@@ -66,6 +72,12 @@ while True:
 
     # 仅将PDB格式的小分子转换为PDBQT配体格式
     elif function_number == '2':
+
+        import delete_mol
+        if delete == 'true':
+            name_list = ['ligand_pdbqt']
+            delete_mol.delete_mol(name_list, function_number)
+
         import change_pdb
         if __name__ == '__main__':
             pdbqt_number, pdbqt_war_number, pdbqt_err_number = change_pdb.change_pdb() # 执行模块并将元组拆包
@@ -78,8 +90,8 @@ while True:
 
     # 仅运行批量自动对接
     elif function_number == '3':
-        import dock
 
+        import dock
         # 自定义结果文件名称
         inter_result_name = input(lang_dock_inter_name).strip().lower()  # 获取用户自定义的名称
         if len(inter_result_name) > 0:  # 通过查询变量长度判断用户是否自定义名称
@@ -100,9 +112,14 @@ while True:
 
     # 运行小分子前处理的全部流程（ 1 ~ 2 ）
     elif function_number == 'a':
+
+        import delete_mol
+        if delete == 'true':
+            name_list = ['ligand_pdb', 'ligand_pdbqt']
+            delete_mol.delete_mol(name_list, function_number)
+
         import change_smi
         import change_pdb
-
         if __name__ == '__main__':
             smi_number, smi_war_number, smi_err_number = change_smi.change_smi()  # 执行模块并将元组拆包
             pdbqt_number, pdbqt_war_number, pdbqt_err_number = change_pdb.change_pdb()
@@ -117,10 +134,15 @@ while True:
 
     # 运行分子对接的全部流程（ 1 ~ 3 ）
     elif function_number == 'b':
+
+        import delete_mol
+        if delete == 'true':
+            name_list = ['ligand_pdb', 'ligand_pdbqt']
+            delete_mol.delete_mol(name_list, function_number)
+
         import change_smi
         import change_pdb
         import dock
-
         # 自定义结果文件名称
         inter_result_name = input(lang_dock_inter_name).strip().lower()  # 获取用户自定义的名称
         if len(inter_result_name) > 0:  # 通过查询变量长度判断用户是否自定义名称

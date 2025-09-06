@@ -18,7 +18,13 @@ def dock():
     result_name_hat = globals().get('globel_result_name_hat') # 获取从main.py传递来的变量globel_result_name_hat并作为结果文件名
 
     # 加载与排序相关目录下的文件（名称顺序）
-    protein_list = os.listdir(protein_path) # 获取蛋白质目录protein_list_path下所有文件到一个列表
+    protein_raw_list = os.listdir(protein_path) # 获取蛋白质目录protein_list_path下所有文件到一个列表
+    protein_list = []
+    for protein_raw in protein_raw_list:
+        if os.path.isdir(f'{protein_path}/{protein_raw}') == True: # 如果为目录
+            protein_list.append(protein_raw) # 将该蛋白名称装入这个列表
+        else:
+            continue
     protein_list.sort() # 为蛋白质列表进行顺序排序
     ligand_pdbqt_list = os.listdir(ligand_pdbqt_path) # 获取小分子目录ligand_pdbqt下所有文件到一个列表
     ligand_pdbqt_list.sort() # 为小分子pdbqt列表进行顺序排序
@@ -162,6 +168,7 @@ def dock():
                                                 '-nrun', nrun,
                                                 '-resnam', result_path,
                                                 '-seed',seed]
+                                print(dock_cmd) # 调试预留
                                     
                                 # 芝士汉堡猫彩蛋
                                 if 'cat' in protein_name or 'kit' in protein_name:

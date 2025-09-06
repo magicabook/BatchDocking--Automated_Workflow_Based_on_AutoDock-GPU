@@ -10,11 +10,12 @@ import os
 import re
 import csv
 import random
+import shutil
 import datetime
 import subprocess
 import importlib
 import traceback
-ver = '1.7.1'
+ver = '1.7.2'
 
 
 
