@@ -168,7 +168,7 @@ def dock():
                                                 '-nrun', nrun,
                                                 '-resnam', result_path,
                                                 '-seed',seed]
-                                print(dock_cmd) # 调试预留
+                                # print(dock_cmd) # 调试预留
                                     
                                 # 芝士汉堡猫彩蛋
                                 if 'cat' in protein_name or 'kit' in protein_name:

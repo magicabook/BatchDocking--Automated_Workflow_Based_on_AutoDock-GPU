@@ -43,7 +43,7 @@ language = 'zh_cn'
 # OpenBabel Molecular Mechanics and Force Fields
 fields = 'gaff'
 # Whether to output .mol2 files for molecular dynamics simulation
-out_mol2 = 'true'
+out_mol2 = 'false'
 # Docking run number
 nrun = '20'
 # AutoDock-GPU seed
