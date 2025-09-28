@@ -6,17 +6,19 @@ This project is an automated batch docking pipeline built on AutoDock-GPU, desig
 More complete features and a user manual will be added in future updates!<br>
 
 ## 联系作者 Corresponding Author
+
+### 附魔书，主要开发者（Magica_Book | Main Developer）
 ```
-# 附魔书，主要开发者（Magica_Book | Main Developer）
 magica_book@qq.com
-# 朱二丁，修复AutoDockTools（ZhuErding | Fixed AutoDockTools）
+```
+### 朱二丁，修复AutoDockTools（ZhuErding | Fixed AutoDockTools）
+```
 zhuerding@zhuerding.top
 ```
 
 ## 使用本项目的研究 Utilizing the Research from this Project
+### Yubin Zhu, Yuqing Zhang, Xinni Li, *et,al*. Elucidating anti-triple-negative breast cancer mechanisms and mitigating toxicity of Fritillaria thunbergii Miq.: A multi-omics and network pharmacology approach[J]. Journal of Ethnopharmacology. Volume 355, Part A, 30 January 2026, 120600. 
 ```
-[1] Yubin Zhu, Yuqing Zhang, Xinni Li, *et,al*. Elucidating anti-triple-negative breast cancer mechanisms and mitigating toxicity of Fritillaria thunbergii Miq.: A multi-omics and network pharmacology approach[J]. 
-Journal of Ethnopharmacology. Volume 355, Part A, 30 January 2026, 120600. 
 [doi] https://doi.org/10.1016/j.jep.2025.120600.
 ```
 
