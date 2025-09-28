@@ -17,8 +17,8 @@ zhuerding@zhuerding.top
 ```
 
 ## 使用本项目的研究 Utilizing the Research from this Project
-### Yubin Zhu, Yuqing Zhang, Xinni Li, *et,al*. Elucidating anti-triple-negative breast cancer mechanisms and mitigating toxicity of Fritillaria thunbergii Miq.: A multi-omics and network pharmacology approach[J]. Journal of Ethnopharmacology. Volume 355, Part A, 30 January 2026, 120600. 
-DOI
+[1] Yubin Zhu, Yuqing Zhang, Xinni Li, *et,al*. Elucidating anti-triple-negative breast cancer mechanisms and mitigating toxicity of Fritillaria thunbergii Miq.: A multi-omics and network pharmacology approach[J]. Journal of Ethnopharmacology. Volume 355, Part A, 30 January 2026, 120600. 
+[DOI]
 ```
 https://doi.org/10.1016/j.jep.2025.120600.
 ```
